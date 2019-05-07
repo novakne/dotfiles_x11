@@ -1,0 +1,190 @@
+/*
+ * ROFI Color theme
+ * Aize by Novacane337
+ * ~/.config/rofi/themes/Aize.rasi
+ */
+
+/* global settings and color variables */
+* {
+    aize00: #29223a;
+    aize01: #3e3350;
+    aize02: #534666;
+    aize03: #6b5c7c;
+    aize04: #837593;
+    aize05: #9d8fa9;
+    aize06: #b7acbf;
+    aize07: #d2ccd6;
+    aize08: #f63d81;
+    aize09: #fc65b0;
+    aize10: #f5939c;
+    aize11: #e8ec77;
+    aize12: #2dcbb0;
+    aize13: #57bbf4;
+    aize14: #a89bee;
+    aize15: #4db9c8;
+
+    bg:          @aize00;
+    fg:          @aize07;
+    urgent:      @aize08;
+    fg-urgent:   @aize00;
+    selected:    @aize12;
+    fg-selected: @aize00;
+    active:      @aize13;
+    fg-active:   @aize00;
+    prompt:      @aize02;
+}
+
+#window {
+    /* anchor: north; */
+    /* location: north; */
+    background-color: @bg;
+    border-radius:    2px;
+    padding:          40px;
+    width:            50%;
+    height:           30%;
+    font:             "Overpass 18";
+}
+
+#mainbox {
+    background-color: @bg;
+    border:           0px;
+    padding:          6px;
+}
+
+#message {
+    background-color: @bg;
+    border:           0px;
+    padding:          1px;
+}
+
+#textbox {
+    padding:    1px;
+    text-color: @fg;
+}
+
+#listview {
+    background-color: @bg;
+    fixed-height:     0px;
+    border:           0px;
+    
+    spacing:   2px;
+    scrollbar: false;
+    padding:   2px 30px 0px;
+    columns:   2;
+}
+
+#element {
+    border:        0px;
+    border-radius: 4px;
+    padding:       5px;
+}
+
+#element.normal.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+#element.normal.urgent {
+    background-color: @urgent;
+    text-color:       @fg-urgent;
+}
+
+#element.normal.active {
+    background-color: @active;
+    text-color:       @fg-active;
+}
+
+#element.selected.normal {
+    background-color: @selected;
+    text-color:       @fg-selected;
+}
+
+#element.selected.urgent {
+    background-color: @bg;
+    text-color:       @urgent;
+}
+
+#element.selected.active {
+    background-color: @bg;
+    text-color:       @selected;
+}
+
+#element.alternate.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+#element.alternate.urgent {
+    background-color: @bg;
+    text-color:       @urgent;
+}
+
+#element.alternate.active {
+    background-color: @bg;
+    text-color:       @active;
+}
+
+#scrollbar {
+    width:        4px;
+    border:       0px;
+    handle-color: @fg;
+    handle-width: 8px;
+    padding:      0px;
+}
+
+#sidebar {
+    border:        0px;
+    border-radius: 8px;
+}
+
+#button {
+    margin:           5px;
+    padding:          5px;
+    background-color: @bg;
+    text-color:       @fg;
+    border:           0px;
+    border-radius:    8px;
+    
+}
+
+#button.selected {
+    background-color: @bg;
+    text-color:       @fg;
+    border:           3px;
+    border-radius:    20px;
+    
+}
+
+#inputbar {
+    background-color: @bg;
+    spacing:          0px;
+    text-color:       @fg;
+    padding:          5px ;
+    children:         [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+#case-indicator {
+    background-color: @bg;
+    spacing:          0px;
+    text-color:       @fg;
+}
+
+#entry {
+    background-color: @bg;
+    spacing:          0px;
+    text-color:       @fg;
+}
+
+#prompt {
+    background-color: @bg;
+    spacing:          0px;
+    border:           0px;
+    text-color:       @prompt;
+}
+
+#textbox-prompt-colon {
+    background-color: @bg;
+    expand:           false;
+    margin:           0px 0.3000em 0.0000em 0.0000em ;
+    text-color:       inherit;
+}

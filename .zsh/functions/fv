@@ -1,0 +1,5 @@
+# Open files with VSCode and exit terminal
+
+local files
+IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+[[ -n "$files" ]] && code "${files[@]}" && exit

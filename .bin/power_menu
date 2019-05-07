@@ -1,0 +1,30 @@
+#!/bin/sh
+# Open an exit menu with confirmation in rofi
+# Bind to Super-Shift-Escape
+
+confirm() {
+    echo -e "Yes\nNo" | rofi -dmenu -i -format d -selected-row 1 -p "${1:-Confirm: }" -theme themes/menu.rasi
+}
+
+quit=" Quit bspwm"
+shutdown=" Shutdown"
+reboot=" Reboot"
+suspend=" Suspend"
+hibernate=" Hibernate"
+
+LAUNCHER="rofi -dmenu -i -p Exit:  -theme themes/menu.rasi"
+OPTIONS="$quit\n$shutdown\n$reboot\n$suspend\n$hibernate"
+
+selection=$(echo -e $OPTIONS | $LAUNCHER)
+case $selection in
+    $quit)
+        bspc quit ;;
+    $shutdown)
+        [[ $(confirm) = 1 ]] && (systemctl poweroff) ;;
+    $reboot)
+        [[ $(confirm) = 1 ]] && (systemctl reboot) ;;
+    $suspend)
+        [[ $(confirm) = 1 ]] && (systemctl suspend) ;;
+    $hibernate)
+        [[ $(confirm) = 1 ]] && (systemctl hibernate) ;;
+esac

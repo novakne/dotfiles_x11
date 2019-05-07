@@ -1,0 +1,13 @@
+#!/bin/sh
+
+export LC_COLLATE=C
+export NNN_SHOW_HIDDEN=1
+export NNN_SCRIPT=$HOME/.bin/nnn
+export NNN_CONTEXT_COLORS='3251'
+export NNN_TRASH=1
+export NNN_USE_EDITOR=1
+export NNN_RESTRICT_NAV_OPEN=1
+export NNN_TMPFILE="/tmp/nnn"
+
+# Start nnn with your preferred options
+nnn -l "$@"

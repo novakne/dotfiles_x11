@@ -1,0 +1,81 @@
+/* ~/.config/rofi/themes/menu.rasi */
+
+* {
+    accent: #fc65b0;
+    bg: #29223a;
+    fg: #d2ccd6;
+
+    border-color: @bg;
+    background-color: @bg;
+    text-color: @fg;
+    margin: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    spacing: 0;
+}
+
+#listview {
+    spacing: 0;
+    scrollbar: false;
+    margin: 0;
+    dynamic: true;
+
+}
+
+#window {
+    background-color: @bg;
+    border-color: @accent;
+    border: 2;
+    padding: 20px;
+    width: 13%;
+    height: 240px;
+    border-radius: 0px;
+    font: "Overpass 16";
+}
+
+#mainbox {
+    border: 0;
+    padding: 0;
+    background-color: @bg;
+}
+
+#element {
+    padding: 8;
+    border: 0 0 1 0;
+    border-color: @bg;
+    background-color: @bg;
+}
+
+#element.selected.normal {
+    background-color: @fg;
+    text-color: @bg;
+    border-radius: 0px;
+
+    border: 0 0 1 0;
+    border-color: @bg;
+}
+
+#element.alternate.normal {
+    background-color: @bg;
+}
+
+#element.normal.active {
+    background-color: @accent;
+}
+
+#element.alternate.active {
+    background-color: @accent;
+}
+
+#element.selected.active {
+    background-color: @fg;
+    text-color: @bg;
+    border-radius: 0px;
+
+    border: 0 0 1 0;
+    border-color: @bg;
+}
+
+#inputbar {
+    children: [];
+}

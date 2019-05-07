@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# Variables
+. ~/.bin/popup_config
+baropt="-g 415x${BAR_HEIGHT}+1400+${BAR_W} -B ${COLOR_BG} -F ${COLOR_FG} -f ${BAR_FONT} -f ${BAR_ICON}"
+end=$((SECONDS+7))
+
+# Kill the panel if it is currently running
+if [ $(pgrep -cx lemonbar) -gt 1 ] ; then
+	printf "%s\n" "The panel is already running."
+    while [[ $(pgrep -c "lemonbar") != 0 ]]
+    do
+        pkill -n -9 "lemonbar"
+    done
+fi
+
+# Functions
+function statusbar() {
+
+color=%{F${COLOR_BG}}%{B${COLOR_MAGENTA}}
+end=%{F-}%{B-}
+	function tags() {
+	des=$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
+	 if [[ "$des" == "0" ]]; then
+		echo -e "${color}  WEB  ${end}  EDITOR  TERM  IV  V  VI  VII  VIII  IX  X  "
+	elif [[ "$des" == "1" ]]; then
+    echo -e "  WEB ${color}  EDITOR  ${end} TERM  IV  V  VI  VII  VIII  IX  X  "
+	elif [[ "$des" == "2" ]]; then
+    echo -e "  WEB  EDITOR ${color}  TERM  ${end} IV  V  VI  VII  VIII  IX  X  "
+	elif [[ "$des" == "3" ]]; then
+    echo -e "  WEB  EDITOR  TERM ${color}  IV  ${end} V  VI  VII  VIII  IX  X  "
+	elif [[ "$des" == "4" ]]; then
+    echo -e "  WEB  EDITOR  TERM  IV ${color}  V  ${end} VI  VII  VIII  IX  X  "
+	elif [[ "$des" == "5" ]]; then
+    echo -e "  WEB  EDITOR  TERM  IV  V ${color}  VI  ${end} VII  VIII  IX  X  "
+  elif [[ "$des" == "6" ]]; then
+    echo -e "  WEB  EDITOR  TERM  IV  V  VI ${color}  VII  ${end} VIII  IX  X  "
+  elif [[ "$des" == "7" ]]; then
+    echo -e "  WEB  EDITOR  TERM  IV  V  VI  VII ${color}  VIII  ${end} IX  X  "
+  elif [[ "$des" == "8" ]]; then
+    echo -e "  WEB  EDITOR  TERM  IV  V  VI  VII  VIII ${color}  IX  ${end} X  "
+  elif [[ "$des" == "9" ]]; then
+    echo -e "  WEB  EDITOR  TERM  IV  V  VI  VII  VIII  IX  ${color}  X  ${end}"
+	fi
+	}
+	echo "$(tags)"
+}
+
+# Leave a place for the popup
+if [[ $(hostname) == 'arch' ]]; then
+    bspc config top_padding 15
+elif [[ $(hostname) == 'archFixe' ]]; then
+    bspc config top_padding 0
+else
+    bspc config top_padding 0
+fi
+
+# Display Workspaces
+while [ $SECONDS -lt $end ]; do
+		echo "$(statusbar)"
+done | lemonbar ${baropt}
+
+# Remove the top padding
+bspc config top_padding 0
+
+# TODO
+# Padding don't change if I move on mulitple desktop in row

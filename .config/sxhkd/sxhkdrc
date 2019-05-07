@@ -1,0 +1,197 @@
+#.config/sxhkd.sxhkdrc
+
+# WM INDEPENDANT
+
+# Make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Power Menu
+super + shift + Escape
+        ~/.bin/power_menu
+
+# MULTIMEDIA KEYS
+# Find the keys name with
+# xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
+# Volume
+XF86Audio{Lower,Raise}Volume
+	{amixer set Master 5%- unmute, amixer set Master 5%+ unmute}
+XF86AudioMute
+	amixer set Master toggle
+
+# Backlight
+XF86MonBrightness{Down,Up}
+	{xbacklight -dec 10,xbacklight -inc 10}
+
+# Screenshot
+Print
+    ~/.bin/snap a
+
+super + Print
+    ~/.bin/snap w
+
+# Adjust gaps
+super + {z, x, ctrl + z, ctrl + x}
+	~/.config/bspwm/scripts/gaps {10, -10, 50, -50}
+
+# PROGRAMS
+
+super + Return
+        alacritty
+
+ctrl + shift + Return
+	alacritty
+
+super + space
+	rofi -show drun -modi drun,window
+
+super + v
+	vivaldi-stable
+
+super + b
+	firefox
+
+super + e
+	alacritty -e ~/.bin/nv
+
+super + alt + space
+        thunar
+
+super + n
+        alacritty -e ~/.bin/nwrap
+
+# BSPWM
+
+# quit bspwm normally
+super + alt + Escape
+	bspc quit
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+
+alt + F4
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# if the current node is automatic, send it to the last manual, otherwise pull the last leaf
+super + y
+	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+# cycle windows
+alt + {_,shift + }Tab
+    bspc node -f {next,prev}
+
+
+# STATE/FLAGS
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {x,y,z}
+	bspc node -g {locked,sticky,private}
+
+# FOCUS/SWAP
+
+# focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,semicolon}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node
+super + {_,shift + }c
+	bspc node -f {next,prev}
+
+# focus the next/previous desktop
+super + ctrl + paren{left,right()}
+	bspc desktop -f {prev,next}
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,u}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# PRESELECT
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+# RESIZE TILED/FLOATING
+
+# expand the tiled space in the given direction
+super + alt + {Left,Down,Up,Right}
+	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+
+# contract the tiled space in the given direction
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# move a floating window
+super + shift + {h,j,k,l}
+	xdo move {-x -20,-y +20,-y -20,-x +20}
+
+# Resize a floating wondows
+super + alt + {h,j,k,l}
+        xdo resize {-w -20,-h +20,-h -20,-w +20}
+super + w
+    id=$(bspc query -N -n "focused");\
+    if [ -n "$id" ];then \
+        xprop -id $id -f _SCRATCH 32ii -set _SCRATCH $(date +%s,%N);\
+        bspc node -t "floating";\
+        xdotool windowunmap $id;\
+    fi
+
+super + shift + w
+    i=$(bspc query -N -n "focused.floating");\
+    if [ -n "$i" ];then \
+        xprop -id $i -f _SCRATCH 32ii -set _SCRATCH $(date +%s,%N);\
+        xdotool windowunmap $i;\
+    else;\
+        i=$(for w in $(xwininfo -root -children | grep -e "^\s*0x[0-9a-f]\+" -o);do \
+            t=$(xprop -id $w _SCRATCH | grep ' = \(.*\)');\
+            if [ -n "$t" ];then \
+                echo $t $w;\
+            fi;\
+        done|sort -n|head -n1|cut -d" " -f 5);\
+        if [ -n "$i" ];then \
+            xprop -id $i -remove _SCRATCH;\
+            bspc rule -a \* state=floating center=on --one-shot;\
+            xdotool windowmap $i;\
+            bspc node -f $i;\
+        fi;\
+    fi

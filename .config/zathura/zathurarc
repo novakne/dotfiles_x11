@@ -1,0 +1,34 @@
+# COLORS
+set default-bg "#29223a"
+set default-fg "#d2ccd6"
+set completion-bg "#29223a"
+set completion-fg "#d2ccd6"
+set completion-group-bg "#29223a"
+set completion-group-fg "#d2ccd6"
+set completion-highlight-bg "#57bbf4"
+set completion-highlight-fg "#29223a"
+set inputbar-bg "#29223a"
+set inputbar-fg "#d2ccd6"
+set notification-bg "#29223a"
+set notification-fg "#d2ccd6"
+set notification-error-bg "#f63d81"
+set notification-error-fg "#29223a"
+set notification-warning-bg "#e8ec77"
+set notification-warning-fg "#29223a"
+set tabbar-bg "#3e3350"
+set tabbar-fg "#d2ccd6"
+set tabbar-focus-bg "#29223a"
+set tabbar-focus-fg "#d2ccd6"
+set statusbar-bg "#29223a"
+set statusbar-fg "#d2ccd6"
+set highlight-color "#57bbf4"
+set highlight-active-color "#e8ec77"
+set highlight-transparency 0.5
+
+# OPTIONS
+set font "Overpass 11"
+# 'c', the command line 's', the statusbar 'h', the horizontal scrollbar 'v', the vertical scrollbar
+set guioptions csh
+set statusbar-v-padding 4
+set statusbar-h-padding 8
+set selection-clipboard clipboard

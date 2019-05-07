@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# Variables
+. ~/.bin/popup_config
+end=$((SECONDS+5))
+baropt="-g ${BAR_WIDTH}x${BAR_HEIGH}+${BAR_X}+${BAR_W} -B ${COLOR_BG} -F ${COLOR_FG} -f ${BAR_FONT} -f ${BAR_ICON}"
+
+# Kill the panel if it is currently running
+if [ $(pgrep -cx lemonbar) -gt 1 ] ; then
+	printf "%s\n" "The panel is already running."
+    while [[ $(pgrep -c "lemonbar") != 0 ]]
+    do
+        pkill -n -9 "lemonbar"
+    done
+fi
+
+# Functions
+battery () {
+    battery="$(</sys/class/power_supply/BAT0/capacity)%"
+    charging="$(</sys/class/power_supply/BAT0/status)"
+
+    [ "$charging" == "Charging" ] && \
+        battery="Charging  $battery"
+
+    printf "%s" "$battery"
+}
+
+wifi() {
+    ping -c 1 8.8.8.8 >/dev/null 2>&1 && echo "%{F${COLOR_GREEN}}───%{F-}" || echo "%{F${COLOR_RED}}───%{F-}"
+}
+
+sound()  {
+
+    amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq
+}
+
+# Leave a place for the popup
+if [[ $(hostname) == 'arch' ]]; then
+    bspc config top_padding 15
+elif [[ $(hostname) == 'archFixe' ]]; then
+    bspc config top_padding 0
+else
+    bspc config top_padding 0
+fi
+
+# Display Infos
+while [ $SECONDS -lt $end ]; do
+   echo -e "  $(wifi)  %{c}Vol: $(sound)  Bat: $(battery) %{r}$(date "+%H:%M") %{B-}%{F-}"
+done | lemonbar ${baropt}
+
+# Remove the top padding
+bspc config top_padding 0

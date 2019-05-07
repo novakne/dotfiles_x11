@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Open file in a running neovim instance with neomim-remote
+# ( https://github.com/mhinz/neovim-remote )
+
+SERVICE='nvim'
+ 
+if ps ax | grep -v grep | grep $SERVICE > /dev/null;then
+    nvr $1
+else
+    nvim $1
+fi

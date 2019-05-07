@@ -1,0 +1,13 @@
+/* ~/.config/rofi/config.rasi */
+
+configuration {
+	/* show-icons: true; */
+	terminal:            "alacritty";
+	drun-display-format: "{name}";
+	auto-select:         true;
+	combi-modi:          "window,drun";
+	modi:                "window,drun";
+	theme:               "themes/Aize";
+	display-window:      "Windows";
+	display-drun:        "Apps";
+}

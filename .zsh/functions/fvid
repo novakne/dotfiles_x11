@@ -1,0 +1,5 @@
+# Open videos with mpv
+
+local files
+IFS=$'\n' files=($(fd -p -e mp4 -e m4v -e mkv ~ | fzf --query="$1" --multi --select-1 --exit-0))
+[[ -n "$files" ]] && mpv "${files[@]}"

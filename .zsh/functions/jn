@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Jump to a dir with autojump and open it with neovim
+
+j $1 && nv
