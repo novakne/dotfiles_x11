@@ -1,0 +1,7 @@
+plug.vim
+
+# global home directories
+.cache
+.icons
+.npm
+.themes
