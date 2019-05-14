@@ -5,7 +5,7 @@ read -r X Y W H < <(slop -f "%x %y %w %h" -b 1 -t 0 -q)
 # To get these magic values, make a fullscreen st, and divide your screen width by ${tput cols}, height by ${tput lines} 
 (( W /= 8 ))
 (( H /= 16 ))
-x=${W}x${H}
-y=+${X}+${Y}
-bspc rule -a Alacritty -o state=floating
-alacritty --position $x $y
+x_pos=${W}x${H}
+y_pos=+${X}+${Y}
+bspc rule -a kitty -o state=floating
+alacritty -d "$x" "$y"

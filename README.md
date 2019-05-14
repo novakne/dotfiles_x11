@@ -19,6 +19,8 @@
 **Image Viewer**  | [sxiv](https://github.com/muennich/sxiv)
 **Terminal Font** | [Monoid Nerd Font](https://github.com/ryanoasis/nerd-fonts)
 **System Font**   | [Overpass](https://overpassfont.org)
+**Icons**         | [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) modified with [oomox](https://github.com/themix-project/oomox)
+**Gtk Theme**     | [Materia](https://github.com/nana-4/materia-theme) modified with [oomox](https://github.com/themix-project/oomox)
 
 ### Screenshots
 [Wallpaper original by Oskar Woinski](https://www.artstation.com/artwork/vPBmE)
@@ -33,6 +35,7 @@
 *neovim & nnn*
 
 ![clean](img/previews/clean.png?raw=true "clean")
+*clean*
 
 
 ### Shell
@@ -42,6 +45,7 @@
 
 #### Plugins
 Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
+* [zsh-async](https://github.com/mafredri/zsh-async)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [fast-syntax-highlighting](https://github.com/zdharma/fast-syntax-highlighting)
@@ -53,7 +57,7 @@ Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
     * `fcd` Interactive `cd`
     * `fcdh` Interactive `cd` with hidden files
     * `fe` Open file in vscode
-    * `fgr` Fuzzy grep with ripgrep and open in nvim
+    * `frg` Fuzzy grep with ripgrep and open in nvim
     * `fimg` Open images in sxiv
     * `fj` Fzf integration with autojump
     * `fkill` Kill processes

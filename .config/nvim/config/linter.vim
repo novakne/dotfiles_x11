@@ -39,7 +39,8 @@ let g:ale_linters = {
             \ 'css': ['stylelint', 'prettier'],
             \ 'html': ['htmlhint'],
             \ 'rust': ['rls'],
-            \ 'markdown': ['prettier']
+            \ 'markdown': ['prettier'],
+            \ 'sh': ['language_server']
             \}
 let g:ale_fixers = {
             \ 'javascript': ['prettier', 'eslint'],

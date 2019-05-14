@@ -4,8 +4,12 @@
 
 SERVICE='nvim'
  
-if ps ax | grep -v grep | grep $SERVICE > /dev/null;then
-    nvr $1
+if pgrep -f "$SERVICE" > /dev/null; then
+    nvr "$1"
 else
-    nvim $1
+    if [ -x "$HOME"/.bin/nv ]; then
+        nv "$1"
+    else
+        nvim "$1"
+    fi
 fi

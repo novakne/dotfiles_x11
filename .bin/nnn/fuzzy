@@ -5,7 +5,7 @@
 
 SERVICE='nvim'
  
-if ps ax | grep -v grep | grep $SERVICE > /dev/null;then
+if pgrep -f "$SERVICE" > /dev/null; then
     nvr "$(fd -t f | fzf)"
 else
     nvim "$(fd -t f | fzf)"

@@ -232,3 +232,4 @@ label-foreground = ${color.aize00}
 time             = %H : %M
 time-alt         =   %d-%m-%Y
 
+; vim: ft=cfg

@@ -1,5 +1,7 @@
 #!/bin/sh
+# Jump to a dir with autojump and open it with neovim development prerelease build
+#   - Dependencies: autojump, neovim
 
-# Jump to a dir with autojump and open it with neovim
-
-j $1 && nv
+jn () {
+    j "$1" && nv
+}

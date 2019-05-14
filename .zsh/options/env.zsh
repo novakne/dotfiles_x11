@@ -62,7 +62,7 @@ path=(
 export LC_COLLATE=C
 export NNN_SHOW_HIDDEN=1
 export NNN_SCRIPT=$HOME/.bin/nnn
-export NNN_CONTEXT_COLORS='3251'
+export NNN_CONTEXT_COLORS='2314'
 export NNN_TRASH=1
 export NNN_USE_EDITOR=1
 export NNN_RESTRICT_NAV_OPEN=1
@@ -104,9 +104,9 @@ _gen_fzf_default_opts() {
     local aize15='#4db9c8'
 
     export FZF_DEFAULT_OPTS="
-    --color=bg+:$aize00,bg:$aize00,spinner:$aize08,hl:$aize12
-    --color=fg:$aize05,header:$aize08,info:$aize13,pointer:$aize11
-    --color=marker:$aize14,fg+:$aize07,prompt:$aize08,hl+:$aize11
+    --color=bg+:$aize00,bg:$aize00,spinner:$aize09,hl:$aize12
+    --color=fg:$aize05,header:$aize09,info:$aize09,pointer:$aize11
+    --color=marker:$aize13,fg+:$aize07,prompt:$aize09,hl+:$aize11
     --height 50% --reverse --margin 2% --cycle --multi
     "
 

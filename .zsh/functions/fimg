@@ -1,5 +1,10 @@
+#!/bin/sh
 # Open images with Sxiv
+#   - Dependencies: fzf, fd, sxiv
 
-local files
-IFS=$'\n' files=($(fd -p -e jpg -e png ~ | fzf --query="$1" --multi --select-1 --exit-0))
-[[ -n "$files" ]] && sxiv -b "${files[@]}"
+fimg () {
+    local files
+
+    IFS=$'\n' files=($(fd -p -e jpg -e png ~ | fzf --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && sxiv -b "${files[@]}"
+}

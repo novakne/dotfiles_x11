@@ -21,15 +21,7 @@ command! -bang -nargs=? -complete=dir FilesP
 
 " Vim spelling suggestions with fzf
 " ( https://coreyja.com/blog/2018/11/10/vim-spelling-suggestions-fzf.html )
-function! FzfSpellSink(word) abort
-    exe 'normal! "_ciw'.a:word
-endfunction
-function! FzfSpell() abort
-    let suggestions = spellsuggest(expand("<cword>"))
-    return fzf#run({'source': suggestions, 'sink': function("FzfSpellSink"), 'down': 10 })
-endfunction
-
-nnoremap z= :call FzfSpell()<CR>
+nnoremap z= :call fuzzy#FzfSpell()<CR>
 
 " Hide statusbar
 augroup HideStatus

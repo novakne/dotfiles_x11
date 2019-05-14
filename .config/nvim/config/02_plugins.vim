@@ -19,7 +19,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " AUTOCOMPLETE
 " Intellisense engine
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 " Asynchronous linting/fixing for Vim and Language Server Protocol
 Plug 'w0rp/ale'
 " Defaults snippets for coc-snippets
@@ -83,6 +83,9 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
 Plug 'flowtype/vim-flow'
+
+" Latex
+Plug 'lervag/vimtex'
 
 " MARKDOWN
 " An asynchronous markdown preview plugin 

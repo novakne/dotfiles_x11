@@ -1,8 +1,13 @@
+#!/bin/sh
 # Fzf integration with autojump
 # like normal autojump when used with arguments but displays an fzf prompt when used without
+#   - Dependencies: fzf, autojump
 
-if [[ "$#" -ne 0 ]]; then
-    cd $(autojump $@)
-    return
-fi
-cd "$(autojump -s | sed '/_____/Q; s/^[0-9,.:]*\s*//' |  fzf)" 
+fj () {
+    if [[ "$#" -ne 0 ]]; then
+        cd "$(autojump '$@')" || exit
+        return
+    fi
+
+    cd "$(autojump -s | sed '/_____/Q; s/^[0-9,.:]*\s*//' |  fzf)" || exit 
+}

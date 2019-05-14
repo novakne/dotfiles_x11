@@ -294,7 +294,7 @@ hi! link goBuiltins aizeCyan
 hi! link goConstants Keyword
 
 " HTML
-call s:hi("htmlLink", s:aize04, "", "", "", "NONE", "NONE")
+call s:hi("htmlLink", s:aize13, "", "", "", "NONE", "NONE")
 hi! link htmlArg aizeLight0
 hi! link htmlBold Bold
 hi! link htmlEndTag htmlTag

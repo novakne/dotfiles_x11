@@ -1,7 +1,11 @@
+#!/bin/sh
 #NNN cd on quit ( quit with Ctl + g )
+#   - Dependencies: nnn
 
-nnn -dl "$@"
-if [ -f $NNN_TMPFILE ]; then
-    . $NNN_TMPFILE
-    rm $NNN_TMPFILE
-fi
+n () {
+    nnn -dl "$@"
+    if [ -f $NNN_TMPFILE ]; then
+        . $NNN_TMPFILE
+        rm $NNN_TMPFILE
+    fi
+}

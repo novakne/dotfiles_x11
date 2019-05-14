@@ -87,7 +87,7 @@ function! Statusline() abort
     let status .= "%="
     let status .= "%6*%{AleError()}%*"
     let status .= "%7*%{AleWarning()}%*"
-    let status .= " %p%% :: %c "
+    let status .= " %p%% ◾ℂ%c "
     let status .= ModeColor()
     let status .= "%{CocStatus()}%*"
     return status
@@ -97,7 +97,7 @@ set statusline=%!Statusline()
 
 " ___TABLINE___
 
-function MyTabLabel(n)
+function! MyTabLabel(n)
     let buflist = tabpagebuflist(a:n)
     let winnr = tabpagewinnr(a:n)
     return bufname(buflist[winnr - 1])

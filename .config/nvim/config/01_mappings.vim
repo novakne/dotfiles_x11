@@ -60,15 +60,11 @@ command! -nargs=* STerm split | terminal <args>
 command! -nargs=* TTerm tabnew | terminal <args>
 
 " Get color group name of the syntax group where the cursor is
-nnoremap <F12> :call util#SyntaxGroup()<CR> 
+nnoremap <F12> :call colors#SyntaxGroup()<CR> 
 
 " Toggle between number and relativenumber
-function! ToggleNumber() abort
-    if(&relativenumber == 1)
-        set norelativenumber
-        set number
-    else
-        set relativenumber
-    endif
-endfunc
-nnoremap <silent> <Leader>à :call ToggleNumber()<CR>
+nnoremap <silent> <Leader>à :call number#ToggleNumber()<CR>
+
+" Serch helpers
+nnoremap \s :let @s='\<'.expand('<cword>').'\>'<CR>:%s/<C-r>s//<Left>
+xnoremap \s "sy:%s/<C-r>s//<Left>

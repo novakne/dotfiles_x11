@@ -20,6 +20,29 @@ let g:flow#showquickfix = 0
 " Enable only for .jsx
 let g:jsx_ext_required = 1
 
+" LATEX ( https://github.com/lervag/vimtex )
+let g:tex_flavor = 'latex'
+let g:vimtex_compiler_progname = 'nvr'
+let g:method_view_method = 'zathura'
+let g_vimtex_latexmk_continuous = 1
+let g:vimtex_compiler_latexmk = {
+            \ 'backend' : 'nvim',
+            \ 'background' : 1,
+            \ 'build_dir' : '',
+            \ 'callback' : 1,
+            \ 'continuous' : 1,
+            \ 'executable' : 'latexmk',
+            \ 'options' : [
+            \   '-verbose',
+            \   '-pdflatex="xelatex --shell-escape %O %S"',
+            \   '-file-line-error',
+            \   '-synctex=1',
+            \   '-interaction=nonstopmode',
+            \ ],
+            \}
+
+nnoremap <Local>lt :call vimtex#fzf#run()<cr
+
 " MARKDOWN ( https://github.com/plasticboy/vim-markdown )
 " Disable folding
 " let g:vim_markdown_folding_disabled = 1
@@ -33,8 +56,6 @@ let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
 " Change how to open new files
 let g:vim_markdown_edit_url_in = 'tab'
-" Enable conceal
-set conceallevel=2
 
 " Editor Config
 " To ensure that this plugin works well with Tim Pope's fugitive
@@ -43,3 +64,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " RUST
 nnoremap <Leader>rr :RustRun<CR>
 nnoremap <Leader>rf :RustFmt<CR>
+let g:rust_conceal = 1
+let g:rust_conceal_pub = 1
+let g:rustfmt_autosave = 1
