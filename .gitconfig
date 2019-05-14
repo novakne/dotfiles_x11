@@ -19,3 +19,5 @@
 	editor = nvim
 [include]
   path = .gitconfig.user
+[credential]
+	helper = store
