@@ -72,6 +72,12 @@ alias gc='git commit'
 alias gd='git diff'
 alias goc='git checkout '
 
+# YADM
+alias yads='yadm status'
+alias yada='yadm add'
+alias yadp='yadm push'
+alias yadc='yadm commit -m'
+
 ### WEB DEV
 # Npm
 alias upnpm='npm install npm@latest -g'
