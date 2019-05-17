@@ -3,10 +3,12 @@
 # https://github.com/sharkdp/bat#configuration-file
 
 # Theme
---theme="Aize"
+--theme="aize"
 
 # Use italic text on the terminal (not supported on all terminals)
 --italic-text=always
 
 # Show line numbers, Git modifications and file header (but no grid)
 --style="numbers,changes,header"
+
+# vim: ft=cfg

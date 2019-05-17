@@ -125,3 +125,5 @@ visualizer_color         = blue, cyan, green, yellow, magenta, red
 # - u - underline text
 # - r - reverse colors
 # - a - use alternative character set
+
+# vim: ft=cfg
