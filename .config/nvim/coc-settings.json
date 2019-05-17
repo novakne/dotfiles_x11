@@ -9,7 +9,7 @@
     "suggest.enablePreview": true,
     "suggest.maxCompleteItemCount": 20,
     "codeLens.enable": true,
-    "diagnostic.enable": false,
+    "diagnostic.displayByAle": true,
 
     "snippets.autoTrigger": true,
 

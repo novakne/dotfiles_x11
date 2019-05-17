@@ -5,7 +5,7 @@
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    augroup plug_install
+    augroup InstallVimPlug
         autocmd!
         autocmd VimEnter * PlugInstall
     augroup END
@@ -85,7 +85,7 @@ Plug 'posva/vim-vue'
 Plug 'flowtype/vim-flow'
 
 " Latex
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " MARKDOWN
 " An asynchronous markdown preview plugin 

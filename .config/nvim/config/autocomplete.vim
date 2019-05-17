@@ -36,6 +36,7 @@ augroup END
 
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 " Use K for show documentation in preview window
 function! s:show_documentation() abort

@@ -84,7 +84,7 @@ set termguicolors
 set noshowmode
 set noshowcmd
 " Transparent popupmenu
-set pumblend=30
+" set pumblend=10
 
 " Statusline colors
 
@@ -103,5 +103,3 @@ colorscheme aize
 " Source config files
 runtime! config/*.vim
 " }}}
-
-" Vim: set fdm=marker fmr={{{,}}} fdl=0 fdls=-1:
