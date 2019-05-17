@@ -10,8 +10,8 @@
     + [Plugins](#plugins)
     + [Cli Tools](#cli-tools)
     + [Directory](#directory)
-        - [~/.zsh/](#~/.zsh)
-        - [~/.bin/](#~/.bin/)
+        - [~/.zsh/](#zsh)
+        - [~/.bin/](#bin)
 * [Wallpaper](#wallpaper)
 
 ## Infos
