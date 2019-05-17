@@ -1,3 +1,4 @@
+systemctl --user import-environment DISPLAY
 nitrogen --restore &
 compton &
 [ ! -s ~/.config/mpd/pid ] && mpd &
