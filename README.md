@@ -1,7 +1,20 @@
 # Dotfiles
+
 *Dotfiles managed with [yadm](https://yadm.io)*
 
-### Infos
+## Table of contents
+
+* [Infos](#infos)
+* [Screenshots](#screenshots)
+* [Shell](#shell)
+    + [Plugins](#plugins)
+    + [Cli Tools](#cli-tools)
+    + [Directory](#directory)
+        - [~/.zsh/](#~/.zsh)
+        - [~/.bin/](#~/.bin/)
+* [Wallpaper](#wallpaper)
+
+## Infos
 
  _                | _
 --                | --|
@@ -22,8 +35,8 @@
 **Icons**         | [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) modified with [oomox](https://github.com/themix-project/oomox)
 **Gtk Theme**     | [Materia](https://github.com/nana-4/materia-theme) modified with [oomox](https://github.com/themix-project/oomox)
 
-### Screenshots
-[Wallpaper original by Oskar Woinski](https://www.artstation.com/artwork/vPBmE)
+## Screenshots
+
 
 ![neofetch](img/previews/neofetch.png?raw=true "neofetch")
 *fzf & neofetch & ncmpcpp*
@@ -37,20 +50,21 @@
 ![clean](img/previews/clean.png?raw=true "clean")
 *clean*
 
-
-### Shell
+## Shell
 
 ![colors](img/previews/colors.png?raw=true "shell colors")
 ![prompt](img/previews/prompt.png?raw=true "prompt")
 
-#### Plugins
+### Plugins
+
 Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
+
 * [zsh-async](https://github.com/mafredri/zsh-async)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [fast-syntax-highlighting](https://github.com/zdharma/fast-syntax-highlighting)
 
-#### Cli Tools
+### Cli Tools
 
 * [fzf](https://github.com/junegunn/fzf) - command-line fuzzy finder
     * `fapps` Open apps
@@ -66,12 +80,14 @@ Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
     * `fvid` Open videos in mpv
 * [ripgrep](https://github.com/BurntSushi/ripgrep) - recursively searches directories for a regex pattern
 * [bat](https://github.com/sharkdp/bat) - A cat clone with wings
-* [exa](https://github.com/ogham/exa) - A modern version of ‘ls 
+* [exa](https://github.com/ogham/exa) - A modern version of ‘ls
 * [fd](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to 'find'
 * [autojump](https://github.com/wting/autojump) - A cd command for easily navigate directories
 
-#### Directory
-**~/.zsh/**
+### Directory
+
+#### ~/.zsh/
+
 * **functions/** - Load functions only when you call them
     * `br` Open images dir with sxiv `br path/`
     * `extract` Extract archives
@@ -82,9 +98,10 @@ Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
     * `up` Go up N dir `up 2`
 * **options/** Zsh settings
 
-##### User Scripts
+#### ~/.bin/
 
-**~/.bin/**
+*User scripts*
+
 * **bar/** - Lemonbar config ( old, I don't use it rigth now )
     * `bar_config` General config
     * `popup_config` Popup style bar
@@ -113,3 +130,9 @@ Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
 * `sxhkd_key` Show sxkhd mappings in fzf
 * `update_mirror` Get a list of fatest french mirror
 
+## Wallpaper
+
+[Wallpaper original by Oskar Woinski](https://www.artstation.com/artwork/vPBmE)
+
+![Modified](img/previews/wal.jpg?raw=true "wallpaper")
+My modified version
