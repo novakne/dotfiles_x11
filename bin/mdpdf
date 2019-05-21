@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Convert markdown file to pdf with pandoc
+
+PDF_DIR="$HOME/docs/notes/pdf"
+PDF_THEME="zenburn"
+PANDOC_OPTIONS="-V geometry:margin=0.5in --listings --highlight-style=$PDF_THEME --toc --toc-depth=4"
+
+if [ $# = "0" ]; then
+    echo "Usage: mdpdf imput_file output_file"
+    exit 1
+elif [ "$2" = "0" ]; then
+    pandoc -s -f gfm "$1".md -o "$PDF_DIR"/"$1".pdf $PANDOC_OPTIONS
+else
+    pandoc -s -f gfm "$1".md -o "$PDF_DIR"/"$2".pdf $PANDOC_OPTIONS
+fi
+

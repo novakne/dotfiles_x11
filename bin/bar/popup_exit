@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Variables
+. $HOME/bin/popup_config
+baropt="-g 530x75+695+502 -B ${COLOR_RED} -F ${COLOR_BG} -f ${BAR_FONT} -f ${BAR_ICON}"
+end=$((SECONDS+6))
+
+# Functions
+  logout() {
+    echo -e "%{B${COLOR_YELLOW}}%{F${COLOR_BG}}%{A:bspc quit:}  Logout %{A}%{B-}%{F-}"
+  }
+
+  shutdown() {
+    echo -e "%{B${red1}}%{A:systemctl poweroff:}  Shutdown %{A}"
+  }
+
+  reboot() {
+    echo -e "%{A:systemctl reboot:}  Reboot %{A}"
+  }
+
+  suspend () {
+    echo -e "%{A:systemctl suspennd:}  Suspend %{A}"
+  }
+
+  hibernate() {
+    echo -e "%{A:systemctk hibernate:}  Hibernate %{A}"
+  }
+
+# Display popup
+while [ $SECONDS -lt $end ]; do
+  echo -e "$(logout) $(shutdown) $(reboot) $(suspend) $(hibernate)"
+done | lemonbar ${baropt} | sh
