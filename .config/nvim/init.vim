@@ -13,6 +13,7 @@ set nobackup
 set hidden
 " Don't insert line breaks in the middle of a word
 set linebreak
+set textwidth=100
 " Use 4 spaces instead of tab
 " Copy indent from current line when starting a new line
 set autoindent
@@ -79,7 +80,7 @@ augroup CleanNetrw
     nmap - :Lexplore<cr>
 augroup END
 
-" THEME {{{
+" THEME
 set termguicolors
 set noshowmode
 set noshowcmd
@@ -87,7 +88,6 @@ set noshowcmd
 " set pumblend=10
 
 " Statusline colors
-
 augroup StatusColors
     autocmd!
     autocmd ColorScheme * call colors#UserColors()
@@ -102,4 +102,3 @@ colorscheme aize
 
 " Source config files
 runtime! config/*.vim
-" }}}

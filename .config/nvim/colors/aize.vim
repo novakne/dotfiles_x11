@@ -1,5 +1,4 @@
-" Aize
-" ~/.config/nvim/colors/aize.vim
+" Aize ~/.config/nvim/colors/aize.vim
 
 if version > 580
     hi clear
@@ -346,6 +345,11 @@ hi! link jsonBraces aizeBlue
 hi! link jsonKeyword aizeLight0
 hi! link jsonKeywordMatch aizeYellow
 hi! link jsonNoise aizePink
+
+" LATEX
+" (  https://github.com/lervag/vimtex )
+hi! link texStatement aizeGreen
+hi! link texUrl aizeBlue
 
 " LESS
 "  ( https://github.com/groenewege/vim-less )

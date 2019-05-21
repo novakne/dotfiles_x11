@@ -25,10 +25,11 @@ let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'nvr'
 let g:method_view_method = 'zathura'
 let g_vimtex_latexmk_continuous = 1
+let g:vimtex_compiler_latexmk_engines = 5
 let g:vimtex_compiler_latexmk = {
             \ 'backend' : 'nvim',
             \ 'background' : 1,
-            \ 'build_dir' : '',
+            \ 'build_dir' : 'tmp',
             \ 'callback' : 1,
             \ 'continuous' : 1,
             \ 'executable' : 'latexmk',
@@ -41,7 +42,7 @@ let g:vimtex_compiler_latexmk = {
             \ ],
             \}
 
-nnoremap <Local>lt :call vimtex#fzf#run()<cr
+nnoremap <Leader>lt :call vimtex#fzf#run()<CR>
 
 " MARKDOWN ( https://github.com/plasticboy/vim-markdown )
 " Disable folding

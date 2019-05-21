@@ -7,7 +7,7 @@ set cmdheight=2
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 
-" always show signcolumns
+" Always show signcolumns
 set signcolumn=yes
 
 " Use <Tab> for trigger completion and navigate to next complete item

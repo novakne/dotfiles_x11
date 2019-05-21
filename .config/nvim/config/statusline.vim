@@ -87,7 +87,7 @@ function! Statusline() abort
     let status .= "%="
     let status .= "%6*%{AleError()}%*"
     let status .= "%7*%{AleWarning()}%*"
-    let status .= " %p%% ◾ℂ%c "
+    let status .= " %02p%% ◾ℂ%02c "
     let status .= ModeColor()
     let status .= "%{CocStatus()}%*"
     return status

@@ -19,10 +19,6 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=? -complete=dir FilesP
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-" Vim spelling suggestions with fzf
-" ( https://coreyja.com/blog/2018/11/10/vim-spelling-suggestions-fzf.html )
-nnoremap z= :call fuzzy#FzfSpell()<CR>
-
 " Hide statusbar
 augroup HideStatus
     autocmd! FileType fzf
@@ -50,6 +46,13 @@ nnoremap <silent> <leader>L :Lines<CR>
 " Serach ctags
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
+
+" Vim spelling suggestions with fzf
+" ( https://coreyja.com/blog/2018/11/10/vim-spelling-suggestions-fzf.html )
+nnoremap z= :call fuzzy#FzfSpell()<CR>
+
+" Search current word under cursor
+nnoremap <silent> <Leader>k :Rg! <C-R><C-W><CR>
 
 " FZF QUICKFIX ( https://github.com/fszymanski/fzf-quickfix )
 " Enable location list to use with Ale

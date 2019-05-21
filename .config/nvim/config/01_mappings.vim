@@ -4,7 +4,8 @@
 " Change leader key
 let mapleader="\<SPACE>"
 " Normal mode with jj 
-inoremap jj <esc>
+inoremap jk <esc>
+inoremap kj <esc>
 " Move updown by visual (wrapped) lines
 noremap j gj
 noremap k gk
