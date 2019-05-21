@@ -11,7 +11,7 @@
     + [Cli Tools](#cli-tools)
     + [Directory](#directory)
         - [~/.zsh/](#zsh)
-        - [~/.bin/](#bin)
+        - [~/bin/](#bin)
 * [Wallpaper](#wallpaper)
 
 ## Infos
@@ -98,7 +98,7 @@ Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
     * `up` Go up N dir `up 2`
 * **options/** Zsh settings
 
-#### ~/.bin/
+#### ~/bin/
 
 *User scripts*
 
