@@ -8,7 +8,7 @@ super + Escape
 
 # Power Menu
 super + shift + Escape
-        ~/.bin/power_menu
+        ~/bin/power_menu
 
 # MULTIMEDIA KEYS
 # Find the keys name with
@@ -26,10 +26,10 @@ XF86MonBrightness{Down,Up}
 
 # Screenshot
 Print
-    ~/.bin/snap a
+    ~/bin/snap a
 
 super + Print
-    ~/.bin/snap w
+    ~/bin/snap w
 
 # Adjust gaps
 super + {z, x, ctrl + z, ctrl + x}
@@ -53,13 +53,13 @@ super + b
 	firefox
 
 super + e
-	alacritty -e ~/.bin/nv
+	alacritty -e ~/bin/nv
 
 super + alt + space
         thunar
 
 super + n
-        alacritty -e ~/.bin/nwrap
+        alacritty -e ~/bin/nwrap
 
 # BSPWM
 
