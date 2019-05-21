@@ -33,10 +33,13 @@ path=(
   $path
 )
 
+# Completion
+fpath=($HOME/.zsh/completions $fpath)
+
 # User local scripts
-export PATH=$HOME/.bin:$PATH
-export PATH=$HOME/.bin/bar:$PATH
-export PATH=$HOME/.bin/colors:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin/bar:$PATH
+export PATH=$HOME/bin/colors:$PATH
 
 # Npm
 export PATH=$HOME/.node_modules/bin:$PATH
@@ -61,7 +64,7 @@ path=(
 # NNN
 export LC_COLLATE=C
 export NNN_SHOW_HIDDEN=1
-export NNN_SCRIPT=$HOME/.bin/nnn
+export NNN_SCRIPT=$HOME/bin/nnn
 export NNN_CONTEXT_COLORS='2314'
 export NNN_TRASH=1
 export NNN_USE_EDITOR=1

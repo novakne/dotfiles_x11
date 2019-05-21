@@ -17,7 +17,7 @@ alias delorph='yay -Rs $(yay -Qtdq)'
 
 ### FILES MANAGEMENT
 # Directories
-alias scripts='cd $HOME/.bin/'
+alias scripts='cd $HOME/bin/'
 alias conf='cd .config'
 alias doc='cd docs'
 alias dl='cd download'
