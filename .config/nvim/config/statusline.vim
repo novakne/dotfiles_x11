@@ -24,48 +24,6 @@ function! ModeColor() abort
     return get(s:modes, tolower(mode()), '%*')[0]
 endfunction
 
-" Git branch with fugitive
-function! GitBranch() abort
-    let git = fugitive#head()
-    if git != ''
-	return "\ue0a0".fugitive#head()
-    else
-	return ''
-endfunction
-
-" Coc server infos
-function! CocStatus() abort
-    let coc = coc#status()
-    if coc != ''
-        return '  '.coc#status().'  '
-    else
-        return ''
-endfunction
-
-" Linter info with ale
-" Error
-function! AleError() abort
-    let ale = ale#statusline#Count(bufnr('%'))
-    if ale['error'] > 0
-        return "  \uf12a " . ale['error'] . " "
-    else
-        return ''
-endfunction
-
-" Warning
-function! AleWarning() abort
-    let ale = ale#statusline#Count(bufnr('%'))
-    if ale['warning'] > 0
-        return "  \uf128 " . ale['warning'] . " "
-    else
-        return ''
-endfunction
-
-" Show the nearest method/function with vista
-function! NearestFunction() abort
-    return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
 " COMPONENTS
 function! Statusline() abort
     let status = ""
@@ -79,17 +37,17 @@ function! Statusline() abort
     let status .= "%f%{&modified?'':''}\ "
     let status .= "%{&readonly?'':''}"
     let status .= "\ "
-    let status .= "%{GitBranch()}"
+    let status .= "%{statusline#GitBranch()}"
     " Center
     let status .= "%="
-    let status .= "%{NearestFunction()}"
+    let status .= "%{statusline#NearestFunction()}"
     " Right
     let status .= "%="
-    let status .= "%6*%{AleError()}%*"
-    let status .= "%7*%{AleWarning()}%*"
+    let status .= "%6*%{statusline#AleError()}%*"
+    let status .= "%7*%{statusline#AleWarning()}%*"
     let status .= " %02p%% ◾ℂ%02c "
     let status .= ModeColor()
-    let status .= "%{CocStatus()}%*"
+    let status .= "%{statusline#CocStatus()}%*"
     return status
 endfunction
 
@@ -97,7 +55,7 @@ set statusline=%!Statusline()
 
 " ___TABLINE___
 
-function! MyTabLabel(n)
+function! MyTabLabel(n) abort
     let buflist = tabpagebuflist(a:n)
     let winnr = tabpagewinnr(a:n)
     return bufname(buflist[winnr - 1])

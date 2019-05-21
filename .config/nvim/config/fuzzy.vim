@@ -19,33 +19,26 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=? -complete=dir FilesP
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-" Hide statusbar
-augroup HideStatus
-    autocmd! FileType fzf
-    autocmd  FileType fzf set laststatus=0 noshowmode noruler
-        \| autocmd BufLeave <buffer> set laststatus=2
-augroup END
-
-" Key bindings
+" Mappings
 let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-h': 'split',
     \ 'ctrl-v': 'vsplit' }
 
 " Search files recursively
-nnoremap <silent> <leader>o :Files<CR>
-nnoremap <silent> <leader>O :FilesP<CR>
+nnoremap <silent> <Leader>o :Files<CR>
+nnoremap <silent> <Leader>O :FilesP<CR>
 " Search between open files
-nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
 " Ripgrep
-nnoremap <silent> <leader>r :Rg!<CR>
-nnoremap <silent> <leader>R :Rg<CR>
+nnoremap <silent> <Leader>r :Rg!<CR>
+nnoremap <silent> <Leader>R :Rg<CR>
 " Search lines
-nnoremap <silent> <leader>l :BLines<CR>
-nnoremap <silent> <leader>L :Lines<CR>
+nnoremap <silent> <Leader>l :BLines<CR>
+nnoremap <silent> <Leader>L :Lines<CR>
 " Serach ctags
-nnoremap <silent> <leader>t :BTags<CR>
-nnoremap <silent> <leader>T :Tags<CR>
+nnoremap <silent> <Leader>t :BTags<CR>
+nnoremap <silent> <Leader>T :Tags<CR>
 
 " Vim spelling suggestions with fzf
 " ( https://coreyja.com/blog/2018/11/10/vim-spelling-suggestions-fzf.html )

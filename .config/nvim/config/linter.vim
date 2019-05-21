@@ -18,32 +18,8 @@ let g:ale_echo_msg_format = '[%linter%] %severity%  %s'
 let g:ale_loclist_msg_format = '[%linter%] %severity%  %s'
 " Diagnostics window
 let g:ale_list_window_size = 5
-" Use the quickfix list instead of the loclist
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
-" let g:ale_open_list = 1
-" let g:ale_keep_list_window_open = 1
 
+" Mappings
 nmap <silent> <A-k> <Plug>(ale_previous_wrap)
 nmap <silent> <A-j> <Plug>(ale_next_wrap)
-
-" Languages
-let g:ale_linter_aliases = {
-            \ 'jsx': ['css', 'javascript'],
-            \ 'vue': ['javascript', 'vue']
-            \}
-let g:ale_linters = {
-            \ 'javascript': ['eslint', 'flow'],
-            \ 'jsx': ['stylelint', 'eslint'],
-            \ 'vue': ['eslint', 'vls'],
-            \ 'css': ['stylelint', 'prettier'],
-            \ 'html': ['htmlhint'],
-            \ 'rust': ['rls'],
-            \ 'markdown': ['prettier'],
-            \ 'sh': ['language_server']
-            \}
-let g:ale_fixers = {
-            \ 'javascript': ['prettier', 'eslint'],
-            \ 'css': ['prettier'],
-            \ 'rust': ['rustfmt']
-            \}
+nmap <silent> <A-d> <Plug>(ale_detail)

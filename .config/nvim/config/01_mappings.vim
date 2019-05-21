@@ -13,7 +13,7 @@ noremap k gk
 nnoremap ; .
 " Editing
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>x :wq<CR>
+nnoremap <Leader>x :xa<CR>
 nnoremap <Leader>! :q!<CR>
 " Append ;/, to the end of the line
 nnoremap <silent> <Leader>; :normal A;<CR>
@@ -51,8 +51,8 @@ nnoremap <F9> <Esc>:silent setlocal spell! spelllang=en<CR>
 nnoremap <F10> <Esc>:silent setlocal spell! spelllang=fr<CR>
 
 " Quickly move current line
-nnoremap mm  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap MM  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap mm  :<c-u>execute 'move -1-'. v:count1<CR>
+nnoremap MM  :<c-u>execute 'move +'. v:count1<CR>
 
 " Terminal
 " Split terminal
@@ -61,7 +61,7 @@ command! -nargs=* STerm split | terminal <args>
 command! -nargs=* TTerm tabnew | terminal <args>
 
 " Get color group name of the syntax group where the cursor is
-nnoremap <F12> :call colors#SyntaxGroup()<CR> 
+nnoremap <F12> :call util#SyntaxGroup()<CR> 
 
 " Toggle between number and relativenumber
 nnoremap <silent> <Leader>à :call number#ToggleNumber()<CR>

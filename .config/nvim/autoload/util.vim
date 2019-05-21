@@ -18,3 +18,8 @@ function! g:util#intelligentVerticalResize(direction) abort
     execute l:command
 endfunction
 
+" Get color group name of the syntax group where the cursor is
+function! g:util#SyntaxGroup() abort
+    let l:s = synID(line('.'), col('.'), 1) 
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfunction

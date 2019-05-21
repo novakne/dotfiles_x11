@@ -6,7 +6,6 @@ let g:vista_icon_indent = ["▸ ", ""]
 " To enable fzf's preview window
 let g:vista_fzf_preview = ['right:50%']
 " disable echoing when the cursor moves
-" let g:vista_echo_cursor  = 0
 let g:vista_blink = [1, 100]
 " Executive used when opening vista sidebar without specifying it.
 let g:vista_default_executive = 'coc'
@@ -44,7 +43,6 @@ augroup GoyoMode
     autocmd User GoyoLeave Limelight!
 augroup END
 
-" Enable Goyo with leader + g
 nnoremap <silent> <Leader>g :Goyo<CR>
 
 
