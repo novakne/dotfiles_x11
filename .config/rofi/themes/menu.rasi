@@ -28,7 +28,7 @@
     border: 2;
     padding: 20px;
     width: 13%;
-    height: 240px;
+    /* height: 240px; */
     border-radius: 0px;
     font: "Overpass 16";
 }

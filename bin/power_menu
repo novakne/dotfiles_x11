@@ -3,7 +3,7 @@
 # Bind to Super-Shift-Escape
 
 confirm() {
-    echo -e "Yes\nNo" | rofi -dmenu -i -format d -selected-row 1 -p "${1:-Confirm: }" -theme themes/menu.rasi
+    echo -e "Yes\nNo" | rofi -dmenu -i -format d -lines 2 -selected-row 0 -p "${1:-Confirm: }" -theme themes/menu.rasi
 }
 
 quit=" Quit bspwm"
@@ -12,7 +12,7 @@ reboot=" Reboot"
 suspend=" Suspend"
 hibernate=" Hibernate"
 
-LAUNCHER="rofi -dmenu -i -p Exit:  -theme themes/menu.rasi"
+LAUNCHER="rofi -dmenu -i -lines 5 -p Exit:  -theme themes/menu.rasi"
 OPTIONS="$quit\n$shutdown\n$reboot\n$suspend\n$hibernate"
 
 selection=$(echo -e $OPTIONS | $LAUNCHER)
