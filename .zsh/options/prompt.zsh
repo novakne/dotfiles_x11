@@ -48,11 +48,6 @@ prompt_is_git() {
     [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]
 }
 
-# Colors
-prompt_colorize() {
-    echo "%F{$1}$2%f"
-}
-
 ### SYMBOL
 # Change color if the last command didn't works
 prompt_symbol() {
