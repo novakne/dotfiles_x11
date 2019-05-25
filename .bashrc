@@ -22,6 +22,7 @@ shopt -s cmdhist
 HISTCONTROL="erasedups:ignoreboth"
 
 # ___ENV___
+export $HISTFILE=~/.cache/bash/bash_history
 # User local scripts
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/bin/bar:$PATH
