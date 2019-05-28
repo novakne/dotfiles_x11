@@ -64,12 +64,12 @@ path=(
 # NNN
 export LC_COLLATE=C
 export NNN_SHOW_HIDDEN=1
-export NNN_SCRIPT=$HOME/bin/nnn
 export NNN_CONTEXT_COLORS='2314'
 export NNN_TRASH=1
 export NNN_USE_EDITOR=1
 export NNN_RESTRICT_NAV_OPEN=1
 export NNN_TMPFILE="/tmp/nnn"
+export NNN_COPIER='$HOME/.config/nnn/copier'
 
 # AUTOJUMP
 [[ -s /home/novakane/.autojump/etc/profile.d/autojump.sh ]] && source /home/novakane/.autojump/etc/profile.d/autojump.sh

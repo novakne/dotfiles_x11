@@ -40,6 +40,7 @@ alias free='free -m'                      # show sizes in MB
 alias np='nvim PKGBUILD'
 alias fixit='sudo rm -f /var/lib/pacman/db.lck'
 alias cmx='chmod a+x'
+alias del='trash-put'
 
 # Config
 alias ev='nvim .config/nvim/init.vim'
