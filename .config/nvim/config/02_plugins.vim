@@ -80,9 +80,9 @@ Plug 'wavded/vim-stylus', { 'for': 'styl' }
 
 " JAVASCRIPT
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx'
-Plug 'posva/vim-vue'
-Plug 'flowtype/vim-flow'
+Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
+Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'flowtype/vim-flow', { 'for': 'javascript' }
 
 " Latex
 Plug 'lervag/vimtex', { 'for': 'tex' }

@@ -18,6 +18,21 @@ function! g:util#intelligentVerticalResize(direction) abort
     execute l:command
 endfunction
 
+" Move to the split in the direction shown, or create a new split
+" ( https://aonemd.github.io/blog/handy-keymaps-in-vim )
+function! util#WinMove(key) abort
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
+
 " Get color group name of the syntax group where the cursor is
 function! g:util#SyntaxGroup() abort
     let l:s = synID(line('.'), col('.'), 1) 

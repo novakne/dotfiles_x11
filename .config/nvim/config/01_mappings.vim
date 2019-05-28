@@ -1,4 +1,4 @@
-" ~/.config/neovim/config/keybind.vim
+" ~/.config/nvim/config/keybind.vim
 " KEYBIND
 
 " Change leader key
@@ -20,11 +20,12 @@ nnoremap <silent> <Leader>; :normal A;<CR>
 nnoremap <silent> <Leader>, :normal A,<CR>
 
 " WINDOW MANAGEMENT
-" Easier window switching
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" Move to the split in the direction shown, or create a new split
+" ( https://aonemd.github.io/blog/handy-keymaps-in-vim )
+nnoremap <silent> <C-h> :call util#WinMove('h')<cr>
+nnoremap <silent> <C-j> :call util#WinMove('j')<cr>
+nnoremap <silent> <C-k> :call util#WinMove('k')<cr>
+nnoremap <silent> <C-l> :call util#WinMove('l')<cr>
 
 " Intelligent windows resizing using ctrl + arrow keys
 nnoremap <silent> <C-Right> :call util#intelligentVerticalResize('right')<CR>
@@ -53,12 +54,6 @@ nnoremap <F10> <Esc>:silent setlocal spell! spelllang=fr<CR>
 " Quickly move current line
 nnoremap mm  :<c-u>execute 'move -1-'. v:count1<CR>
 nnoremap MM  :<c-u>execute 'move +'. v:count1<CR>
-
-" Terminal
-" Split terminal
-command! -nargs=* VTerm vsplit | terminal <args>
-command! -nargs=* STerm split | terminal <args>
-command! -nargs=* TTerm tabnew | terminal <args>
 
 " Get color group name of the syntax group where the cursor is
 nnoremap <F12> :call util#SyntaxGroup()<CR> 
