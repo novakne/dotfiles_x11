@@ -1,7 +1,21 @@
-plug.vim
-
-# global home directories
+# Global home directories
 .cache
 .icons
 .npm
 .themes
+
+# Config directories
+.config/Mullvad VPN/
+.config/Thunar/
+.config/coc/
+.config/configstore/
+.config/dconf/
+.config/vivaldi/
+.config/pulse/
+.config/spotify/
+.config/yarn/
+plug.vim
+
+# Misc files
+.zcompdump
+.uuid

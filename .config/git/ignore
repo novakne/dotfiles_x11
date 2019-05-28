@@ -1,4 +1,5 @@
 .uuid
+.zcompdump
 plug.vim
 .netrwhist
 config.user
