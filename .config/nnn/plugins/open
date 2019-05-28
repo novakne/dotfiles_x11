@@ -4,5 +4,9 @@
 #
 # Shell: POSIX compliant
 # Author: Arun Prakash Jana
+if [ -x /usr/bin/fd ]; then
+    xdg-open "$(fd -t f | fzf)" >/dev/null 2>&1
+else
+    xdg-open "$(find -type f | fzf)" >/dev/null 2>&1
+fi
 
-xdg-open "$(fd --type f | fzf)" >/dev/null 2>&1
