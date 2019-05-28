@@ -18,22 +18,22 @@
 
  _                | _
 --                | --|
-**OS**            | arch linux
-**WM**            | [bspwm](https://github.com/baskerville/bspwm)
-**Shell**         | zsh
-**Terminal**      | [alacritty](https://github.com/jwilm/alacritty)
-**Panel**         | [polybar](https://github.com/jaagr/polybar)
-**Files manager** | [nnn](https://github.com/jarun/nnn) / thunar
-**Launcher**      | [rofi](https://github.com/davatorium/rofi)
-**Editor**        | [neovim](https://github.com/neovim/neovim)
-**Browser**       | vivaldi / firefox
-**Music Player**  | mpd / ncmpcpp
-**Video Player**  | [mpv](https://github.com/mpv-player/mpv)
-**Image Viewer**  | [sxiv](https://github.com/muennich/sxiv)
-**Terminal Font** | [Monoid Nerd Font](https://github.com/ryanoasis/nerd-fonts)
-**System Font**   | [Overpass](https://overpassfont.org)
-**Icons**         | [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) modified with [oomox](https://github.com/themix-project/oomox)
-**Gtk Theme**     | [Materia](https://github.com/nana-4/materia-theme) modified with [oomox](https://github.com/themix-project/oomox)
+**OS**            | Arch Linux
+**WM**            | [Bspwm](https://github.com/baskerville/bspwm)
+**Shell**         | Zsh
+**Terminal**      | [Alacritty](https://github.com/jwilm/alacritty)
+**Panel**         | [Polybar](https://github.com/jaagr/polybar)
+**Files manager** | [Nnn](https://github.com/jarun/nnn) / Thunar
+**Launcher**      | [Rofi](https://github.com/davatorium/rofi)
+**Editor**        | [Neovim](https://github.com/neovim/neovim)
+**Browser**       | Vivaldi / Firefox
+**Music Player**  | Mpd / Ncmpcpp
+**Video Player**  | [Mpv](https://github.com/mpv-player/mpv)
+**Image Viewer**  | [Sxiv](https://github.com/muennich/sxiv)
+**Terminal Font** | [Monoid Nerd Font](https://github.com/ryanoasis/nerd-fonts) / [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts)
+**System Font**   | [Overpass](https://overpassfont.org) / [Inter](https://github.com/rsms/inter)
+**Icons**         | [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) modified with [Oomox](https://github.com/themix-project/oomox)
+**Gtk Theme**     | [Materia](https://github.com/nana-4/materia-theme) modified with [Oomox](https://github.com/themix-project/oomox)
 
 ## Screenshots
 
@@ -50,7 +50,7 @@
 ![clean](img/previews/clean.png?raw=true "clean")
 *clean*
 
-## Shell
+## Shell ( Zsh )
 
 ![colors](img/previews/colors.png?raw=true "shell colors")
 ![prompt](img/previews/prompt.png?raw=true "prompt")
@@ -66,7 +66,15 @@ Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
 
 ### Cli Tools
 
-* [fzf](https://github.com/junegunn/fzf) - command-line fuzzy finder
+* [nnn](https://github.com/jarun/nnn) - File manager ( `$HOME/.config/nnn/plugins/` )
+    * `browse_img` Browse images in sxiv
+    * `browse_img_full` Browse images in sxiv in fullscreen
+    * `edit` Open file in a running neovim instance with neovim-remote if possible
+    * `fuzzy` Fuzzy find file with fzf and open in nvim
+    * `open` Fuzzy find with fzf and open with xdg-open
+    * `pdfview` View pdf in terminal
+    * `set_wal` Set wallpaper with nitrogen
+* [fzf](https://github.com/junegunn/fzf) - Cli fuzzy finder ( `$HOME/.zsh/functions/` )
     * `fapps` Open apps
     * `fcd` Interactive `cd`
     * `fcdh` Interactive `cd` with hidden files
@@ -78,7 +86,7 @@ Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
     * `fpkg` Search installed packages
     * `fv` Open file in the default editor
     * `fvid` Open videos in mpv
-* [ripgrep](https://github.com/BurntSushi/ripgrep) - recursively searches directories for a regex pattern
+* [ripgrep](https://github.com/BurntSushi/ripgrep) - Recursively searches directories for a regex pattern
 * [bat](https://github.com/sharkdp/bat) - A cat clone with wings
 * [exa](https://github.com/ogham/exa) - A modern version of ‘ls
 * [fd](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to 'find'
@@ -105,18 +113,11 @@ Lazy loaded with [Zplugin](https://github.com/zdharma/zplugin)
 * **bar/** - Lemonbar config ( old, I don't use it rigth now )
     * `bar_config` General config
     * `popup_config` Popup style bar
-    * `popup_exit` Poweroff/Reboot/...etc menu
+    * `popup_exit` Poweroff/Reboot/etc... menu
     * `popup_info` Clock, battery, wifi...
     * `popuup_music` Music from mpd
     * `popup_workspaces` Bspwm workspace
 * **colors/** - Scripts to show colors in the terminal
-* **nnn/** - Scripts to use in nnn
-    * `browse_img` Browse images in sxiv
-    * `browse_img_full` Browse images in sxiv in fullscreen
-    * `edit` Open file in a running neovim instance with neovim-remote if possible
-    * `fuzzy` Fuzzy find file with fzf and open in nvim
-    * `open` Fuzzy find with fzf and open with xdg-open
-    * `set_wal` Set wallpaper with nitrogen
 * `arch_maint` Multiple command to help maintain arch
 * `brightness_notif` Send a notif when changing screen brightness
 * `fetch` Show basic system infos
