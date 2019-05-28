@@ -4,7 +4,7 @@
     monitor = 0
     follow = mouse
     # [{width}]x{height}[+/-{x}+/-{y}]
-    geometry = "300x100+15+15"
+    geometry = "300x100+25+15"
     indicate_hidden = yes
     shrink = no
     transparency = 0
