@@ -46,10 +46,12 @@ foreground = ${color.aize07}
 font-0 = "Overpass Nerd Font:style=Regular:pixelsize=11;3"
 font-1 = "Overpass Nerd Font:style=Regular:pixelsize=20;5"
 
-modules-left   = mpd
+modules-left   = bspwm mpd
 ;modules-center = mpd
-modules-right  = date
+modules-right  = network pulseaudio battery date
 
+tray-position = left
+tray-detached = false 
 
 [bar/top]
 monitor      = eDP-1
@@ -96,17 +98,17 @@ ws-icon-default = 
 label-focused            = %icon%
 label-focused-foreground = ${color.aize12}
 ;label-focused-background = ${color.aize00}
-label-focused-underline  = ${color.aize11}
+label-focused-underline  = ${color.aize12}
 label-focused-font = 2
 
 label-occupied            = %icon%
-label-occupied-foreground = ${color.aize06}
+label-occupied-foreground = ${color.aize05}
 ;label-occupied-underline = ${color.aize06}
 
 label-urgent            = %icon%
-label-urgent-foreground = ${color.aize00}
+label-urgent-foreground = ${color.aize09}
 ;label-urgent-background = ${color.aize08}
-label-urgent-underline  = ${color.aize08}
+label-urgent-underline  = ${color.aize09}
 
 label-empty            = %icon%
 label-empty-foreground = ${color.aize03}
@@ -146,11 +148,11 @@ time-format = %H:%M
 battery = BAT1
 adapter = ACAD
 format-charging = <animation-charging>   <label-charging>
-;format-charging-background = ${color.aize00}
+format-charging-foreground = ${color.aize05}
 format-charging-padding = 6
 label-charging = %percentage%%
 format-discharging = <ramp-capacity>   <label-discharging>
-;format-discharging-background = ${color.aize00}
+format-discharging-foreground = ${color.aize05}
 format-discharging-padding = 6
 label-discharging = %percentage%%
 format-full =  <label-full>
@@ -168,9 +170,9 @@ ramp-capacity-7 = 
 ramp-capacity-8 = 
 ramp-capacity-9 = 
 
-ramp-capacity-0-foreground = ${color.aize08}
-ramp-capacity-1-foreground = ${color.aize08}
-ramp-capacity-foreground   = ${color.aize06}
+ramp-capacity-0-foreground = ${color.aize09}
+ramp-capacity-1-foreground = ${color.aize09}
+ramp-capacity-foreground   = ${color.aize05}
 bar-capacity-width         = 10
 
 animation-charging-0 = "⚡"
@@ -192,7 +194,7 @@ type                     = internal/pulseaudio
 sink                     = alsa_output.pci-0000_00_1f.3.analog-stereo
 format-volume            = <ramp-volume>   <label-volume>
 format-volume-padding    = 0
-;format-volume-background = ${color.aize00}
+format-volume-foreground = ${color.aize05}
 label-volume             = %percentage%%
 label-muted              = 
 label-muted-foreground   = ${color.aize04}
