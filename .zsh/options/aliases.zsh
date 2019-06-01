@@ -2,7 +2,7 @@
 
 ### PACKAGES
 # Pacman
-alias upgrade='sudo pacman -Syyuu'
+alias upgrade='sudo pacman -Syuu'
 alias mirrors='sudo pacman-mirrors -g'
 alias pac='sudo pacman'
 alias spkg='pacman -Qe | grep'
@@ -10,7 +10,7 @@ alias spkg='pacman -Qe | grep'
 # Yay ( https://github.com/Jguer/yay )
 alias yy='yay'
 alias inst='yay -S'
-alias update='yay -Syyuu'
+alias update='yay -Syuu'
 alias orph='yay -Qdt'
 alias pdel='yay -Rsn'
 alias delorph='yay -Rs $(yay -Qtdq)'

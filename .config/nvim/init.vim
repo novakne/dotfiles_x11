@@ -36,9 +36,13 @@ set mouse=a
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 " Use python 3
-set pyxversion=3
+if has('nvim-0.4') == 1
+    set pyxversion=3
+endif
 " Dont select newline in visual mode ( v$ )
 set selection=exclusive
+" Do not redraw screen in the middle of a macro
+set lazyredraw
 
 " COMPLETION ( :help 'complete' )
 " Enhanced cmd line completion

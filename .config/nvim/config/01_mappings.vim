@@ -6,15 +6,21 @@ let mapleader="\<SPACE>"
 " Normal mode with jj 
 inoremap jk <esc>
 inoremap kj <esc>
+
 " Move updown by visual (wrapped) lines
-noremap j gj
-noremap k gk
-" Easier azerty keys
-nnoremap ; .
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+" Easier start & end of line.
+nnoremap H ^
+nnoremap L $
+
 " Editing
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>z :q<CR>
 nnoremap <Leader>x :xa<CR>
 nnoremap <Leader>! :q!<CR>
+" Easier azerty keys
+nnoremap ; .
 " Append ;/, to the end of the line
 nnoremap <silent> <Leader>; :normal A;<CR>
 nnoremap <silent> <Leader>, :normal A,<CR>
