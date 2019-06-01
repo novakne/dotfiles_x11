@@ -14,7 +14,7 @@ dunst &
 # SETTINGS
 bspc config border_width        3
 bspc config window_gap          8
-bspc config top_padding         0
+bspc config top_padding         22
 bspc config bottom_padding      0
 bspc config right_padding       30
 bspc config left_padding        30
@@ -45,5 +45,6 @@ bspc rule -a Firefox border=off
 bspc rule -a Lxappearance state=floating center=true
 bspc rule -a qBittorrent desktop='^7' state=floating center=true rectangle=1376x625+0+0
 bspc rule -a mpv state=floating center=true
+bspc rule -a Molotov state=floating center=true
 bspc rule -a Xarchiver state=floating center=true
 bspc rule -a Gimp follow=on state=floating center=true
