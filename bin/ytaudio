@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Download mp3 from youtube
+#   - Dependencies: youtube-dl
+
+youtube-dl --extract-audio --audio-format mp3 "$1"
