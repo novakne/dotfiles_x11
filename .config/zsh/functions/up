@@ -1,0 +1,15 @@
+#!/bin/sh
+# Go up N directories
+
+up () {
+    str=""
+    count=0
+
+    while [ "$count" -lt "$1" ];
+    do
+        str=$str"../"
+        (( count++ ))
+    done
+
+    cd $str || exit
+}

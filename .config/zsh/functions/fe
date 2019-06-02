@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+#   - Dependencies: fzf, neovim
+
+fe () {
+    local files
+    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+
+    # Open with neovim development prerelease build if exist
+    if [ -x "$HOME"/bin/nv ]; then
+        [[ -n "$files" ]] && nv "${files[@]}"
+    else
+        [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+    fi
+}

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Open files with VSCode and exit terminal
+#   - Dependencies: fzf vscode
+
+fv () {
+    local files
+
+    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && code "${files[@]}" && exit
+}
