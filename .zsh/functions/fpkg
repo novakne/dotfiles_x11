@@ -1,7 +1,0 @@
-#!/bin/sh
-# Search installed pkg
-#   - Dependencies: fzf
-
-fpkg () {
-    pacman -Qe | fzf -e
-}

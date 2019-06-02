@@ -1,9 +1,0 @@
-#!/bin/sh
-# cd to selected directory including hidden directories
-#   - Dependencies: fzf, fd
-
-fcdh () {
-    local dir
-
-    dir=$(fd "${1:-.}" -a -p -H -t d 2> /dev/null | fzf +m) && cd "$dir" || exit
-}
