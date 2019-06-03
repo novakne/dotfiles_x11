@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Download mp3 from youtube
 #   - Dependencies: youtube-dl

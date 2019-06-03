@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/usr/bin/env bash
 
 # Scripts for arch basic maintenance
 # Novacane337

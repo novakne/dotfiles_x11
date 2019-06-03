@@ -1,10 +1,12 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Description: Fuzzy find a file in directory subtree with fzf and open using xdg-open
 #
 # Shell: POSIX compliant
 # Author: Arun Prakash Jana
-if [ -x /usr/bin/fd ]; then
+
+# Check if a fd is in the user's PATH
+if type -p fd &>/dev/null; then
     xdg-open "$(fd -t f | fzf)" >/dev/null 2>&1
 else
     xdg-open "$(find -type f | fzf)" >/dev/null 2>&1

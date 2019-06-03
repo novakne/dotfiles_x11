@@ -1,4 +1,4 @@
-# ~/.bashrc
+# $HOME/.bashrc
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -33,7 +33,10 @@ export npm_config_prefix=~/.node_modules
 # Yarn
 export PATH=$HOME/.config/yarn/global/node_modules/bin:$PATH
 # Rust
-export PATH=$HOME/.cargo/bin:$PATH
+export RUSTUP_HOME=$HOME/.local/share/rustup
+export CARGO_HOME=$HOME/.local/share/cargo
+export PATH=$HOME/.local/share/cargo/bin:$PATH
+
 # Android sdk
 export PATH=$HOME/Android/Sdk/platform-tools:$PATH
 # BSPWM

@@ -1,7 +1,7 @@
 # $XDG_CONFIG_HOME/zsh/.zshrc
 
 ### ZPLUGIN
-source '/home/novakane/.zplugin/bin/zplugin.zsh'
+source "$HOME"/.zplugin/bin/zplugin.zsh
 
 # Plugins list
 zplugin light mafredri/zsh-async
@@ -17,8 +17,8 @@ zplugin ice wait"0" lucid atinit"zpcompinit; zpcdreplay"
 zplugin light zdharma/fast-syntax-highlighting
 
 ### LAZY LOAD FUNCTIONS
-fpath=("$XDG_CONFIG_HOME/zsh/functions" $fpath)
-zsh_functions=$HOME/.zsh/functions
+fpath=("$ZDOTDIR/functions" $fpath)
+zsh_functions="$ZDOTDIR"/functions
 
 if [[ -d "$zsh_functions" ]]; then
     for func in $zsh_functions/*; do
@@ -28,7 +28,7 @@ fi
 unset zsh_functions
 
 ### LOAD ZSH OPTIONS
-zsh_options=$XDG_CONFIG_HOME/zsh/options
+zsh_options="$ZDOTDIR"/options
 
 if [[ -d "$zsh_options" ]]; then
    for file in $zsh_options/*.zsh; do
@@ -36,5 +36,3 @@ if [[ -d "$zsh_options" ]]; then
    done
 fi
 unset zsh_options
-
-

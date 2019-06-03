@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Open an exit menu with confirmation in rofi
 # Bind to Super-Shift-Escape
 

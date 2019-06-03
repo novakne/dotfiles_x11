@@ -64,4 +64,4 @@ nnoremap <silent> <Leader>cq :<C-u>CocList quickfix<CR>
 nnoremap <silent> <Leader>cm :<C-u>CocList mru<CR>
 nnoremap <silent> <Leader>cs :<C-u>CocList symbols<CR>
 nnoremap <silent> <Leader>cc :<C-u>CocList commands<CR>
-nnoremap <silent> <Leader>cd :<C-u>CocList diagnostics<CR>
+nnoremap <silent> <Leader>d :<C-u>CocList diagnostics<CR>

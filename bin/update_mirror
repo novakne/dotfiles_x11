@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Novacane337
 
 # Update mirrorlist and rank mirrors for France / HTTPS

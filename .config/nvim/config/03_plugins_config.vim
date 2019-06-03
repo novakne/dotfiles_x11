@@ -59,7 +59,7 @@ let g:signify_sign_show_count = 1
 " MARKDOWN COMPOSER ( https://github.com/euclio/vim-markdown-composer )
 " If set to 0, the plugin will not attempt to open the user's browser, instead requiring them to open it manually
 let g:markdown_composer_open_browser = 0
-let g:markdown_composer_browser = 'vivaldi-stable'
+let g:markdown_composer_browser = 'firefox'
 let g:markdown_composer_syntax_theme = 'dracula'
 
 nnoremap <silent> <Leader>p :ComposerOpen<CR>

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 brightnessLevel=$(cat /sys/class/backlight/acpi_video0/actual_brightness)
 maxBrightness=$(cat /sys/class/backlight/acpi_video0/max_brightness)

@@ -106,12 +106,12 @@ alias ct='cargo test'
 alias cw='cargo watch'
 
 ### MISC
-alias Xress='xrdb $XDG_CONFIG_HOME/x11/Xresources'
+alias Xress='xrdb $HOME/.config/X11/xresources'
 alias :q='exit'
 alias startadb='sudo ./adb start-server'
 alias stopadb='./adb kill-server'
 alias scro="scrot 'scrot-%d-%m-%Y-%H_%M_%S.jpg' -d 6 -c -q 100  -e 'mv $f ~/img/scrot/'"
 alias msc='ncmpcpp'
 alias wname='xprop | grep WM_CLASS'
-alias fp='fzf --preview "bat --theme TwoDark --color always {}" --preview-window=right:70%:wrap
-'
+alias fp='fzf --preview "bat --theme TwoDark --color always {}" --preview-window=right:70%:wrap'
+alias wget='wget --hsts-file="$HOME/.cache/wget-hsts"'

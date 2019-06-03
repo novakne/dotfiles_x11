@@ -1,4 +1,4 @@
-# ~/.zsh/options/environment.zsh
+# $HOME/.config/zsh/options/environment.zsh
 
 export BROWSER="vivaldi-stable"
 export EDITOR='nvim'
@@ -34,25 +34,28 @@ path=(
 )
 
 # Completion
-fpath=($XDG_CONFIG_HOME/zsh/completions $fpath)
+fpath=($ZDOTDIR/completions $fpath)
 
 # User local scripts
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/bin/bar:$PATH
 export PATH=$HOME/bin/colors:$PATH
 
+export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
+export PARALLEL_HOME=$XDG_CACHE_HOME/parallel
+
 # Npm
-export PATH=$HOME/.node_modules/bin:$PATH
-export npm_config_prefix=~/.node_modules
+export PATH=$XDG_DATA_HOME/npm/.node_modules/bin:$PATH
+export npm_config_prefix=$XDG_DATA_HOME/npm/.node_modules
+export npm_config_devdir=$XDG_CACHE_HOME/gyp
 
 # Yarn
 export PATH=$XDG_CONFIG_HOME/yarn/global/node_modules/bin:$PATH
 
 # Rust
-export PATH=$HOME/.cargo/bin:$PATH
-
-# Android sdk
-export PATH=$HOME/Android/Sdk/platform-tools:$PATH
+export RUSTUP_HOME=$XDG_DATA_HOME/rustup
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export PATH=$XDG_DATA_HOME/cargo/bin:$PATH
 
 # BSPWM
 export PANEL_FIFO="/tmp/panel-fifo"
@@ -75,7 +78,7 @@ export NNN_COPIER='$XDG_CONFIG_HOME/nnn/copier'
 [[ -s /home/novakane/.autojump/etc/profile.d/autojump.sh ]] && source /home/novakane/.autojump/etc/profile.d/autojump.sh
 
 # RIPGREP
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep"
+export RIPGREP_CONFIG_PATH="XDG_CONFIG_HOME/ripgrep"
 
 # EXA
 export LS_COLORS="ex=31;1:di=36;1:ln=34;4"

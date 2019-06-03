@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Geometry
 BAR_WIDTH=300
 BAR_HEIGHT=26

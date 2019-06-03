@@ -11,7 +11,7 @@ export LC_ALL=fr_FR.UTF-8
 
 # Autostart X at login
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-	exec startx
+	exec startx "$XDG_CONFIG_HOME/X11/xinitrc"
 fi
 
 # Temporary Files
