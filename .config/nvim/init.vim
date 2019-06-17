@@ -1,5 +1,4 @@
 " ~/.config/nvim/init.vim
-" NVIM 
 
 " GENERAL
 " Show line number
@@ -36,7 +35,7 @@ set mouse=a
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 " Use python 3
-if has('nvim-0.4') == 1
+if has('nvim-0.4')
     set pyxversion=3
 endif
 " Dont select newline in visual mode ( v$ )
@@ -63,26 +62,6 @@ set ignorecase
 set smartcase
 " Stop in list
 set more
-
-" NETRW
-" Tree view
-let g:netrw_liststyle = 3
-" Remove banner
-let g:netrw_banner = 0
-" Open files ( 1 horizontal 2 Vertical 3 New tab 4 Previous window )
-let g:netrw_browse_split = 4
-" Width of the directory explorer
-let g:netrw_winsize = 25
-" Right splitting
-let g:netrw_altv = 1
-" Automatically kill phantom buffers created by netrw 
-" Close if netrw / quickfix is the last window
-augroup CleanNetrw
-    autocmd!
-    autocmd FileType netrw setlocal bufhidden=delete
-    autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
-    nmap - :Lexplore<cr>
-augroup END
 
 " THEME
 set termguicolors

@@ -1,5 +1,4 @@
 setlocal textwidth=80
-setlocal spell spelllang=fr
 set conceallevel=2
 let g:markdown_fenced_languages=[
             \ 'c',

@@ -31,7 +31,7 @@ PROMPT_BEHIND="%F{red}⇣%f"
 # source $XDG_CONFIG_HOME/zsh/options/async.zsh
 
 # Human readable time
-prompt_displaytime() { 
+_prompt_displaytime() { 
     local T=$1
     local D=$((T/60/60/24))
     local H=$((T/60/60%24))
@@ -44,7 +44,7 @@ prompt_displaytime() {
 }
 
 # Check if the current directory is in a Git repository.
-prompt_is_git() {
+_prompt_is_git() {
     [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]
 }
 
@@ -59,7 +59,7 @@ prompt_symbol() {
 prompt_path() {
     if [[ $PWD = ~ ]]; then
         echo "%F{$PATH_COLOR}% %f"
-    elif prompt_is_git; then
+    elif _prompt_is_git; then
         echo "%F{$PATH_COLOR}%1/%f "
     else
         echo "%F{$PATH_COLOR}%~%f "
@@ -68,24 +68,24 @@ prompt_path() {
 
 ### CMD EXEC TIME
 # Execution time start
-prompt_exec_preexec_hook() {
+_prompt_exec_preexec_hook() {
     PROMPT_EXEC_TIME_start=$(date +%s)
 }
 
 # Execution time end
-prompt_exec_precmd_hook() {
+_prompt_exec_precmd_hook() {
     [[ -n $PROMPT_EXEC_TIME_duration ]] && unset PROMPT_EXEC_TIME_duration
     [[ -z $PROMPT_EXEC_TIME_start ]] && return
-    local PROMPT_EXEC_TIME_stop
-    PROMPT_EXEC_TIME_stop=$(date +%s)
-    PROMPT_EXEC_TIME_duration=$(( PROMPT_EXEC_TIME_stop - PROMPT_EXEC_TIME_start ))
+    local prompt_exec_time_stop
+    prompt_exec_time_stop=$(date +%s)
+    PROMPT_EXEC_TIME_duration=$(( prompt_exec_time_stop - PROMPT_EXEC_TIME_start ))
     unset PROMPT_EXEC_TIME_start
 }
 
 # Display exec time
 prompt_exec() {
     if [[ $PROMPT_EXEC_TIME_duration -ge $PROMPT_EXEC_MAX ]]; then
-        echo "%F{$EXEC_COLOR}$(prompt_displaytime $PROMPT_EXEC_TIME_duration)%f "
+        echo "%F{$EXEC_COLOR}$(_prompt_displaytime $PROMPT_EXEC_TIME_duration)%f "
     fi 
 }
 
@@ -109,7 +109,7 @@ prompt_git_branch() {
 # Display git status
 prompt_git_status() {
 
-    prompt_is_git || return
+    _prompt_is_git || return
 
     local INDEX git_status=""
 
@@ -222,8 +222,8 @@ prompt_async_setup() {
     autoload -Uz add-zsh-hook
     prompt_opts=(cr percent sp subst)
     prompt_git_branch noprompt{bang,cr,percent,subst} "prompt${^prompt_opts[@]}"
-    add-zsh-hook preexec prompt_exec_preexec_hook
-    add-zsh-hook precmd prompt_exec_precmd_hook
+    add-zsh-hook preexec _prompt_exec_preexec_hook
+    add-zsh-hook precmd _prompt_exec_precmd_hook
     add-zsh-hook precmd prompt_exec_vcs_info_precmd_hook
     zstyle ':vcs_info:*' enable git
     zstyle ':vcs_info:git*' formats '%b'

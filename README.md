@@ -45,7 +45,7 @@
 *neovim & vivaldi*
 
 ![nvim](img/previews/nvim.png?raw=true "nvim")
-*neovim and my theme aize.vim*
+*neovim and my theme aize.vim, with ALE, Coc.nvim, Vista.vim*
 
 ![clean](img/previews/clean.png?raw=true "clean")
 *clean*

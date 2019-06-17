@@ -1,5 +1,5 @@
 #!/bin/sh
-#NNN cd on quit ( quit with Ctl + g )
+# NNN cd on quit ( quit with Ctl + g )
 #   - Dependencies: nnn
 
 n () {

@@ -16,12 +16,16 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
 export LESS='-g -i -M -R -S -w -z-4'
-export LESSHISTFILE='$HOME/.cache/less'
+export LESSHISTFILE=$HOME/.cache/less
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
 if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
+fi
+
+if [ -r "$XDG_CONFIG_HOME/dircolors" ]; then
+    eval $(dircolors $XDG_CONFIG_HOME/dircolors)
 fi
 
 # Ensure path arrays do not contain duplicates.
@@ -73,22 +77,26 @@ export NNN_USE_EDITOR=1
 export NNN_RESTRICT_NAV_OPEN=1
 export NNN_RESTRICT_0B=1
 export NNN_TMPFILE="/tmp/nnn"
-export NNN_COPIER='$XDG_CONFIG_HOME/nnn/copier'
-export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;i:~/img;s:~/src;r:~/srcc/rust;d:~/docs/notes'
+export NNN_COPIER="$XDG_CONFIG_HOME/nnn/copier"
+export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;i:~/img;s:~/src;r:~/src/rust;d:~/docs/notes'
 
 # AUTOJUMP
-[[ -s /home/novakane/.autojump/etc/profile.d/autojump.sh ]] && source /home/novakane/.autojump/etc/profile.d/autojump.sh
+[[ -s "$HOME"/.autojump/etc/profile.d/autojump.sh ]] && source "$HOME"/.autojump/etc/profile.d/autojump.sh
 
 # RIPGREP
 export RIPGREP_CONFIG_PATH="XDG_CONFIG_HOME/ripgrep"
 
 # EXA
-export LS_COLORS="ex=31;1:di=36;1:ln=34;4"
 export EXA_COLORS="lp=34:da=37:uu=33:sn=35:sb=35"
 
 # FZF
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+typeset -U fzf_dir="$XDG_CONFIG_HOME"/fzf
+if [[ -d "$fzf_dir" ]]; then
+    export PATH=$fzf_dir/bin:$PATH
+    source "$fzf_dir"/shell/completion.zsh 2> /dev/null
+    source "$fzf_dir"/shell/key-bindings.zsh
+fi
+unset fzf_dir
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 

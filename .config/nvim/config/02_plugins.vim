@@ -33,7 +33,7 @@ Plug 'tpope/vim-fugitive'
 
 " FILES MANAGER
 " Fuzzy searching
-Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug '~/.config/fzf'
 Plug 'junegunn/fzf.vim'
 " Filter and jump to quickfix list errors with fzf
 Plug 'fszymanski/fzf-quickfix', {'on': '<Plug>(fzf-quickfix)'}

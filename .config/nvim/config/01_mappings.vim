@@ -40,11 +40,11 @@ nnoremap <silent> <C-Up> :resize -1<CR>
 nnoremap <silent> <C-Down> :resize +1<CR>
 
 " Tabs
-nnoremap <silent> th :tabfirst<CR>
-nnoremap <silent> tk :tabnext<CR>
-nnoremap <silent> tj :tabprev<CR>
-nnoremap <silent> tl :tablast<CR>
+nnoremap <silent> tl :tabnext<CR>
+nnoremap <silent> th :tabprev<CR>
 nnoremap <silent> tn :tabnew<CR>
+" Fake zoom, open current file in a new tab 
+noremap <silent> tz :tabnew %<CR>
 
 " Buffers navigation
 nnoremap <silent> + :bn<CR>

@@ -14,6 +14,7 @@
 .config/pulse/
 .config/spotify/
 .config/yarn/
+.config/zsh/zplugin/
 plug.vim
 
 # Misc files
