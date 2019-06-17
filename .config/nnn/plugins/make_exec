@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Make a file executable
+if [ -a "$1" ]; then
+    chmod a+x "$1"
+fi

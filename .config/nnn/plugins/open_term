@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Open a new term in the current dir
+alacritty --working-directory "$PWD" &!
