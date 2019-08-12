@@ -31,14 +31,14 @@ margin-bottom = 0
 margin-top = 0
 
 [bar/main]
-monitor      = eDP-1
-width        = 88%
-height       = 30
-offset-x     = 6%
-offset-y     = 8
-bottom       = true
-fixed-center = true
-line-size    = 0
+monitor-exact = eDP-1
+width         = 88%
+height        = 30
+offset-x      = 6%
+offset-y      = 8
+bottom        = true
+fixed-center  = true
+line-size     = 0
 
 background = ${color.transparent}
 foreground = ${color.aize07}
@@ -52,6 +52,7 @@ modules-right  = network pulseaudio battery date
 
 tray-position = left
 tray-detached = false 
+tray-background = ${color.transparent}
 
 [bar/top]
 monitor      = eDP-1

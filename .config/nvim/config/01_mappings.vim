@@ -24,6 +24,9 @@ nnoremap ; .
 " Append ;/, to the end of the line
 nnoremap <silent> <Leader>; :normal A;<CR>
 nnoremap <silent> <Leader>, :normal A,<CR>
+" Don't lose selection when shifting sidewards
+xnoremap <  <gv
+xnoremap >  >gv
 
 " WINDOW MANAGEMENT
 " Move to the split in the direction shown, or create a new split
@@ -67,6 +70,6 @@ nnoremap <F12> :call util#SyntaxGroup()<CR>
 " Toggle between number and relativenumber
 nnoremap <silent> <Leader>à :call number#ToggleNumber()<CR>
 
-" Serch helpers
+" Search helpers
 nnoremap \s :let @s='\<'.expand('<cword>').'\>'<CR>:%s/<C-r>s//<Left>
 xnoremap \s "sy:%s/<C-r>s//<Left>

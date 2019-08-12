@@ -46,6 +46,9 @@ ctrl + shift + Return
 super + space
 	rofi -show drun -modi drun,window
 
+super + shift + space
+	rofi -show drun -modi drun,window -theme themes/one_line.rasi
+
 super + v
 	vivaldi-stable
 

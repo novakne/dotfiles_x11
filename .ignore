@@ -16,6 +16,7 @@
 .config/yarn/
 .config/zsh/zplugin/
 plug.vim
+.netrwhist
 
 # Misc files
 .zcompdump
