@@ -8,10 +8,5 @@ SERVICE='nvim'
 if pgrep -f "$SERVICE" > /dev/null; then
     nvr "$1"
 else
-    # Check if a nv is in the user's PATH
-    if type -p nv &>/dev/null; then
-        nv "$1"
-    else
-        "${EDITOR:-nvim}" "$1"
-    fi
+    "${EDITOR:-nvim}" "$1"
 fi

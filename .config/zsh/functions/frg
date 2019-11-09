@@ -8,10 +8,5 @@ frg () {
 
     read -r file line <<<"$(rg --no-heading --line-number 2> /dev/null "$@" | fzf -0 -1 | awk -F: '{print $1, $2}')"
 
-    # Open with neovim development prerelease build if exist
-    if type -p nv &>/dev/null; then
-        [[ -n "$file" ]] && nv "$file" +"$line"
-    else
-        [[ -n "$file" ]] && ${EDITOR:-nvim} "$file" +"$line"
-    fi
+    [[ -n "$file" ]] && ${EDITOR:-nvim} "$file" +"$line"
 }

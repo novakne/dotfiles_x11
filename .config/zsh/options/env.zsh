@@ -79,6 +79,7 @@ export NNN_RESTRICT_0B=1
 export NNN_TMPFILE="/tmp/nnn"
 export NNN_COPIER="$XDG_CONFIG_HOME/nnn/copier"
 export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;i:~/img;s:~/src;r:~/src/rust;d:~/docs/notes'
+export NNN_PLUG='i:browse_img_full;f:fuzzy;e:make_exec'
 
 # AUTOJUMP
 [[ -s "$HOME"/.autojump/etc/profile.d/autojump.sh ]] && source "$HOME"/.autojump/etc/profile.d/autojump.sh

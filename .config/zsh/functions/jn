@@ -3,5 +3,5 @@
 #   - Dependencies: autojump, neovim
 
 jn () {
-    j "$1" && nv
+    j "$1" && nvim
 }

@@ -46,7 +46,7 @@ foreground = ${color.aize07}
 font-0 = "Overpass Nerd Font:style=Regular:pixelsize=11;3"
 font-1 = "Overpass Nerd Font:style=Regular:pixelsize=20;5"
 
-modules-left   = bspwm mpd
+modules-left   = bspwm
 ;modules-center = mpd
 modules-right  = network pulseaudio battery date
 

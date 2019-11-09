@@ -9,9 +9,5 @@ SERVICE='nvim'
 if pgrep -f "$SERVICE" > /dev/null; then
     nvr "$(fd -t f | fzf)"
 else
-    if type -p nv &>/dev/null; then
-        nv "$(fd -t f | fzf)"
-    else
-        "${EDITOR:-nvim}" "$(fd -t f | fzf)"
-    fi
+    "${EDITOR:-nvim}" "$(fd -t f | fzf)"
 fi

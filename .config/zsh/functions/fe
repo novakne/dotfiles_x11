@@ -9,10 +9,5 @@ fe () {
     local files
     IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
 
-    # Open with neovim development prerelease build if exist
-    if type -p nv &>/dev/null; then
-        [[ -n "$files" ]] && nv "${files[@]}"
-    else
-        [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
-    fi
+    [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
 }
