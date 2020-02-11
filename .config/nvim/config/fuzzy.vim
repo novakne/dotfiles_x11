@@ -3,6 +3,7 @@
 " FZF ( https://github.com/junegunn/fzf.vim )
 " Layout
 let g:fzf_layout = { 'window': '10new' } 
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Todo', 'rounded': v:true } }
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
 

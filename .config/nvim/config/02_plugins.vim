@@ -58,7 +58,7 @@ Plug 'tpope/vim-commentary'
 " A Vim alignment plugin
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 " Color hex codes and color names
-Plug 'RRethy/vim-hexokinase', { 'on': 'HexokinaseToggle' }
+Plug 'RRethy/vim-hexokinase', { 'on': 'HexokinaseToggle', 'do': 'make hexokinase' }
 " Delete buffers and close files in Vim without closing your windows
 Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 " Auto close parentheses
@@ -69,23 +69,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
 " LANGUAGES
+" A solid language pack for Vim.
+Plug 'sheerun/vim-polyglot'
 " Editorconfig
 Plug 'editorconfig/editorconfig-vim'
 
-" CSS
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss', 'less', 'vue'] }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'wavded/vim-stylus', { 'for': 'styl' }
-
 " JAVASCRIPT
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
-Plug 'posva/vim-vue', { 'for': 'vue' }
-Plug 'flowtype/vim-flow', { 'for': 'javascript' }
-
-" Latex
-Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " MARKDOWN
 " An asynchronous markdown preview plugin 
@@ -101,9 +91,6 @@ Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
 
 " RUST
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-
-" SXHKDRC
-Plug 'baskerville/vim-sxhkdrc', { 'for': 'sxhkdrc' }
 
 " Always load the vim-devicons as the very last one
 Plug 'ryanoasis/vim-devicons'

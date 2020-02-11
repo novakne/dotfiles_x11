@@ -25,7 +25,7 @@ let g:gutentags_cache_dir='~/.cache/tags'
 " NNN ( https://github.com/mcchrish/nnn.vim )
 " let g:nnn#layout = { 'left': '~25%' }
 let g:nnn#layout = '10new'
-let g:nnn#command = 'nnn -l'
+let g:nnn#command = 'nnn'
 let g:nnn#set_default_mappings = 0
 let g:nnn#action = {
       \ '<c-t>': 'tab split',
