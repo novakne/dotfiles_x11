@@ -6,7 +6,7 @@
 # c -> Click to select a window
 
 SCREEN_DIR=~/img/screenshot
-SCREEN_DATE=$(date +"%d_%m_%Y-%H_%M_%S")
+SCREEN_DATE=$(date +"%Y_%m_%d-%H_%M_%S")
 SCREEN_FILE=$SCREEN_DIR/snap_$SCREEN_DATE.png
 ICON_PATH=~/.icons/oomox-aize/16x16/categories/accessories-screenshot.svg
 

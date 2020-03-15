@@ -7,7 +7,7 @@ sxhkd -m1 &
 # Start Polybar
 $HOME/.config/polybar/launch.sh
 # Change X shaped default cursor
- xsetroot -cursor_name left_ptr
+xsetroot -cursor_name left_ptr
 # Start dunst
 dunst &
 

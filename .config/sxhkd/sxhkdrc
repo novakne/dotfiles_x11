@@ -56,7 +56,7 @@ super + b
 	firefox
 
 super + e
-	alacritty -e ~/bin/nv
+	alacritty -e nvim
 
 super + alt + space
         thunar
