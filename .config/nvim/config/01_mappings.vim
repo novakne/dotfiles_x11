@@ -3,7 +3,7 @@
 
 " Change leader key
 let mapleader="\<SPACE>"
-" Normal mode with jj 
+" Normal mode with jk or kj 
 inoremap jk <esc>
 inoremap kj <esc>
 

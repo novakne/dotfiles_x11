@@ -221,6 +221,14 @@ hi! link diffRemoved DiffDelete
 " QUICKFIX / LOCATION LIST
 call s:hi("qfLineNr", s:aize06, "", "NONE", "", "", "")
 
+" NEOVIM LSP
+hi! link LspDiagnosticsError aizeRed
+hi! link LspDiagnosticsWarning aizeYellow
+hi! link LspDiagnosticInformation aizeBlue
+hi! link LspDiagnosticHint aizeGreen
+" hi! link LspReferenceText aizePink
+" hi! link LspReferenceRead
+" hi! link LspReferenceWrite
 
 " ___LANGUAGE BASE GROUPS___
 " ( :help w18 )

@@ -2,6 +2,8 @@
 setlocal softtabstop=2
 setlocal shiftwidth=2
 
-" ALE
-let b:ale_linters = ['eslint', 'flow']
-let b:ale_fixers = ['prettier', 'eslint']
+" Plugin ( https://github.com/pangloss/vim-javascript )
+" Enables syntax highlighting for JSDocs
+let g:javascript_plugin_jsdoc = 1
+" Enables syntax highlighting for Flow
+let g:javascript_plugin_flow = 1

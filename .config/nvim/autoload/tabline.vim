@@ -18,7 +18,7 @@ function! tabline#Tabline() abort
 	    let s .= '%' . (i + 1) . 'T'
 
 	    " the label is made by MyTabLabel()
-	    let s .= ' %{WebDevIconsGetFileTypeSymbol()} %{tabline#MyTabLabel(' . (i + 1) . ')} '
+	    let s .= ' %{mpi#get(expand("%:t"))} %{tabline#MyTabLabel(' . (i + 1) . ')} '
 	  endfor
 
 	  " after the last tab fill with TabLineFill and reset tab page nr

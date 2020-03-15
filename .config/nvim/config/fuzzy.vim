@@ -49,6 +49,7 @@ nnoremap z= :call fuzzy#FzfSpell()<CR>
 nnoremap <silent> <Leader>k :Rg! <C-R><C-W><CR>
 
 " FZF QUICKFIX ( https://github.com/fszymanski/fzf-quickfix )
-" Enable location list to use with Ale
-let g:fzf_quickfix_use_loclist = 1
-nmap <silent> <Leader>f <Plug>(fzf-quickfix)
+" Quickfix list
+nnoremap <silent> <Leader>F :Quickfix<CR>
+" Location list
+nnoremap <silent> <Leader>f :Quickfix!<CR>

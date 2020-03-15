@@ -234,6 +234,7 @@ prompt_async_setup() {
 prompt_setup() {
     # Prevent percentage showing up if output doesn't end with a newline.
     export PROMPT_EOL_MARK=''
+    [ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
     prompt_async_setup
 }
 

@@ -1,0 +1,6 @@
+[submodule "z.lua"]
+	path = z.lua
+	url = https://github.com/skywind3000/z.lua.git
+[submodule "zinit/bin"]
+	path = zinit/bin
+	url = https://github.com/zdharma/zinit.git

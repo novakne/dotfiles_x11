@@ -1,0 +1,7 @@
+#!/bin/sh
+# Jump to a dir with z.lua and open it in neovim
+#   - Dependencies: z.lua, neovim
+
+zn () {
+    _zlua "$1" && nvim
+}

@@ -17,17 +17,12 @@ alias delorph='yay -Rs $(yay -Qtdq)'
 
 ### FILES MANAGEMENT
 # Directories
-alias scripts='cd $HOME/bin/'
-alias conf='cd .config'
-alias doc='cd docs'
-alias dl='cd download'
-alias vid='video'
-alias img='cd img'
-alias dot='cd dotfiles'
-alias web='cd src/web/'
-alias formation="cd src/web/_formation"
-alias boilerplate="cd src/web/_boilerplate"
-alias not='cd docs/notes'
+alias scripts='cd $HOME/bin'
+alias conf='cd $HOME/.config'
+alias doc='cd $HOME/docs'
+alias dl='cd $HOME/download'
+alias vid='cd $HOME/video'
+alias not='cd $HOME/docs/notes'
 
 # Files
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
@@ -42,12 +37,6 @@ alias fixit='sudo rm -f /var/lib/pacman/db.lck'
 alias cmx='chmod a+x'
 alias del='trash-put'
 
-# Config
-alias ev='nvim $XDG_CONFIG_HOME/nvim/init.vim'
-alias ez='nvim $XDG_CONFIG_HOME/zsh/.zshrc'
-alias ebs='nvim $XDG_CONFIG_HOME/bspwm/bspwmrc'
-alias esx='nvim $XDG_CONFIG_HOME/sxhkd/sxhkdrc'
-
 ### TOOLS
 # Exa ( https://github.com/ogham/exa )
 alias exa='exa --group-directories-first'
@@ -55,23 +44,19 @@ alias ea='exa -lah --group-directories-first --git'
 alias et='exa -lah -TL2 --group-directories-first --git'
 
 # Nnn ( https://github.com/jarun/nnn )
-alias nl='nnn -l'
-alias nh='nnn -ld'
-alias nt='nnn -ldi'
-alias ns='nnn -S'
+alias nn='nnn -en'
+alias N='sudo -E nnn -dHn'
 
 # Sxiv ( https://github.com/muennich/sxiv )
 alias sx='sxiv -b'
 alias sxf='sxiv -bf'
 alias sxt='sxiv -bt'
 
-### GIT
-alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias goc='git checkout '
+# Z.lua ( https://github.com/skywind3000/z.lua )
+alias zf='z -I'  # Z with fzf
+alias zb='z -b'  # Z back
+alias zbf='z -b -I'  # Z back with fzf
+alias zh='z -I -t .' # Z history with fzf
 
 # YADM
 alias yads='yadm status'
@@ -79,25 +64,14 @@ alias yada='yadm add'
 alias yadp='yadm push'
 alias yadc='yadm commit -m'
 
-### WEB DEV
-# Npm
-alias upnpm='npm install npm@latest -g'
-alias npi='npm install'
-alias npid='npm install --save-dev'
-alias npig='npm install --global'
-alias npt='npm test'
-alias npit='npm install && npm test'
-alias npr='npm run'
-alias nps='npm start'
-alias nplg='npm list --global --depth=0'
-
-# Yarn
-alias ya='yarn'
-alias yiy='yarn init -y'
-alias yaa='yarn add'
-alias yad='yarn dev'
-alias yas='yarn start'
-alias yat='yarn test'
+### DEV
+# GIT
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias goc='git checkout '
 
 # Rust
 alias cn='cargo new'
@@ -115,3 +89,4 @@ alias wname='xprop | grep WM_CLASS'
 alias fp='fzf --preview "bat --theme TwoDark --color always {}" --preview-window=right:70%:wrap'
 alias wget='wget --hsts-file="$HOME/.cache/wget-hsts"'
 alias fzfup='cd ~/.config/fzf && git pull && ./install --bin --no-update-rc --64'
+alias awesometest='Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome'

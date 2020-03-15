@@ -17,13 +17,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 " PLUGINS LIST
 " Make sure you use single quotes
 
-" AUTOCOMPLETE
-" Intellisense engine
-Plug 'neoclide/coc.nvim', { 'do': './install.sh nightly' }
-" Asynchronous linting/fixing for Vim and Language Server Protocol
-Plug 'w0rp/ale'
-" Defaults snippets for coc-snippets
-Plug 'honza/vim-snippets'
+" LSP
+" Collection of common configurations for the Nvim LSP client
+Plug 'neovim/nvim-lsp'
+" A async completion framework aims to provide completion to neovim's built in LSP
+Plug 'haorenW1025/completion-nvim'
 
 " GIT
 " Show a diff using Vim its sign column
@@ -36,7 +34,7 @@ Plug 'tpope/vim-fugitive'
 Plug '~/.config/fzf'
 Plug 'junegunn/fzf.vim'
 " Filter and jump to quickfix list errors with fzf
-Plug 'fszymanski/fzf-quickfix', {'on': '<Plug>(fzf-quickfix)'}
+Plug 'fszymanski/fzf-quickfix', { 'on': 'Quickfix' }
 " Fast and featureful file manager powered by nnn
 Plug 'mcchrish/nnn.vim', { 'on': ['Np', 'NnnPicker'] }
 " View and search LSP symbols, tags
@@ -74,26 +72,15 @@ Plug 'sheerun/vim-polyglot'
 " Editorconfig
 Plug 'editorconfig/editorconfig-vim'
 
-" JAVASCRIPT
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-
-" MARKDOWN
+" Markdown
 " An asynchronous markdown preview plugin 
 function! BuildComposer(info) abort
     if a:info.status != 'unchanged' || a:info.force
-        !cargo build --release
+        !cargo build --release --locked
     endif
 endfunction
 
-Plug 'euclio/vim-markdown-composer', { 'for': 'markdown', 'do': function('BuildComposer') }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
-
-" RUST
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-
-" Always load the vim-devicons as the very last one
-Plug 'ryanoasis/vim-devicons'
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 " Initialize plugin system
 call plug#end()

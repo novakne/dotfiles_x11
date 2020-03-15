@@ -69,26 +69,27 @@ path=(
 )
 
 # NNN
-export LC_COLLATE=C
-export NNN_SHOW_HIDDEN=1
-export NNN_CONTEXT_COLORS='2314'
+export NNN_COLORS='2314'
 export NNN_TRASH=1
 export NNN_USE_EDITOR=1
-export NNN_RESTRICT_NAV_OPEN=1
+export NNN_RESTRICT_NAV_OPEN=0
 export NNN_RESTRICT_0B=1
-export NNN_TMPFILE="/tmp/nnn"
+# export NNN_OPENER=nuke
 export NNN_COPIER="$XDG_CONFIG_HOME/nnn/copier"
-export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;i:~/img;s:~/src;r:~/src/rust;d:~/docs/notes'
-export NNN_PLUG='f:browse_img_full;i:browse_img;s:fuzzy;c:make_exec;e:exec;x:extract'
-
-# AUTOJUMP
-[[ -s "$HOME"/.autojump/etc/profile.d/autojump.sh ]] && source "$HOME"/.autojump/etc/profile.d/autojump.sh
+export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/src;d:~/docs/notes;l:~/.local/share'
+export NNN_PLUG='f:browse_img_full;i:browse_img;s:fuzzy;c:_chmod a+x $nnn*'
 
 # RIPGREP
 export RIPGREP_CONFIG_PATH="XDG_CONFIG_HOME/ripgrep"
 
 # EXA
 export EXA_COLORS="lp=34:da=37:uu=33:sn=35:sb=35"
+
+# Z.LUA
+export _ZL_ADD_ONCE=1
+export _ZL_ECHO=1
+export _ZL_DATA="$XDG_CACHE_HOME/zlua/zlua"
+eval "$(lua $ZDOTDIR/z.lua/z.lua --init zsh)"
 
 # FZF
 typeset -U fzf_dir="$XDG_CONFIG_HOME"/fzf
