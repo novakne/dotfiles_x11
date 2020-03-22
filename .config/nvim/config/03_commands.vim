@@ -8,6 +8,8 @@ command! -nargs=* TTerm tabnew | terminal <args>
 command! Chmodx :!chmod a+x %
 
 " Change to directory of current file
-command! Cd :cd %:p:h
+" command! Cd :cd %:p:h
 command! Cdw :lcd %:p:h
 command! Cdt :tcd %:p:h
+
+command! PU PlugUpdate | PlugUpgrade

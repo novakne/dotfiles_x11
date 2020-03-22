@@ -1,83 +1,136 @@
-local map = vim.api.nvim_set_keymap
+local util = require "util"
+-- TODO Revrite some functions in lua
 
-local M = {}
 
-function M.set_keys()
+-- Change leader key to space
+vim.g.mapleader = " "
 
-  -- Change leader key
-  -- TODO
 
-  local opts = {noremap = true, silent = true}
+-- Normal mode with "jk" or "kj"
+util.bind_key("i", "jk", "<esc>")
+util.bind_key("i", "kj", "<esc>")
 
-  -- Normal mode with 'jk' or 'kj'
-  map('i', 'jk', '<esc>', opts )
-  map('i', 'kj', '<esc>', opts )
+-- Move updown by visual (wrapped) lines
+util.bind_key("n", "j", "v:count == 0 ? 'gj' : 'j'", {noremap = true, expr = true})
+util.bind_key("n", "k", "v:count == 0 ? 'gk' : 'k'", {noremap = true, expr = true})
 
-  -- Move updown by visual (wrapped) lines
-  -- TODO
+-- Use <Tab> and <S-Tab> to navigate through popup menu
+util.bind_key("i", "<Tab>", "pumvisible() ? '<C-n>' : '<Tab>'", {noremap = true, expr = true})
+util.bind_key("i", "<S-Tab>", "pumvisible() ? '<C-p>' : '<S-Tab>'", {noremap = true, expr = true})
 
-  -- Easier start & end of the line
-  map('n', 'H', '^', opts)
-  map('n', 'L', '$', opts)
+-- Easier start & end of the line
+util.bind_key("n", "H", "^")
+util.bind_key("n", "L", "$")
 
-  -- Editing
-  map('n', '<Leader>w', ':w<CR>', opts)
-  map('n', '<Leader>z', ':q<CR>', opts)
-  map('n', '<Leader>x', ':xa<CR>', opts)
-  map('n', '<Leader>!', ':q!<CR>', opts)
-  -- Easier for azerty
-  map('n', ';', '.', opts)
-  -- Apend ;/, at the end of the line
-  map('n', '<Leader>;', '', opts)
-  map('n', '<Leader>,', '', opts)
-  -- Don't lose selection when shifting sidewards
-  map('x', '<', '<gv', opts)
-  map('x', '>', '>gv', opts)
+-- Editing
+util.bind_key("n", "<Leader>w", ":w<CR>")
+util.bind_key("n", "<Leader>z", ":q<CR>")
+util.bind_key("n", "<Leader>x", ":xa<CR>")
+util.bind_key("n", "<Leader>!", ":q!<CR>")
+-- Easier for azerty
+util.bind_key("n", ";", ".")
+-- Apend ;/, at the end of the line
+util.bind_key("n", "<Leader>;", ":normal A;<CR>")
+util.bind_key("n", "<Leader>,", ":normal A,<CR>")
+-- Don't lose selection when shifting sidewards
+util.bind_key("x", "<", "<gv")
+util.bind_key("x", ">", ">gv")
+-- Yank the world under the cursor
+util.bind_key("n", "yc", "vawy")
 
-  -- Windows
-  -- Move to the split in the direction shown, or create a new split
-  -- ( https://aonemd.github.io/blog/handy-keymaps-in-vim )
-  map('n', '<C-h>', ':call util#WinMove("h")<CR>', opts)
-  map('n', '<C-j>', ':call util#WinMove("j")<CR>', opts)
-  map('n', '<C-k>', ':call util#WinMove("k")<CR>', opts)
-  map('n', '<C-l>', ':call util#WinMove("l")<CR>', opts)
-  -- Intelligent windows resizing using ctrl + arrow keys
-  map('n', '<C-Right>', ':call util#intelligentVerticalResize("right")<CR>', opts)
-  map('n', '<C-Left>', ':call util#intelligentVerticalResize("left")<CR>', opts)
-  map('n', '<C-Up>', ':resize -1<CR>', opts)
-  map('n', '<C-down>', ':resize +1<CR>', opts)
+-- Windows
+-- Move to the split in the direction shown, or create a new split
+-- ( https://aonemd.github.io/blog/handy-keymaps-in-vim )
+util.bind_key("n", "<C-Right>", ":call util#intelligentVerticalResize('right')<CR>")
+util.bind_key("n", "<C-h>", ":call util#WinMove('h')<CR>")
+util.bind_key("n", "<C-j>", ":call util#WinMove('j')<CR>")
+util.bind_key("n", "<C-k>", ":call util#WinMove('k')<CR>")
+util.bind_key("n", "<C-l>", ":call util#WinMove('l')<CR>")
+-- Intelligent windows resizing using ctrl + arrow keys
+util.bind_key("n", "<C-Left>", ":call util#intelligentVerticalResize('left')<CR>")
+util.bind_key("n", "<C-Up>", ":resize -1<CR>")
+util.bind_key("n", "<C-down>", ":resize +1<CR>")
 
-  -- Tabs
-  map('n', 'tl', ':tabnext<CR>', opts)
-  map('n', 'th', ':tabprev<CR>', opts)
-  map('n', 'tn', ':tabnew<CR>', opts)
-  -- Fake zoom, open current file in a new tab
-  map('n', 'tz', ':tabnew %<CR>', opts)
+-- Tabs
+util.bind_key("n", "tl", ":tabnext<CR>")
+util.bind_key("n", "th", ":tabprev<CR>")
+util.bind_key("n", "tn", ":tabnew<CR>")
+-- Fake zoom, open current file in a new tab
+util.bind_key("n", "tz", ":tabnew %<CR>")
 
-  -- Buffers
-  map('n', '+', ':bn<CR>', opts)
-  map('n', '_', ':bp<CR>', opts)
+-- Buffers
+util.bind_key("n", "+", ":bn<CR>")
+util.bind_key("n", "_", ":bp<CR>")
 
-  -- Clear serach results
-  map('n', '<esc>', ':noh<CR>', opts)
+-- Clear serach results
+util.bind_key("n", "<esc>", ":noh<CR>")
 
-  -- Spell
-  map('n', '<F9>', '<Esc>:silent setlocal spell! spelllang=en<CR>', opts)
-  map('n', '<F10>', '<Esc>:silent setlocal spell! spelllang=fr<CR>', opts)
+-- Spell
+util.bind_key("n", "<F9>", "<Esc>:silent setlocal spell! spelllang=en<CR>")
+util.bind_key("n", "<F10>", "<Esc>:silent setlocal spell! spelllang=fr<CR>")
 
-  -- Quickly move current line
-  map('n', 'mm', ':<c-u>execute "move -1-". v:count1<CR>', opts)
-  map('n', 'MM', ':<c-u>execute "move +". v:count1<CR>', opts)
+-- Quickly move current line
+util.bind_key("n", "mm", ":<c-u>execute 'move -1-'. v:count1<CR>")
+util.bind_key("n", "MM", ":<c-u>execute 'move +'. v:count1<CR>")
 
-  -- Get color group name of the syntax group where the cursor is
-  map('n', '<F12>', ':call util#SyntaxGroup()<CR>', opts)
+-- Get color group name of the syntax group where the cursor is
+util.bind_key("n", "<F12>", ":call util#SyntaxGroup()<CR>")
 
-  -- Toggle between number and relative number
-  map('n', '<Leader>à', ':call number#ToggleNumber()<CR>', opts)
+-- Toggle between number and relative number
+util.bind_key("n", "<Leader>à", ":call number#ToggleNumber()<CR>")
 
-  -- Search helpers
-  -- TODO
+-- TODO Search helpers
+--[[
+  nnoremap \s :let @s="\<'.expand('<cword>').'\>'<CR>:%s/<C-r>s//<Left>
+  xnoremap \s "sy:%s/<C-r>s//<Left>
+  ]]
 
-end
 
-return M
+-- PLUGINS --
+-- Nnn
+-- Start in the current file's directory
+util.bind_key("n", "<F6>", ":NnnPicker '%:p:h'<CR>")
+
+-- Goyo
+util.bind_key("n", "<Leader>g", ":Goyo<CR>")
+
+-- Vim-Bbye
+util.bind_key("n", "<Leader>q", ":Bdelete<CR>")
+
+-- Hexokinase
+util.bind_key("n", "<Leader>h", ":HexokinaseToggle<CR>")
+
+-- Easy Align
+-- Start interactive EasyAlign in visual mode (e.g. vipga)
+util.bind_key("x", "ga", "<Plug>(EasyAlign)", {silent = true})
+-- Start interactive EasyAlign for a motion/text object (e.g. gaip)
+util.bind_key("n", "ga", "<Plug>(EasyAlign)", {silent = true})
+
+-- Fzf
+-- Search files recursively
+util.bind_key("n", "<Leader>o", ":Files<CR>")
+util.bind_key("n", "<Leader>O", ":FilesP<CR>")
+-- Search between open files
+util.bind_key("n", "<Leader>b", ":Buffers<CR>")
+-- Ripgrep
+util.bind_key("n", "<Leader>r", ":Rg!<CR>")
+util.bind_key("n", "<Leader>R", ":Rg<CR>")
+-- Search lines
+util.bind_key("n", "<Leader>l", ":Blines<CR>")
+util.bind_key("n", "<Leader>L", ":Lines<CR>")
+-- Search ctags
+util.bind_key("n", "<Leader>t", ":Btags<CR>")
+util.bind_key("n", "<Leader>T", ":Tags<CR>")
+
+-- Vim spelling suggestions with fzf
+-- ( https://coreyja.com/blog/2018/11/10/vim-spelling-suggestions-fzf.html )
+util.bind_key("n", "z=", ":call fuzzy#FzfSpell()<CR>")
+
+-- Search current word under cursor
+util.bind_key("n", "<Leader>k", ":Rg! <C-R><C-W><CR>")
+
+-- Fzf quickfix
+-- Quickfix list
+util.bind_key("n", "<Leader>F", ":Quickfix<CR>")
+-- Location list
+util.bind_key("n", "<Leader>f", ":Quickfix!<CR>")

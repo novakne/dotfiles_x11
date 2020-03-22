@@ -37,8 +37,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'fszymanski/fzf-quickfix', { 'on': 'Quickfix' }
 " Fast and featureful file manager powered by nnn
 Plug 'mcchrish/nnn.vim', { 'on': ['Np', 'NnnPicker'] }
-" View and search LSP symbols, tags
-Plug 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
 " A Vim plugin that manages your tag files
 Plug 'ludovicchabant/vim-gutentags'
 

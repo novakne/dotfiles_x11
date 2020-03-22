@@ -1,15 +1,11 @@
-" Git branch with fugitive
-function! statusline#GitBranch() abort
-    let git = fugitive#head()
-    if git != ''
-	return "\ue0a0".fugitive#head()
-    else
-	return ''
-    endif
+function! statusline#InactiveLine()
+    return luaeval("require'statusline'.inactiveLine()")
 endfunction
 
-" Show the nearest method/function with vista
-function! statusline#NearestFunction() abort
-    return get(b:, 'vista_nearest_method_or_function', '')
+function! statusline#ActiveLine()
+    return luaeval("require'statusline'.activeLine()")
 endfunction
 
+function! statusline#TabLine()
+    return luaeval("require'statusline'.tabline()")
+endfunction

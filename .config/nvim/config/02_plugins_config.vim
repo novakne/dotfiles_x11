@@ -1,4 +1,15 @@
-" ~/.config/nvim/config/fuzzy.vim
+" ~/.config/neovim/config/plugins_config.vim
+
+" NNN ( https://github.com/mcchrish/nnn.vim )
+" Floating window
+let g:nnn#layout = { 'window': { 'width': 0.5, 'height': 0.6, 'highlight': 'Debug' } }
+let g:nnn#command = 'nnn -e'
+let g:nnn#set_default_mappings = 0
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-h>': 'split',
+      \ '<c-v>': 'vsplit' }
+
 
 " FZF ( https://github.com/junegunn/fzf.vim )
 " Layout
@@ -26,30 +37,4 @@ let g:fzf_action = {
     \ 'ctrl-h': 'split',
     \ 'ctrl-v': 'vsplit' }
 
-" Search files recursively
-nnoremap <silent> <Leader>o :Files<CR>
-nnoremap <silent> <Leader>O :FilesP<CR>
-" Search between open files
-nnoremap <silent> <Leader>b :Buffers<CR>
-" Ripgrep
-nnoremap <silent> <Leader>r :Rg!<CR>
-nnoremap <silent> <Leader>R :Rg<CR>
-" Search lines
-nnoremap <silent> <Leader>l :BLines<CR>
-nnoremap <silent> <Leader>L :Lines<CR>
-" Serach ctags
-nnoremap <silent> <Leader>t :BTags<CR>
-nnoremap <silent> <Leader>T :Tags<CR>
 
-" Vim spelling suggestions with fzf
-" ( https://coreyja.com/blog/2018/11/10/vim-spelling-suggestions-fzf.html )
-nnoremap z= :call fuzzy#FzfSpell()<CR>
-
-" Search current word under cursor
-nnoremap <silent> <Leader>k :Rg! <C-R><C-W><CR>
-
-" FZF QUICKFIX ( https://github.com/fszymanski/fzf-quickfix )
-" Quickfix list
-nnoremap <silent> <Leader>F :Quickfix<CR>
-" Location list
-nnoremap <silent> <Leader>f :Quickfix!<CR>

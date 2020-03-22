@@ -32,7 +32,7 @@ let g:vim_markdown_edit_url_in = 'tab'
 " If set to 0, the plugin will not attempt to open the user's browser, instead requiring them to open it manually
 let g:markdown_composer_open_browser = 0
 let g:markdown_composer_browser = 'firefox'
-let g:markdown_composer_syntax_theme = 'dracula'
+let g:markdown_composer_syntax_theme = 'atom-one-light'
 
 nnoremap <silent> <Leader>p :ComposerOpen<CR>
 nnoremap <silent> <Leader>pr :ComposerUpdate<CR>
