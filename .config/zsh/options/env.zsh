@@ -80,7 +80,7 @@ export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome
 export NNN_PLUG='f:browse_img_full;i:browse_img;s:fuzzy;c:_chmod a+x $nnn*'
 
 # RIPGREP
-export RIPGREP_CONFIG_PATH="XDG_CONFIG_HOME/ripgrep"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/rc"
 
 # EXA
 export EXA_COLORS="lp=34:da=37:uu=33:sn=35:sb=35"
