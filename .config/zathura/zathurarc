@@ -26,7 +26,7 @@ set highlight-active-color "#e8ec77"
 set highlight-transparency 0.5
 
 # OPTIONS
-set font "Overpass 11"
+set font "Inter 11"
 # 'c', the command line 's', the statusbar 'h', the horizontal scrollbar 'v', the vertical scrollbar
 set guioptions csh
 set statusbar-v-padding 4
