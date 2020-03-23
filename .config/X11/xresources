@@ -1,21 +1,58 @@
 ! ~/.xresources
 
 ! Theme
-#include "/home/novakane/aize/xresources/aize"
+! special
+*foreground:   #d2ccd6
+*background:   #29223a
+*cursorColor:  #b7acbf
+
+! black
+*color0:       #3e3350
+*color8:       #534666
+
+! red
+*color1:       #fc65b0
+*color9:       #fc65b0
+
+! green
+*color2:       #2dcbb0
+*color10:      #2dcbb0
+
+! yellow
+*color3:       #e8ec77
+*color11:      #e8ec77
+
+! blue
+*color4:       #57bbf4
+*color12:      #57bbf4
+
+! magenta
+*color5:       #a89bee
+*color13:      #a89bee
+
+! cyan
+*color6:       #4db9c8
+*color14:      #4db9c8
+
+! white
+*color7:       #b7acbf
+*color15:      #d2ccd6
+
+
+Xft.dpi: 96
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+Xcursor.theme: capitaine-cursors
+Xcursor.size:  0
 
 ! URXVT
-
-URxvt.font: 9x15
-Xft.dpi: 96
-Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: rgb
-Xft.autohint: false
-Xft.hintstyle: hintslight
-Xft.lcdfilter: lcddefault
-Xcursor.theme: capitaine-cursors
-! Xcursor.size:  0
 URxvt.depth: 32
+!URxvt.font: 9x15
 URxvt*scrollBar:                      false
 URxvt*mouseWheelScrollPage:           false
 URxvt*cursorBlink:                    true
