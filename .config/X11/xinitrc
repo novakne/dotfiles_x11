@@ -1,6 +1,6 @@
 systemctl --user import-environment DISPLAY
 /* nitrogen --restore & */
-/* compton & */
+picom &
 [ ! -s ~/.config/mpd/pid ] && mpd &
 [[ -f ~/.config/X11/xresources ]] && xrdb -merge -I$HOME ~/.config/X11/xresources &
 /* exec bspwm */
