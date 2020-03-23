@@ -5,6 +5,7 @@ local extensionTable = {
   -- Filetype
   ['awk']             = '',
   ['chaskell']        = '',
+  ['cfg']             = '',
   ['clojure']         = '',
   ['cpp']             = '',
   ['css']             = '',
