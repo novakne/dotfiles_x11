@@ -5,3 +5,5 @@ plug.vim.old
 .netrwhist
 config.user
 credentials
+.history
+molotov
