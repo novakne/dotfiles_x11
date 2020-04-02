@@ -1,7 +1,7 @@
 local api = vim.api
-local icons = require 'statusline.devicons'
+local icons = require("statusline.devicons")
 
-local M = {}
+local statusline = {}
 
 -- Colors
 local colors = {
@@ -25,40 +25,40 @@ local colors = {
 
 -- Separators
 local separators = {
-  left = '▒▓',
-  right = '▓▒',
-  -- left = '',
-  -- right = '',
-  blank = ' '
+  left = "▒▓",
+  right = "▓▒",
+  -- left = "",
+  -- right = "",
+  blank = " "
 }
 
 -- Mode
 local current_mode = setmetatable({
-      ['n']  = 'NORMAL',
-      ['no'] = 'N·Operator Pending',
-      ['v']  = 'VISUAL',
-      ['V']  = 'V·Line',
-      ['^V'] = 'V·Block',
-      ['s']  = 'Select',
-      ['S']  = 'S·Line',
-      ['^S'] = 'S·Block',
-      ['i']  = 'INSERT',
-      ['ic'] = 'INSERT',
-      ['ix'] = 'INSERT',
-      ['R']  = 'Replace',
-      ['Rv'] = 'V·Replace',
-      ['c']  = 'COMMAND',
-      ['cv'] = 'Vim Ex',
-      ['ce'] = 'Ex',
-      ['r']  = 'Prompt',
-      ['rm'] = 'More',
-      ['r?'] = 'Confirm',
-      ['!']  = 'Shell',
-      ['t']  = 'TERMINAL'
+      ["n"]  = "NORMAL",
+      ["no"] = "N·Operator Pending",
+      ["v"]  = "VISUAL",
+      ["V"]  = "V·Line",
+      ["^V"] = "V·Block",
+      ["s"]  = "Select",
+      ["S"]  = "S·Line",
+      ["^S"] = "S·Block",
+      ["i"]  = "INSERT",
+      ["ic"] = "INSERT",
+      ["ix"] = "INSERT",
+      ["R"]  = "Replace",
+      ["Rv"] = "V·Replace",
+      ["c"]  = "COMMAND",
+      ["cv"] = "Vim Ex",
+      ["ce"] = "Ex",
+      ["r"]  = "Prompt",
+      ["rm"] = "More",
+      ["r?"] = "Confirm",
+      ["!"]  = "Shell",
+      ["t"]  = "TERMINAL"
     }, {
       -- fix weird issues
       __index = function(_, _)
-        return 'V·Block'
+        return "V·Block"
       end
     }
 )
@@ -85,7 +85,7 @@ local function is_readonly()
 end
 
 local file_name = function()
-  local filename = api.nvim_call_function('expand', {"%f"})
+  local filename = api.nvim_call_function("expand", {"%f"})
   local filetype = api.nvim_buf_get_option(0, "filetype")
   local icon = icons.deviconTable[filetype]
   local file = " " .. filename .. is_modified() .. is_readonly()
@@ -109,46 +109,46 @@ end
 -- Round Rectangle Color
 local rr_bg = colors.dark_l
 local rr_fg = colors.white
-vim.cmd('hi RRectangle guibg=' .. rr_bg .. ' guifg=' .. rr_fg)
-vim.cmd('hi RrSeparator guifg=' .. rr_bg)
+vim.cmd("hi RRectangle guibg=" .. rr_bg .. " guifg=" .. rr_fg)
+vim.cmd("hi RrSeparator guifg=" .. rr_bg)
 
 -- Base Color
 local base_bg = "None"
 local base_fg = colors.white
-vim.cmd('hi BaseStatus guibg=' .. base_bg .. ' guifg=' .. base_fg)
+vim.cmd("hi BaseStatus guibg=" .. base_bg .. " guifg=" .. base_fg)
 
 -- Redraw different colors for different mode
 local RedrawColors = function(mode)
-  if mode == 'n' then
-    vim.cmd('hi Mode guibg='..colors.green..' guifg='..colors.dark..' gui=bold')
-    vim.cmd('hi ModeSeparator guifg='..colors.green)
+  if mode == "n" then
+    vim.cmd("hi Mode guibg="..colors.green.." guifg="..colors.dark.." gui=bold")
+    vim.cmd("hi ModeSeparator guifg="..colors.green)
   end
-  if mode == 'i' then
-    vim.cmd('hi Mode guibg='..colors.yellow..' guifg='..colors.dark..' gui=bold')
-    vim.cmd('hi ModeSeparator guifg='..colors.yellow)
+  if mode == "i" then
+    vim.cmd("hi Mode guibg="..colors.yellow.." guifg="..colors.dark.." gui=bold")
+    vim.cmd("hi ModeSeparator guifg="..colors.yellow)
   end
-  if mode == 'v' or mode == 'V' or mode == '^V' then
-    vim.cmd('hi Mode guibg='..colors.pink..' guifg='..colors.dark..' gui=bold')
-    vim.cmd('hi ModeSeparator guifg='..colors.pink)
+  if mode == "v" or mode == "V" or mode == "^V" then
+    vim.cmd("hi Mode guibg="..colors.pink.." guifg="..colors.dark.." gui=bold")
+    vim.cmd("hi ModeSeparator guifg="..colors.pink)
   end
-  if mode == 'c' then
-    vim.cmd('hi Mode guibg='..colors.blue..' guifg='..colors.dark..' gui=bold')
-    vim.cmd('hi ModeSeparator guifg='..colors.blue)
+  if mode == "c" then
+    vim.cmd("hi Mode guibg="..colors.blue.." guifg="..colors.dark.." gui=bold")
+    vim.cmd("hi ModeSeparator guifg="..colors.blue)
   end
-  if mode == 't' then
-    vim.cmd('hi Mode guibg='..colors.orange..' guifg='..colors.dark..' gui=bold')
-    vim.cmd('hi ModeSeparator guifg='..colors.orange)
+  if mode == "t" then
+    vim.cmd("hi Mode guibg="..colors.orange.." guifg="..colors.dark.." gui=bold")
+    vim.cmd("hi ModeSeparator guifg="..colors.orange)
   end
 end
 
 
 -- Statusline active window
-function M.activeLine()
+function statusline.activeLine()
   local statusline = ""
 
   -- LEFT --
   -- Mode
-  local mode = api.nvim_get_mode()['mode']
+  local mode = api.nvim_get_mode()["mode"]
   RedrawColors(mode)
   statusline = statusline
     .. "%#ModeSeparator#" .. separators.left
@@ -180,35 +180,37 @@ function M.activeLine()
 end
 
 -- Statusline inactive window
-function M.inactiveLine()
-  return "%#BaseStatus# " .. file_name()
+function statusline.inactiveLine()
+  return "%#RrSeparator# " .. separators.left
+    .. "%#RRectangle# " .. file_name()
+    .. "%#RrSeparator#" .. separators.right
 end
 
 
 -- Tabline
-vim.cmd('hi TabLineSelSeparator guifg=' .. colors.blue)
-vim.cmd('hi TabLineSeparator guifg=' .. colors.dark_l)
+vim.cmd("hi TabLineSelSeparator guifg=" .. colors.blue)
+vim.cmd("hi TabLineSeparator guifg=" .. colors.dark_l)
 
 local get_tab_label = function(n)
   local current_win = api.nvim_tabpage_get_win(n)
   local current_buf = api.nvim_win_get_buf(current_win)
   local filename = api.nvim_buf_get_name(current_buf)
-  if string.find(filename, 'term://') ~= nil then
-    return ' '..api.nvim_call_function('fnamemodify', {filename, ":p:t"})
+  if string.find(filename, "term://") ~= nil then
+    return " "..api.nvim_call_function("fnamemodify", {filename, ":p:t"})
   end
-  filename = api.nvim_call_function('fnamemodify', {filename, ":p:t"})
-  if filename == '' then
+  filename = api.nvim_call_function("fnamemodify", {filename, ":p:t"})
+  if filename == "" then
     return "No Name"
   end
   local icon = icons.deviconTable[filename]
   if icon ~= nil then
-    return icon .. ' ' .. filename
+    return icon .. " " .. filename
   end
   return filename
 end
 
-function M.tabline()
-  local tabline = ''
+function statusline.tabline()
+  local tabline = ""
   local tab_list = api.nvim_list_tabpages()
   local current_tab = api.nvim_get_current_tabpage()
   for _, val in ipairs(tab_list) do
@@ -226,4 +228,4 @@ function M.tabline()
   return tabline
 end
 
-return M
+return statusline

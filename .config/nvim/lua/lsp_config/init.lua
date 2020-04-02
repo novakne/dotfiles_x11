@@ -1,8 +1,8 @@
 local vim = vim
 local nvim_lsp = require("nvim_lsp")
 local diagnostics = require("lsp_config.diagnostics")
-require("lsp_config.diagnostics").diagnostics_callback()
-local util = require "util"
+diagnostics.diagnostics_callback()
+local util = require("util")
 
 -- Signs in sign column
 vim.g.LspDiagnosticsErrorSign       = ""
@@ -20,11 +20,12 @@ util.bind_key("n", "1gD ", ":lua vim.lsp.buf.type_definition()<CR>")
 util.bind_key("n", "gr", ":lua vim.lsp.buf.references()<CR>")
 util.bind_key("n", "g0", ":lua vim.lsp.buf.document_symbol()<CR>")
 
-on_attach = function(_, _)
-  vim.cmd [[augroup DiagnosticRefresh]]
-  vim.cmd [[autocmd!]]
-  vim.cmd [[autocmd BufWinEnter,TabEnter <buffer> lua require'lsp_config.diagnostics'.diagnostics_refresh()]]
-  vim.cmd [[augroup END]]
+local on_attach = function(_, _)
+  vim.cmd("augroup DiagnosticRefresh")
+  vim.cmd("autocmd!")
+  vim.cmd("autocmd BufWinEnter,TabEnter <buffer> lua require'lsp_config.diagnostics'.diagnostics_refresh()")
+  vim.cmd("autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()")
+  vim.cmd("augroup END")
 end
 
 -- Orverride default config

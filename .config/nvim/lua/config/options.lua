@@ -47,7 +47,7 @@ local global_options = {
   -- Better display for messages
   cmdheight = 2,
   -- Smaller updatetime for CursorHold & CursorHoldI
-  updatetime = 300
+  updatetime = 100
 }
 
 for name, value in pairs(global_options) do
@@ -60,7 +60,7 @@ local window_options = {
   -- Don't insert line breaks in the middle of a word
   linebreak = true,
   -- Always show signcolumns
-  signcolumn = "yes"
+  signcolumn = "yes:2"
 }
 
 for name, value in pairs(window_options) do

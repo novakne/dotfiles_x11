@@ -1,6 +1,6 @@
-local util = require "util"
--- TODO Revrite some functions in lua
+local util = require("util")
 
+-- TODO Revrite some functions in lua
 
 -- Change leader key to space
 vim.g.mapleader = " "
@@ -38,7 +38,7 @@ util.bind_key("x", ">", ">gv")
 -- Yank the world under the cursor
 util.bind_key("n", "yc", "vawy")
 -- Makes s act like d, except it doesn’t save the cut text to a register
-util.bind_key('n', 's', '"_d')
+util.bind_key("n", "s", '"_d')
 
 -- Windows
 -- Move to the split in the direction shown, or create a new split
@@ -85,7 +85,7 @@ util.bind_key("n", "<Leader>à", ":call number#ToggleNumber()<CR>")
 --[[
   nnoremap \s :let @s="\<'.expand('<cword>').'\>'<CR>:%s/<C-r>s//<Left>
   xnoremap \s "sy:%s/<C-r>s//<Left>
-  ]]
+-- ]]
 
 
 -- PLUGINS --

@@ -18,21 +18,6 @@ function M.diagnostics_callback()
   end
 end
 
-function M.publish_diagnostics(bufnr)
-  local result = M.diagnostics_by_buffer[bufnr]
-  if result == nil then return end
-  vim.lsp.util.buf_clear_diagnostics(bufnr)
-  vim.lsp.util.buf_diagnostics_save_positions(bufnr, result.diagnostics)
-  vim.lsp.util.buf_diagnostics_signs(bufnr, result.diagnostics)
-  M.diagnostics_location(result)
-  vim.cmd("doautocmd User LspDiagnosticsChanged")
-end
-
-function M.diagnostics_refresh()
-  local bufnr = vim.api.nvim_win_get_buf(0)
-  M.publish_diagnostics(bufnr)
-end
-
 local function sort_by_key(fn)
   return function(a,b)
     local ka, kb = fn(a), fn(b)
@@ -109,11 +94,26 @@ function M.diagnostics_location(local_result)
     end
   end
 
-  vim.fn.setloclist(0, {}, ' ', {
-      title = 'Language Server';
-      items = M.locations_to_items(local_result.diagnostics)
-    })
+  -- vim.fn.setloclist(0, {}, ' ', {
+  --     title = 'Language Server';
+  --     items = M.locations_to_items(local_result.diagnostics)
+  --   })
+  vim.lsp.util.set_loclist(M.locations_to_items(local_result.diagnostics))
 end
 
+function M.publish_diagnostics(bufnr)
+  local result = M.diagnostics_by_buffer[bufnr]
+  if result == nil then return end
+  vim.lsp.util.buf_clear_diagnostics(bufnr)
+  vim.lsp.util.buf_diagnostics_save_positions(bufnr, result.diagnostics)
+  vim.lsp.util.buf_diagnostics_signs(bufnr, result.diagnostics)
+  M.diagnostics_location(result)
+  vim.api.nvim_command("doautocmd User LspDiagnosticsChanged")
+end
+
+function M.diagnostics_refresh()
+  local bufnr = vim.api.nvim_win_get_buf(0)
+  M.publish_diagnostics(bufnr)
+end
 
 return M

@@ -1,23 +1,23 @@
 local vim = vim
-local M = {}
+local util = {}
 
 -- Create augroup
-function M.create_augroups(definitions)
+function util.create_augroups(definitions)
   for group_name, definition in pairs(definitions) do
-    vim.cmd('augroup ' .. group_name)
-    vim.cmd('autocmd!')
+    vim.cmd("augroup " .. group_name)
+    vim.cmd("autocmd!")
     for _, def in ipairs(definition) do
-      local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+      local command = table.concat(vim.tbl_flatten{"autocmd", def}, " ")
       vim.cmd(command)
     end
-    vim.cmd('augroup END')
+    vim.cmd("augroup END")
   end
 end
 
 -- Set keymap
-function M.bind_key(mode, key, cmd, opts)
+function util.bind_key(mode, key, cmd, opts)
   opts = opts or { noremap = true, silent = true }
   vim.api.nvim_set_keymap(mode, key, cmd, opts)
 end
 
-return M
+return util
