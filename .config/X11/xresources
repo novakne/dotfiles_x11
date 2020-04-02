@@ -39,27 +39,14 @@
 *color15:      #d2ccd6
 
 
-Xft.dpi: 96
-Xft.autohint: 0
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
+!Xft.dpi: 96
+!Xft.autohint: 0
+!Xft.lcdfilter: lcddefault
+!Xft.hintstyle: hintslight
+!Xft.hinting: 1
+!Xft.antialias: 1
+!Xft.rgba: rgb
 
-Xcursor.theme: capitaine-cursors
-Xcursor.size:  0
+!Xcursor.theme: capitaine-cursors
+!Xcursor.size:  0
 
-! URXVT
-URxvt.depth: 32
-!URxvt.font: 9x15
-URxvt*scrollBar:                      false
-URxvt*mouseWheelScrollPage:           false
-URxvt*cursorBlink:                    true
-URxvt*saveLines:                      5000
-URxvt.internalBorder:  10
-
-! for 'fake' transparency (without Compton) uncomment the following three lines
-! URxvt*inheritPixmap:                  true
-! URxvt*transparent:                    true
-! URxvt*shading:                        138

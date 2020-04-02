@@ -8,7 +8,10 @@ promptinit
 # Allow for variable/function substitution in prompt
 setopt PROMPT_SUBST
 
-PROMPT_SYMBOL=
+PROMPT_SYMBOL="▁"
+# PROMPT_SYMBOL="∎"
+# PROMPT_SYMBOL="→ "
+# PROMPT_SYMBOL=
 # PROMPT_SYMBOL=
 PROMPT_EXEC_MAX=5
 PROMPT_COLOR=yellow

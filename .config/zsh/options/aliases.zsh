@@ -19,16 +19,16 @@ alias delorph='yay -Rs $(yay -Qtdq)'
 # Directories
 alias scripts='cd $HOME/bin'
 alias conf='cd $HOME/.config'
-alias doc='cd $HOME/docs'
-alias dl='cd $HOME/download'
+alias doc='cd $HOME/doc'
+alias dl='cd $HOME/dl'
 alias vid='cd $HOME/video'
-alias not='cd $HOME/docs/notes'
+alias not='cd $HOME/doc/notes'
 
 # Files
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias grep='grep --color=tty -d skip'
+alias grep='grep --color=always -d skip'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
@@ -39,9 +39,9 @@ alias del='trash-put'
 
 ### TOOLS
 # Exa ( https://github.com/ogham/exa )
-alias exa='exa --group-directories-first'
-alias ea='exa -lah --group-directories-first --git'
-alias et='exa -lah -TL2 --group-directories-first --git'
+alias exa='exa --group-directories-first --icons'
+alias ea='exa -lah --group-directories-first --git --icons'
+alias et='exa -lah -TL2 --group-directories-first --git --icons'
 
 # Nnn ( https://github.com/jarun/nnn )
 alias nn='nnn -en'

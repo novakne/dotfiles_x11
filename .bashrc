@@ -25,11 +25,17 @@ HISTCONTROL="erasedups:ignoreboth"
 export $HISTFILE=~/.cache/bash/bash_history
 # User local scripts
 export PATH=$HOME/bin:$PATH
-export PATH=$HOME/bin/bar:$PATH
 export PATH=$HOME/bin/colors:$PATH
+systemctl --user import-environment PATH
+
+export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
+export PARALLEL_HOME=$XDG_CACHE_HOME/parallel
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+
 # Npm
-export PATH=$HOME/.node_modules/bin:$PATH
-export npm_config_prefix=~/.node_modules
+export PATH=$XDG_DATA_HOME/npm/bin:$PATH
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 # Yarn
 export PATH=$HOME/.config/yarn/global/node_modules/bin:$PATH
 # Rust
@@ -37,8 +43,6 @@ export RUSTUP_HOME=$HOME/.local/share/rustup
 export CARGO_HOME=$HOME/.local/share/cargo
 export PATH=$HOME/.local/share/cargo/bin:$PATH
 
-# Android sdk
-export PATH=$HOME/Android/Sdk/platform-tools:$PATH
 # BSPWM
 export PANEL_FIFO="/tmp/panel-fifo"
 path=(
@@ -47,14 +51,19 @@ path=(
 )
 
 # NNN
-export LC_COLLATE=C
-export NNN_SHOW_HIDDEN=1
-export NNN_SCRIPT=$HOME/bin/nnn
-export NNN_CONTEXT_COLORS='2314'
+export NNN_COLORS='2314'
 export NNN_TRASH=1
 export NNN_USE_EDITOR=1
-export NNN_RESTRICT_NAV_OPEN=1
-export NNN_TMPFILE="/tmp/nnn"
+export NNN_RESTRICT_NAV_OPEN=0
+export NNN_RESTRICT_0B=1
+export NNN_COPIER="$XDG_CONFIG_HOME/nnn/copier"
+export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/src;d:~/docs/notes;l:~/.local/share'
+export NNN_PLUG='f:browse_img_full;i:browse_img;s:fuzzy;c:_chmod a+x $nnn*'
+# RIPGREP
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/rc"
+
+# EXA
+export EXA_COLORS="lp=34:da=37:uu=33:sn=35:sb=35"
 
 
 # ___ALIAS___

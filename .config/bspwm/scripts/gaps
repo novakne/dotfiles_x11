@@ -1,3 +1,0 @@
-#!/bin/bash
-
-bspc config -n focused window_gap $(($(bspc config -n focused window_gap) + $1))
