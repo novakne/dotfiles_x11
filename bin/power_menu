@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 # Open an exit menu with confirmation in rofi
-# Bind to Super-Shift-Escape
 
 confirm() {
     echo -e "Yes\nNo" | rofi -dmenu -i -format d -lines 2 -selected-row 0 -p "${1:-Confirm: }" -theme themes/menu.rasi
 }
 
-quit=" Quit bspwm"
+quit=" Quit awesome"
 shutdown=" Shutdown"
 reboot=" Reboot"
 suspend=" Suspend"
@@ -18,7 +17,7 @@ OPTIONS="$quit\n$shutdown\n$reboot\n$suspend\n$hibernate"
 selection=$(echo -e $OPTIONS | $LAUNCHER)
 case $selection in
     $quit)
-        bspc quit ;;
+        awesome quit ;;
     $shutdown)
         [[ $(confirm) = 1 ]] && (systemctl poweroff) ;;
     $reboot)
