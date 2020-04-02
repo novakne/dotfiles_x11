@@ -37,6 +37,8 @@ util.bind_key("x", "<", "<gv")
 util.bind_key("x", ">", ">gv")
 -- Yank the world under the cursor
 util.bind_key("n", "yc", "vawy")
+-- Makes s act like d, except it doesn’t save the cut text to a register
+util.bind_key('n', 's', '"_d')
 
 -- Windows
 -- Move to the split in the direction shown, or create a new split
@@ -109,12 +111,10 @@ util.bind_key("n", "ga", "<Plug>(EasyAlign)", {silent = true})
 -- Fzf
 -- Search files recursively
 util.bind_key("n", "<Leader>o", ":Files<CR>")
-util.bind_key("n", "<Leader>O", ":FilesP<CR>")
 -- Search between open files
 util.bind_key("n", "<Leader>b", ":Buffers<CR>")
 -- Ripgrep
-util.bind_key("n", "<Leader>r", ":Rg!<CR>")
-util.bind_key("n", "<Leader>R", ":Rg<CR>")
+util.bind_key("n", "<Leader>r", ":RG<CR>")
 -- Search lines
 util.bind_key("n", "<Leader>l", ":Blines<CR>")
 util.bind_key("n", "<Leader>L", ":Lines<CR>")

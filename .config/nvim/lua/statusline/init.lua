@@ -25,8 +25,10 @@ local colors = {
 
 -- Separators
 local separators = {
-  left = '',
-  right = '',
+  left = '▒▓',
+  right = '▓▒',
+  -- left = '',
+  -- right = '',
   blank = ' '
 }
 
@@ -162,7 +164,7 @@ function M.activeLine()
 
   -- RIGHT --
   statusline = statusline .. "%="
-  
+
   -- Git Branch
   statusline = statusline
     .. "%#BaseStatus#" .. git_branch()

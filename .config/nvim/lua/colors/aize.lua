@@ -4,22 +4,22 @@ local vim = vim
 vim.o.background = "dark"
 
 -- Gui
-local aize00 = "29223a"
-local aize01 = "3e3350"
-local aize02 = "534666"
-local aize03 = "6b5c7c"
-local aize04 = "837593"
-local aize05 = "9d8fa9"
-local aize06 = "b7acbf"
-local aize07 = "d2ccd6"
-local aize08 = "f63d81"
-local aize09 = "fc65b0"
-local aize10 = "f5939c"
-local aize11 = "e8ec77"
-local aize12 = "2dcbb0"
-local aize13 = "57bbf4"
-local aize14 = "a89bee"
-local aize15 = "4db9c8"
+local aize00 = "#29223a"
+local aize01 = "#3e3350"
+local aize02 = "#534666"
+local aize03 = "#6b5c7c"
+local aize04 = "#837593"
+local aize05 = "#9d8fa9"
+local aize06 = "#b7acbf"
+local aize07 = "#d2ccd6"
+local aize08 = "#f63d81"
+local aize09 = "#fc65b0"
+local aize10 = "#f5939c"
+local aize11 = "#e8ec77"
+local aize12 = "#2dcbb0"
+local aize13 = "#57bbf4"
+local aize14 = "#a89bee"
+local aize15 = "#4db9c8"
 -- Term
 local black        = "0"
 local red          = "1"
@@ -58,15 +58,15 @@ vim.g.terminal_color_15 = aize07
 -- Source: https://github.com/norcalli/nvim_utils
 local function highlight(group, guifg, guibg, ctermfg, ctermbg, attr, guisp)
   local parts = {group}
-  if guifg then table.insert(parts, "guifg=#"..guifg) end
-  if guibg then table.insert(parts, "guibg=#"..guibg) end
+  if guifg then table.insert(parts, "guifg="..guifg) end
+  if guibg then table.insert(parts, "guibg="..guibg) end
   if ctermfg then table.insert(parts, "ctermfg="..ctermfg) end
   if ctermbg then table.insert(parts, "ctermbg="..ctermbg) end
   if attr then
     table.insert(parts, "gui="..attr)
     table.insert(parts, "cterm="..attr)
   end
-  if guisp then table.insert(parts, "guisp=#"..guisp) end
+  if guisp then table.insert(parts, "guisp="..guisp) end
   vim.api.nvim_command('highlight '..table.concat(parts, ' '))
 end
 

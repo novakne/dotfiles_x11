@@ -1,7 +1,7 @@
 local vim = vim
-local nvim_lsp = require "nvim_lsp"
-local diagnostics = require "lsp_config.diagnostics"
-require "lsp_config.diagnostics".diagnostics_callback()
+local nvim_lsp = require("nvim_lsp")
+local diagnostics = require("lsp_config.diagnostics")
+require("lsp_config.diagnostics").diagnostics_callback()
 local util = require "util"
 
 -- Signs in sign column
@@ -23,7 +23,7 @@ util.bind_key("n", "g0", ":lua vim.lsp.buf.document_symbol()<CR>")
 on_attach = function(_, _)
   vim.cmd [[augroup DiagnosticRefresh]]
   vim.cmd [[autocmd!]]
-  vim.cmd [[autocmd BufEnter,CursorMoved,CursorMovedI * lua require'lsp_config.diagnostics'.diagnostics_refresh()]]
+  vim.cmd [[autocmd BufWinEnter,TabEnter <buffer> lua require'lsp_config.diagnostics'.diagnostics_refresh()]]
   vim.cmd [[augroup END]]
 end
 
@@ -31,7 +31,7 @@ end
 nvim_lsp.util.default_config = vim.tbl_extend(
   "force",
   nvim_lsp.util.default_config,
-  { on_attach = on_attach and require"completion".on_attach }
+  { on_attach = on_attach }
 )
 
 -- SERVERS
@@ -44,11 +44,29 @@ local lua_bin  = lua_dir .. "bin/Linux/lua-language-server"
 local lua_main = lua_dir .. "main.lua"
 
 nvim_lsp.sumneko_lua.setup{
-  cmd = { lua_bin, "-E", lua_main }
+  cmd = { lua_bin, "-E", lua_main },
+  settings = {
+    Lua = {
+      diagnostics = {
+	globals = { "vim", "awesome", "client", "tag" }
+      }
+    }
+  }
 }
 
 -- Rust
-nvim_lsp.rust_analyzer.setup{}
+nvim_lsp.rust_analyzer.setup{
+  -- FIXME
+  -- settings = {
+  --   rust-analyzer = {
+  --     highlighting = {
+	-- semanticTokens = true,
+  --     },
+  --     highlightingOn = true,
+  --     rainbowHighlightingOn = true,
+  --   }
+  -- }
+}
 
 -- Vim
 nvim_lsp.vimls.setup{}

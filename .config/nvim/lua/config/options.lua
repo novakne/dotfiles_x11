@@ -106,7 +106,7 @@ local plugin_options = {
 
   -- Fzf ( https://github.com/junegunn/fzf.vim )
   -- [Buffers] Jump to the existing window if possible
-  fzf_buffers_jump = 1,
+  -- fzf_buffers_jump = 1,
 
 }
 

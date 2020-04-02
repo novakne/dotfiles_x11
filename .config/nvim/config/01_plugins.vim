@@ -32,7 +32,7 @@ Plug 'tpope/vim-fugitive'
 " FILES MANAGER
 " Fuzzy searching
 Plug '~/.config/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 " Filter and jump to quickfix list errors with fzf
 Plug 'fszymanski/fzf-quickfix', { 'on': 'Quickfix' }
 " Fast and featureful file manager powered by nnn
