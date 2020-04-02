@@ -7,7 +7,7 @@
 
 SCREEN_DIR=~/img/screenshot
 SCREEN_DATE=$(date +"%Y_%m_%d-%H_%M_%S")
-SCREEN_FILE=$SCREEN_DIR/snap_$SCREEN_DATE.png
+SCREEN_FILE=$SCREEN_DIR/$SCREEN_DATE.png
 ICON_PATH=~/.icons/oomox-aize/16x16/categories/accessories-screenshot.svg
 
 snap_usage () {
