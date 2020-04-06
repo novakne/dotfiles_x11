@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 export LC_COLLATE=C
-export NNN_SHOW_HIDDEN=1
 export NNN_COLORS='2314'
 export NNN_TRASH=1
 export NNN_USE_EDITOR=1
 export NNN_RESTRICT_NAV_OPEN=1
-export NNN_COPIER='$HOME/.config/nnn/copier'
+export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
+export NNN_COPIER="$XDG_CONFIG_HOME/nnn/copier"
+export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/src;d:~/docs/notes;l:~/.local/share'
+export NNN_PLUG='f:browse_img_full;i:browse_img;s:fuzzy;c:_chmod 774 $nnn*;e:exec'
 
 # Start nnn with your preferred options
 nnn -e "$@"

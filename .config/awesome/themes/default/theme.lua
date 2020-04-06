@@ -28,6 +28,7 @@ theme.font        = "Inter 11"
 theme.wallpaper   = themes_path .. "default/wal_coffee.jpg"
 theme.icon_theme  = "/usr/share/icons/Papirus"
 theme.useless_gap = dpi(6)
+theme.gap_single_client = false
 
 -- Background
 theme.bg_normal     = theme.black
@@ -48,6 +49,10 @@ theme.border_color_active = theme.pink
 theme.border_marked       = theme.pink
 theme.fullscreen_hide_border = true
 theme.maximized_hide_border  = true
+
+-- Hotkeys
+theme.hotkeys_font = theme.font
+theme.hotkeys_description_font = "Inter 12"
 
 -- Notifications
 theme.notification_font = "Inter 13"
@@ -117,11 +122,11 @@ theme.layout_floating = themes_path .. "layouts/floating.svg"
 theme.layout_max      = themes_path .. "layouts/max.svg"
 
 -- Titlebar
-theme.titlebar_close_button_normal = themes_path.."titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."titlebar/close_focus.png"
+theme.titlebar_close_button_normal = themes_path.."titlebar/close_normal.svg"
+theme.titlebar_close_button_focus  = themes_path.."titlebar/close_focus.svg"
 
-theme.titlebar_minimize_button_normal = themes_path.."titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."titlebar/minimize_focus.png"
+theme.titlebar_minimize_button_normal = themes_path.."titlebar/minimize_normal.svg"
+theme.titlebar_minimize_button_focus  = themes_path.."titlebar/minimize_focus.svg"
 
 theme.titlebar_ontop_button_normal_inactive = themes_path.."titlebar/ontop_normal_inactive.png"
 theme.titlebar_ontop_button_focus_inactive  = themes_path.."titlebar/ontop_focus_inactive.png"
@@ -138,10 +143,10 @@ theme.titlebar_floating_button_focus_inactive  = themes_path.."titlebar/floating
 theme.titlebar_floating_button_normal_active = themes_path.."titlebar/floating_normal_active.png"
 theme.titlebar_floating_button_focus_active  = themes_path.."titlebar/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = themes_path.."titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = themes_path.."titlebar/maximized_normal_inactive.svg"
+theme.titlebar_maximized_button_focus_inactive  = themes_path.."titlebar/maximized_focus_inactive.svg"
+theme.titlebar_maximized_button_normal_active = themes_path.."titlebar/maximized_normal_active.svg"
+theme.titlebar_maximized_button_focus_active  = themes_path.."titlebar/maximized_focus_active.svg"
 
 
 return theme

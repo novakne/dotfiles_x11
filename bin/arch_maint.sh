@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Scripts for arch basic maintenance
+# Scripts for basic Arch maintenance
 # Novacane337
 
 echo "Beginning of the maintenance..."
@@ -58,13 +58,6 @@ broken_links () {
     echo "End"
 }
 
-# Get a mirrorlist of fatest french mirorrs
-fatest_mirors () {
-    echo "Search up to date fatest mirrorlist for FR/HTTPS"
-    separator "MIRROR"
-    curl -s "https://www.archlinux.org/mirrorlist/?country=FR&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 6 -
-    echo "End"
-}
 
 # Check if there is packages to update
 check_updates () {
@@ -132,17 +125,9 @@ maintenance_file () {
     mkdir -p "$HOME"/docs/arch_bkup/"$now"
 
     # Save all results
-    infos_system > "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    failed_services >> "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    log_files >> "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    pac_files >> "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    broken_links >> "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    fatest_mirors >> "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    check_updates >> "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    check_orphans >> "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    clear_cache >> "$HOME"/docs/arch_bkup/"$now"/arch_maint.txt
-    list_pkg > "$HOME"/docs/arch_bkup/"$now"/pkg.txt
-    list_aur > "$HOME"/docs/arch_bkup/"$now"/aur.txt
+    arch_maintenance > $HOME/usr/doc/archBackup/$now/arch-maint.txt
+    pkg_list > $HOME/usr/doc/archBackup/$now/pkg.txt
+    aur_list > $HOME/usr/doc/archBackup/$now/pkg_aur.txt
 }
 
 echo "End of maintenance"

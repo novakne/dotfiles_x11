@@ -34,7 +34,7 @@ end)
 -- Restore geometry for floating clients
 -- (for example after swapping from tiling mode to floating mode)
 tag.connect_signal('property::layout', function(t)
-  for k, c in ipairs(t:clients()) do
+  for _, c in ipairs(t:clients()) do
     if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
       -- Geometry x = 0 and y = 0 most probably means that the
       -- clients have been spawned in a non floating layout, and thus

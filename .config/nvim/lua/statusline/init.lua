@@ -1,7 +1,7 @@
 local api = vim.api
 local icons = require("statusline.devicons")
 
-local statusline = {}
+local status = {}
 
 -- Colors
 local colors = {
@@ -143,7 +143,7 @@ end
 
 
 -- Statusline active window
-function statusline.activeLine()
+function status.activeLine()
   local statusline = ""
 
   -- LEFT --
@@ -180,9 +180,10 @@ function statusline.activeLine()
 end
 
 -- Statusline inactive window
-function statusline.inactiveLine()
+function status.inactiveLine()
+  local filename = api.nvim_call_function("expand", {"%f"})
   return "%#RrSeparator# " .. separators.left
-    .. "%#RRectangle# " .. file_name()
+    .. "%#RRectangle# " .. filename
     .. "%#RrSeparator#" .. separators.right
 end
 
@@ -209,7 +210,7 @@ local get_tab_label = function(n)
   return filename
 end
 
-function statusline.tabline()
+function status.tabline()
   local tabline = ""
   local tab_list = api.nvim_list_tabpages()
   local current_tab = api.nvim_get_current_tabpage()
@@ -228,4 +229,4 @@ function statusline.tabline()
   return tabline
 end
 
-return statusline
+return status

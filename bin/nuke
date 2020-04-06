@@ -37,20 +37,21 @@
 #   Feel free to change the utilities to your favourites and add more mimes.
 #
 # Defaults:
-#   By extension (only the enbaled ones):
+#   By extension (only the enabled ones):
 #      most archives: list with atool, bsdtar
 #      rar: list with unrar
 #      7-zip: list with 7z
 #      pdf: zathura (GUI), pdftotext, mutool, exiftool
 #      audio: mocplay (nnn plugin using MOC), mpv, mediainfo, exiftool
-#      avi|dat|mkv|mp4: smplayer, mpv (GUI), ffmpegthumbnailer, mediainfo, exiftool
+#      avi|mkv|mp4: smplayer, mpv (GUI), ffmpegthumbnailer, mediainfo, exiftool
+#      log: vi
 #      torrent: rtorrent, transmission-show
 #      odt|ods|odp|sxw: odt2txt
 #      md: glow (https://github.com/charmbracelet/glow)
 #      htm|html|xhtml: w3m, lynx, elinks
 #      json: jq, python (json.tool module)
 #   Multimedia by mime:
-#      image/*: sxiv (GUI), viu, img2txt, exiftool
+#      image/*: sxiv (GUI), viu (https://github.com/atanunq/viu), img2txt, exiftool
 #      video/*: smplayer, mpv (GUI), ffmpegthumbnailer, mediainfo, exiftool
 #      audio/*: mocplay (nnn plugin using MOC), mpv, mediainfo, exiftool
 #      application/pdf: zathura (GUI), pdftotext, mutool, exiftool
@@ -61,11 +62,11 @@
 #
 # ToDo:
 #   1. Adapt, test and enable all mimes
-#   2. Clean-up unnecessary the exit codes
+#   2. Clean-up the unnecessary exit codes
 # #############################################################################
 
 # set to 1 to enable GUI apps
-GUI=0
+GUI="${GUI:-0}"
 
 set -euf -o noclobber -o noglob -o nounset
 IFS="$(printf '%b_' '\n')"; IFS="${IFS%_}" # protect trailing \n
@@ -81,7 +82,7 @@ if ! [ -z "$ext" ]; then
 fi
 
 handle_pdf() {
-    if [ $GUI -ne 0 ] && which zathura >/dev/null 2>&1; then
+    if [ "$GUI" -ne 0 ] && which zathura >/dev/null 2>&1; then
         zathura "${FPATH}" >/dev/null 2>&1 &
         exit 0
     elif which pdftotext >/dev/null 2>&1; then
@@ -98,8 +99,8 @@ handle_pdf() {
 }
 
 handle_audio() {
-    if which mocp >/dev/null 2>&1; then
-        mocplay "${FPATH}" >/dev/null 2>&1
+    if which mocp >/dev/null 2>&1 && which mocplay >/dev/null 2>&1; then
+        mocplay "${FPATH}" "opener" >/dev/null 2>&1
         exit 0
     elif which mpv >/dev/null 2>&1; then
         mpv "${FPATH}" >/dev/null 2>&1 &
@@ -114,10 +115,10 @@ handle_audio() {
 }
 
 handle_video() {
-    if [ $GUI -ne 0 ] && which smplayer >/dev/null 2>&1; then
+    if [ "$GUI" -ne 0 ] && which smplayer >/dev/null 2>&1; then
         smplayer "${FPATH}" >/dev/null 2>&1 &
         exit 0
-    elif [ $GUI -ne 0 ] && which mpv >/dev/null 2>&1; then
+    elif [ "$GUI" -ne 0 ] && which mpv >/dev/null 2>&1; then
         mpv "${FPATH}" >/dev/null 2>&1 &
         exit 0
     elif which ffmpegthumbnailer >/dev/null 2>&1; then
@@ -174,9 +175,14 @@ handle_extension() {
             exit 1;;
 
         ## Video
-        avi|dat|mkv|mp4)
+        avi|mkv|mp4)
             handle_video
             exit 1;;
+
+        ## Log files
+        log)
+            vi "${FPATH}"
+            exit 0;;
 
         ## BitTorrent
         torrent)
@@ -220,6 +226,7 @@ handle_extension() {
                 exit 0
             fi
             ;;
+
         ## JSON
         json)
             if which jq >/dev/null 2>&1; then
@@ -231,6 +238,29 @@ handle_extension() {
             fi
             ;;
     esac
+}
+
+abspath() {
+    case "$1" in
+        /*) printf "%s\n" "$1";;
+        *)  printf "%s\n" "$PWD/$1";;
+    esac
+}
+
+listimages() {
+    find -L "$(dirname "$target")" -maxdepth 1 -type f -iregex \
+      '.*\(jpe?g\|bmp\|png\|gif\)$' -print0 | sort -z
+}
+
+sxiv_load_dir() {
+    target="$(abspath "$1")"
+    count="$(listimages | grep -a -m 1 -ZznF "$target" | cut -d: -f1)"
+
+    if [ -n "$count" ]; then
+        listimages | xargs -0 sxiv -n "$count" --
+    else
+        sxiv -- "$@" # fallback
+    fi
 }
 
 handle_multimedia() {
@@ -255,8 +285,8 @@ handle_multimedia() {
 
         ## Image
         image/*)
-            if [ $GUI -ne 0 ] && which sxiv >/dev/null 2>&1; then
-                sxiv -q "${FPATH}" &
+            if [ "$GUI" -ne 0 ] && which sxiv >/dev/null 2>&1; then
+                sxiv_load_dir "${FPATH}" >/dev/null 2>&1 &
                 exit 0
             elif which viu >/dev/null 2>&1; then
                 viu -n "${FPATH}" | less -R
@@ -420,7 +450,7 @@ handle_mime() {
 }
 
 handle_fallback() {
-    if [ $GUI -ne 0 ]; then
+    if [ "$GUI" -ne 0 ]; then
         xdg-open "${FPATH}" >/dev/null 2>&1 &
         exit 0
     fi

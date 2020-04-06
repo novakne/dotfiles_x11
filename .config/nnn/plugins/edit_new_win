@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Open file in a new window with neovim
+#   - Dependencies: neovim
+
+alacritty -e "${EDITOR:-nvim}" "$nnn"

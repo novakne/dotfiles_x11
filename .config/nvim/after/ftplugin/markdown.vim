@@ -13,8 +13,9 @@ let g:markdown_fenced_languages=[
 
 " Plugins ( https://github.com/plasticboy/vim-markdown )
 " Disable folding
-let g:vim_markdown_folding_disabled = 1
-" let g:vim_markdown_folding_style_pythonic = 1
+" let g:vim_markdown_folding_disabled = 1
+setlocal foldmethod=syntax
+let g:markdown_folding = 1
 " Disable conceal
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0

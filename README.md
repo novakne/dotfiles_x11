@@ -6,6 +6,7 @@
 
 * [Infos](#infos)
 * [Screenshots](#screenshots)
+* [AwesomeWM](#awesomewm)
 * [Shell](#shell)
     + [Plugins](#plugins)
     + [Cli Tools](#cli-tools)

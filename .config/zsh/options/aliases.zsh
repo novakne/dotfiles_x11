@@ -34,7 +34,7 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nvim PKGBUILD'
 alias fixit='sudo rm -f /var/lib/pacman/db.lck'
-alias cmx='chmod a+x'
+alias cmx='chmod 774'
 alias del='trash-put'
 
 ### TOOLS

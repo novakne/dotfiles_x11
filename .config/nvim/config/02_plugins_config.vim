@@ -51,10 +51,3 @@ let g:fzf_action = {
     \ 'ctrl-h': 'split',
     \ 'ctrl-v': 'vsplit' }
 
-" Global line completion (not just open buffers. ripgrep required.)
-inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
-  \ 'prefix': '^.*$',
-  \ 'source': 'rg -n ^ --color always',
-  \ 'options': '--ansi --delimiter : --nth 3..',
-  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
-

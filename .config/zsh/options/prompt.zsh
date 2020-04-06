@@ -190,11 +190,17 @@ prompt_git_status() {
     fi
 }
 
+prompt_nnn() {
+    if [[ -n "$NNNLVL" ]]; then
+        echo "%F{red}!nnn %f"
+    fi
+}
+
 ### ASYNC
 # Callback
 prompt_async_callback() {
 PROMPT='
-$(prompt_path)$(prompt_exec)$(prompt_symbol)'
+$(prompt_nnn)$(prompt_path)$(prompt_exec)$(prompt_symbol)'
 RPROMPT='$(prompt_git_branch)$(prompt_git_status)'
     zle && zle reset-prompt
 
@@ -237,7 +243,6 @@ prompt_async_setup() {
 prompt_setup() {
     # Prevent percentage showing up if output doesn't end with a newline.
     export PROMPT_EOL_MARK=''
-    [ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
     prompt_async_setup
 }
 
