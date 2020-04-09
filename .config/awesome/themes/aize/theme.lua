@@ -3,7 +3,7 @@ local gfs = require("gears.filesystem")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
-local themes_path = gfs.get_configuration_dir() .. "/themes/"
+local themes_path = gfs.get_configuration_dir() .. "/themes/aize/"
 
 local theme = {}
 
@@ -25,7 +25,7 @@ theme.cyan    = "#4db9c8"
 
 -- General
 theme.font        = "Inter 11"
-theme.wallpaper   = themes_path .. "default/wal_coffee.jpg"
+theme.wallpaper   = themes_path .. "wal_coffee.jpg"
 theme.icon_theme  = "/usr/share/icons/Papirus"
 theme.useless_gap = dpi(6)
 theme.gap_single_client = false

@@ -19,7 +19,12 @@ require("configuration.tags")
 require("configuration.titlebar")
 
 -- Themes
-beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/default/theme.lua")
+local themes = {
+  "aize" -- 1
+}
+local chosen_theme = themes[1]
+
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. chosen_theme .. "/theme.lua")
 require("configuration.wallpaper")
 
 -- Panels
