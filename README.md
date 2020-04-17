@@ -78,12 +78,12 @@ dependence:
 **$HOME/.config/zsh/**
 * **completions/** - User auto completions for some cli tools
 * **functions/** - Load functions only when you call them
-    * `br` Open images dir with sxiv `(br path/)`
+    * `br` Open images dir with sxiv `(e.g. br path/)`
     * `extract` Extract archives
     * `man` Colored man pages
     * `mcd` mkdir and cd to new dir
     * `n` `nnn` cd on quit with `Ctl-g`
-    * `up` Go up N dir `(up 2)`
+    * `up` Go up N dir `(e.g. up 2)`
     * `zn` Jump to a directory with `z.lua` and open it in `neovim`
 * **options/** - Zsh settings
 
@@ -91,10 +91,11 @@ dependence:
 
 Lazy loaded with [Zinit](https://github.com/zdharma/zinit)
 
-* [zsh-async](https://github.com/mafredri/zsh-async)
-* [zsh-completions](https://github.com/zsh-users/zsh-completions)
-* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [fast-syntax-highlighting](https://github.com/zdharma/fast-syntax-highlighting)
+* [forgit](https://github.com/wfxr/forgit)
+* [zsh-async](https://github.com/mafredri/zsh-async)
+* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+* [zsh-completions](https://github.com/zsh-users/zsh-completions)
 
 ### Cli Tools
 
