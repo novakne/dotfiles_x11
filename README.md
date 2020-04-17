@@ -5,22 +5,21 @@
 ## Table of contents
 
 * [Infos](#infos)
+  + [Applications](#applications)
 * [Screenshots](#screenshots)
 * [AwesomeWM](#awesomewm)
-* [Shell](#shell)
-    + [Plugins](#plugins)
-    + [Cli Tools](#cli-tools)
-    + [Directory](#directory)
-        - [~/.zsh/](#zsh)
-        - [~/bin/](#bin)
-* [Wallpaper](#wallpaper)
+  + [File structure](#file-structure)
+* [Shell ( Zsh )](#shell---zsh--)
+  + [File structure](#file-structure-1)
+  + [Plugins](#plugins)
+  + [Cli Tools](#cli-tools)
+  + [User scripts](#user-scripts)
 
 ## Infos
 
 
 * `OS_` Arch Linux
 * `WM_` [AwesomeWM](https://github.com/awesomeWM/awesome) ( *git master branch* )
-  * `acpi` needed in battery widget
 * `Shell_` Zsh
 
 ### Applications
@@ -59,16 +58,34 @@
 * **configuration/** - Options from the default `rc.lua` splited and arrange into several files
 * **icons/** - Icons for all themes
 * **layout/** - Panels and app launcher ( rofi )
-* **themes/** - Decorations
+* **themes/** - Theme variables, titlebar and layout icons
 * **utils/** - Contains all the reuse code, functions, etc...
 * **widgets/** - All widgets
 * *rc.lua* -  main configuration file
 
+dependence:
+  * `acpi` battery widget
 
 ## Shell ( Zsh )
 
 ![colors](img/previews/colors.png?raw=true "shell colors")
 ![prompt](img/previews/prompt.png?raw=true "prompt")
+
+### File structure
+
+**$HOME/.zshenv** - Defines xdg environment and zsh directory
+
+**$HOME/.config/zsh/**
+* **completions/** - User auto completions for some cli tools
+* **functions/** - Load functions only when you call them
+    * `br` Open images dir with sxiv `(br path/)`
+    * `extract` Extract archives
+    * `man` Colored man pages
+    * `mcd` mkdir and cd to new dir
+    * `n` `nnn` cd on quit with `Ctl-g`
+    * `up` Go up N dir `(up 2)`
+    * `zn` Jump to a directory with `z.lua` and open it in `neovim`
+* **options/** - Zsh settings
 
 ### Plugins
 
@@ -94,7 +111,7 @@ Lazy loaded with [Zinit](https://github.com/zdharma/zinit)
     * `pdfview` View pdf in terminal
     * `set_wal` Set wallpaper with `nitrogen`
     * `suedit` Edit in default editor with sudo
-* [fzf](https://github.com/junegunn/fzf) - Cli fuzzy finder ( `$HOME/.zsh/functions/` )
+* [fzf](https://github.com/junegunn/fzf) - Cli fuzzy finder ( `$HOME/.config/zsh/functions/` )
     * `fapps` Open apps
     * `fcd` Interactive `cd`
     * `fcdh` Interactive `cd` with hidden files
@@ -110,24 +127,9 @@ Lazy loaded with [Zinit](https://github.com/zdharma/zinit)
 * [fd](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to 'find'
 * [z.lua](https://github.com/skywind3000/z.lua) - A new cd command that helps you navigate faster by learning your habits
 
-### Directory
+### User scripts 
 
-#### ~/.zsh/
-
-* **completions** - User auto completions for some cli tools
-* **functions/** - Load functions only when you call them
-    * `br` Open images dir with sxiv `(br path/)`
-    * `extract` Extract archives
-    * `man` Colored man pages
-    * `mcd` mkdir and cd to new dir
-    * `n` `nnn` cd on quit with `Ctl-g`
-    * `up` Go up N dir `(up 2)`
-    * `zn` Jump to a directory with `z.lua` and open it in `neovim`
-* **options/** Zsh settings
-
-#### ~/bin/
-
-*User scripts*
+**$HOME/bin/**
 
 * **colors/** - Scripts to show colors in the terminal
 * `arch_maint` Multiple command to help maintain arch **(WIP)**
