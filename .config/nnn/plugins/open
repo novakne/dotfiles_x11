@@ -7,8 +7,19 @@
 
 # Check if a fd is in the user's PATH
 if type -p fd &>/dev/null; then
-    xdg-open "$(fd -t f | fzf)" >/dev/null 2>&1
+    cmd="$FZF_DEFAULT_COMMAND"
+    [ -z "$cmd" ] && cmd="fd . -t f 2>/dev/null"
+    entry="$(eval "$cmd" | fzf --delimiter / --nth=-1 --tiebreak=begin --info=hidden)"
 else
-    xdg-open "$(find -type f | fzf)" >/dev/null 2>&1
+    cmd="$FZF_DEFAULT_COMMAND"
+    [ -z "$cmd" ] && cmd="find . -type f 2>/dev/null"
+    entry="$(eval "$cmd" | fzf --delimiter / --nth=-1 --tiebreak=begin --info=hidden)"
 fi
+
+case "$(file -biL "$entry")" in
+    *text*)
+        "${VISUAL:-$EDITOR}" "$entry" ;;
+    *)
+        xdg-open "$entry" >/dev/null 2>&1 ;;
+esac
 
