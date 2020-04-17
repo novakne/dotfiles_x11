@@ -206,14 +206,14 @@ keys.globalkeys = gears.table.join(
   -- Layouts
   -- Resizing
   -- Increase
-  awful.key({ modkey }, "l",
+  awful.key({ modkey }, "Left",
     function()
       awful.tag.incmwfact( 0.05)
     end,
     {description = "increase master width factor", group = "layout"}),
 
   -- Decrease
-  awful.key({ modkey }, "h",
+  awful.key({ modkey }, "Right",
     function()
       awful.tag.incmwfact(-0.05)
     end,
@@ -317,33 +317,33 @@ keys.globalkeys = gears.table.join(
     {description = "focus right", group = "client"}),
 
   -- Focus client by direction (arrow keys)
-  awful.key({ modkey }, "Down",
-    function()
-      awful.client.focus.bydirection("down")
-      if client.focus then client.focus:raise() end
-    end,
-    {description = "focus down", group = "client"}),
+  -- awful.key({ modkey }, "Down",
+  --   function()
+  --     awful.client.focus.bydirection("down")
+  --     if client.focus then client.focus:raise() end
+  --   end,
+  --   {description = "focus down", group = "client"}),
 
-  awful.key({ modkey }, "Up",
-    function()
-      awful.client.focus.bydirection("up")
-      if client.focus then client.focus:raise() end
-    end,
-    {description = "focus up", group = "client"}),
+  -- awful.key({ modkey }, "Up",
+  --   function()
+  --     awful.client.focus.bydirection("up")
+  --     if client.focus then client.focus:raise() end
+  --   end,
+  --   {description = "focus up", group = "client"}),
 
-  awful.key({ modkey }, "Left",
-    function()
-      awful.client.focus.bydirection("left")
-      if client.focus then client.focus:raise() end
-    end,
-    {description = "focus left", group = "client"}),
+  -- awful.key({ modkey }, "Left",
+  --   function()
+  --     awful.client.focus.bydirection("left")
+  --     if client.focus then client.focus:raise() end
+  --   end,
+  --   {description = "focus left", group = "client"}),
 
-  awful.key({ modkey }, "Right",
-    function()
-      awful.client.focus.bydirection("right")
-      if client.focus then client.focus:raise() end
-    end,
-    {description = "focus right", group = "client"}),
+  -- awful.key({ modkey }, "Right",
+  --   function()
+  --     awful.client.focus.bydirection("right")
+  --     if client.focus then client.focus:raise() end
+  --   end,
+  --   {description = "focus right", group = "client"}),
 
   -- Focus client by index (cycle through clients)
   awful.key({ modkey }, "Tab",
