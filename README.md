@@ -14,6 +14,7 @@
   + [Plugins](#plugins)
   + [Cli Tools](#cli-tools)
   + [User scripts](#user-scripts)
+* [Thanks](#thanks)
 
 ## Infos
 
@@ -68,7 +69,6 @@ dependence:
 
 ## Shell ( Zsh )
 
-![colors](img/previews/colors.png?raw=true "shell colors")
 ![prompt](img/previews/prompt.png?raw=true "prompt")
 
 ### File structure
@@ -134,7 +134,7 @@ Lazy loaded with [Zinit](https://github.com/zdharma/zinit)
 
 * **colors/** - Scripts to show colors in the terminal
 * `arch_maint` Multiple command to help maintain arch **(WIP)**
-* `brightness_notif` Send a notif when changing screen brightness
+* `brightness_notif` Send a notification when changing screen brightness
 * `fetch` Show basic system infos
 * `mdpdf` Convert markdown to pdf with [Pandoc](https://github.com/jgm/pandoc)
 * `neof` Clear terminal and launch neofetch
@@ -144,5 +144,11 @@ Lazy loaded with [Zinit](https://github.com/zdharma/zinit)
 * `rm_shit.py` Remove some trash in $HOME
 * `snap` Take screenshot with [maim](https://github.com/naelstrof/maim)
 * `sxhkd_key` Show `sxkhd` mappings in `fzf`
-* `update_mirror` Get a list of fatest french mirror
+* `update_mirror` Get a list of fastest  French mirror
 
+## Thanks
+Inspiration from a lot of people  
+Neovim_ [norcalli](https://github.com/norcalli), [haorenW1025](https://github.com/haorenW1025)  
+AwesomeWM_ [szorfein](https://github.com/szorfein/dotfiles), [elenapan](https://github.com/elenapan/dotfiles), [manilarome](https://github.com/manilarome/the-glorious-dotfiles), [WillPower3309](https://github.com/WillPower3309/awesome-dotfiles)  
+Rofi_ [adi1090x](https://github.com/adi1090x/rofi)  
+And a lot more...
