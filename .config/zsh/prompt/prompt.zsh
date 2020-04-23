@@ -10,8 +10,8 @@ setopt PROMPT_SUBST
 PROMPT_SYMBOL="▁"
 # PROMPT_SYMBOL="∎"
 # PROMPT_SYMBOL="→ "
-# PROMPT_SYMBOL=
-# PROMPT_SYMBOL=
+# PROMPT_SYMBOL=""
+# PROMPT_SYMBOL=""
 PROMPT_SYMBOL_COLOR=yellow
 PROMPT_PATH_COLOR=magenta
 
@@ -36,7 +36,7 @@ prompt_symbol() {
 # don't show path in ~ and just one if in a git dir
 prompt_path() {
     if [[ $PWD = ~ ]]; then
-        echo "%F{$PROMPT_PATH_COLOR}% %f"
+        echo ""
     elif _prompt_is_git; then
         echo "%F{$PROMPT_PATH_COLOR}%1/%f "
     else
@@ -47,7 +47,7 @@ prompt_path() {
 # Add an !nnn if in nnn cmd mode
 prompt_nnn() {
     if [[ -n "$NNNLVL" ]]; then
-        echo "%F{red}!nnn %f"
+        echo "%F{red}[nnn] %f"
     fi
 }
 
@@ -56,7 +56,7 @@ prompt_nnn() {
 # Callback
 prompt_async_callback() {
 PROMPT='
-$(prompt_nnn)$(prompt_symbol)$(prompt_path)$(prompt_git_branch)$(prompt_git_status) '
+$(prompt_symbol)$(prompt_nnn)$(prompt_path)$(prompt_git_branch)$(prompt_git_status) '
 RPROMPT='$(prompt_exec)'
     zle && zle reset-prompt
 

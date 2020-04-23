@@ -10,9 +10,6 @@ if [[ -d "$ZDOTDIR/zinit" ]]; then
     # Plugins list
     zinit light mafredri/zsh-async
 
-    zinit ice wait lucid
-    zinit load 'wfxr/forgit'
-
     zinit ice wait blockf atpull'zinit creinstall -q .' lucid
     zinit light zsh-users/zsh-completions
 

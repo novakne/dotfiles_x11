@@ -31,6 +31,7 @@ alias cmx='chmod 774'
 alias del='trash-put'
 
 ### TOOLS
+alias g='git'
 # Exa ( https://github.com/ogham/exa )
 alias exa='exa --group-directories-first --icons'
 alias ea='exa -lah --group-directories-first --git --icons'
