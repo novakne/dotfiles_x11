@@ -5,7 +5,7 @@
 [alias]
     co = checkout
     ci = commit
-    st = status
+    s = status
     br = branch
     ps = push
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
@@ -13,11 +13,12 @@
     dump = cat-file -p
     qlog = log -5 --pretty --oneline
     wow = log --all --graph --decorate --oneline --simplify-by-decoration
+    sbu = submodule update --remote --merge
 [diff]
-	tool = nvimdiff
+    tool = nvimdiff
 [core]
-	editor = nvim
+    editor = nvim
 [include]
-  path = config.user
+    path = config.user
 [credential]
-	helper = store
+    helper = store
