@@ -1,5 +1,4 @@
 setlocal textwidth=80
-" set conceallevel=2
 let g:markdown_fenced_languages=[
             \ 'c',
             \ 'cpp',
@@ -29,12 +28,6 @@ let g:vim_markdown_new_list_item_indent = 0
 " Change how to open new files
 let g:vim_markdown_edit_url_in = 'tab'
 
-" MARKDOWN COMPOSER ( https://github.com/euclio/vim-markdown-composer )
-" If set to 0, the plugin will not attempt to open the user's browser, instead requiring them to open it manually
-let g:markdown_composer_open_browser = 0
-let g:markdown_composer_browser = 'firefox'
-let g:markdown_composer_syntax_theme = 'atom-one-light'
-
-nnoremap <silent> <Leader>p :ComposerOpen<CR>
-nnoremap <silent> <Leader>pr :ComposerUpdate<CR>
+" Markdow preview ( https://github.com/iamcco/markdown-preview.nvim )
+nmap <buffer> <silent> <Leader>p <Plug>MarkdownPreviewToggle
 

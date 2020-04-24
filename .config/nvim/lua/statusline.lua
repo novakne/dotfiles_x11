@@ -24,37 +24,51 @@ local colors = {
 }
 
 -- Separators
-local separators = {
-  left = "▒▓",
-  right = "▓▒",
-  -- left = "",
+local sep = {
+  left = "",
+  -- left = " ",
+  -- left = " ",
+  -- left = "▒▓",
   -- right = "",
+  right = " ",
+  -- right = " ",
+  -- right = "▓▒",
   blank = " "
+}
+
+local glyph = {
+  modified = "  ",
+  readonly = "  ",
+  line = "",
+  -- line = "",
+  col = "",
+  -- col = " ",
+  branch = ""
 }
 
 -- Mode
 local current_mode = setmetatable({
-      ["n"]  = "NORMAL",
+      ["n"]  = "N",
       ["no"] = "N·Operator Pending",
-      ["v"]  = "VISUAL",
+      ["v"]  = "V",
       ["V"]  = "V·Line",
       ["^V"] = "V·Block",
-      ["s"]  = "Select",
+      ["s"]  = "S",
       ["S"]  = "S·Line",
       ["^S"] = "S·Block",
-      ["i"]  = "INSERT",
-      ["ic"] = "INSERT",
-      ["ix"] = "INSERT",
-      ["R"]  = "Replace",
+      ["i"]  = "I",
+      ["ic"] = "I",
+      ["ix"] = "I",
+      ["R"]  = "R",
       ["Rv"] = "V·Replace",
-      ["c"]  = "COMMAND",
+      ["c"]  = "CMD",
       ["cv"] = "Vim Ex",
       ["ce"] = "Ex",
       ["r"]  = "Prompt",
       ["rm"] = "More",
       ["r?"] = "Confirm",
       ["!"]  = "Shell",
-      ["t"]  = "TERMINAL"
+      ["t"]  = "TERM"
     }, {
       -- fix weird issues
       __index = function(_, _)
@@ -69,39 +83,54 @@ local current_mode = setmetatable({
 local function is_modified()
   local modified = vim.bo.modified
   if modified then
-    return "  "
+    return glyph.modified
   else
-    return " "
+    return ""
   end
 end
 
 local function is_readonly()
   local readonly = vim.bo.readonly
   if readonly then
-    return "  "
+    return glyph.readonly
   else
     return ""
   end
 end
 
-local file_name = function()
-  local filename = api.nvim_call_function("expand", {"%f"})
+local function file_name()
   local filetype = api.nvim_buf_get_option(0, "filetype")
   local icon = icons.deviconTable[filetype]
-  local file = " " .. filename .. is_modified() .. is_readonly()
+  local file = "  %f "  .. is_modified() .. is_readonly()
   if icon ~= nil then
     return icon .. file
   end
   return filetype .. file
 end
 
--- Git branch  with Fugitive
+-- Git branch with Fugitive
 local function git_branch()
   local branch = vim.fn["fugitive#head"]()
-  if branch ~= nil then
-    return " " .. branch
+  if branch ~= "" then
+    return ("%%#BaseStatus#%s %s"):format(glyph.branch, branch)
   else
     return ""
+  end
+end
+
+local function line_col()
+  local total_line = api.nvim_buf_line_count(0)
+  local line = vim.fn["line"](".")
+  local col = vim.fn["col"](".")
+  local fmt = "%%#BaseStatus# %s %d/%d %s %d "
+  return fmt:format(glyph.line, line, total_line, glyph.col, col)
+end
+
+local function sep_rect(side)
+  if side == "left" then
+    return "%#RrSeparator#" .. sep.left
+  elseif side == "right" then
+    return "%#RrSeparator#" .. sep.right
   end
 end
 
@@ -118,73 +147,61 @@ local base_fg = colors.white
 vim.cmd("hi BaseStatus guibg=" .. base_bg .. " guifg=" .. base_fg)
 
 -- Redraw different colors for different mode
-local RedrawColors = function(mode)
+local function highlight(bg, fg)
+  vim.cmd("hi Mode guibg="..bg.." guifg="..fg.." gui=bold")
+  vim.cmd("hi ModeSeparator guifg="..bg)
+end
+
+local function redraw_colors(mode)
   if mode == "n" then
-    vim.cmd("hi Mode guibg="..colors.green.." guifg="..colors.dark.." gui=bold")
-    vim.cmd("hi ModeSeparator guifg="..colors.green)
-  end
-  if mode == "i" then
-    vim.cmd("hi Mode guibg="..colors.yellow.." guifg="..colors.dark.." gui=bold")
-    vim.cmd("hi ModeSeparator guifg="..colors.yellow)
-  end
-  if mode == "v" or mode == "V" or mode == "^V" then
-    vim.cmd("hi Mode guibg="..colors.pink.." guifg="..colors.dark.." gui=bold")
-    vim.cmd("hi ModeSeparator guifg="..colors.pink)
-  end
-  if mode == "c" then
-    vim.cmd("hi Mode guibg="..colors.blue.." guifg="..colors.dark.." gui=bold")
-    vim.cmd("hi ModeSeparator guifg="..colors.blue)
-  end
-  if mode == "t" then
-    vim.cmd("hi Mode guibg="..colors.orange.." guifg="..colors.dark.." gui=bold")
-    vim.cmd("hi ModeSeparator guifg="..colors.orange)
+    highlight(colors.green, colors.dark)
+  elseif mode == "i" then
+    highlight(colors.yellow, colors.dark)
+  elseif mode == "v" or mode == "V" or mode == "^V" then
+    highlight(colors.pink, colors.dark)
+  elseif mode == "c" then
+    highlight(colors.blue, colors.dark)
+  elseif mode == "t" then
+    highlight(colors.orange, colors.dark)
   end
 end
 
 
 -- Statusline active window
-function status.activeLine()
+function status.active_line()
   local statusline = ""
 
   -- LEFT --
   -- Mode
   local mode = api.nvim_get_mode()["mode"]
-  RedrawColors(mode)
+  redraw_colors(mode)
   statusline = statusline
-    .. "%#ModeSeparator#" .. separators.left
+    .. "%#ModeSeparator#" .. sep.left
     .. "%#Mode# " .. current_mode[mode]
-    .. " %#ModeSeparator#" .. separators.right
-  statusline = statusline .. separators.blank
+    .. " %#ModeSeparator#" .. sep.right
+  statusline = statusline .. sep.blank
+  statusline = statusline .. "%<"
 
   -- Filename
   statusline = statusline
-    .. "%#RrSeparator#" .. separators.left
+    .. sep_rect("left")
     .. "%#RRectangle# " .. file_name()
-    .. "%#RrSeparator#" .. separators.right
+    .. sep_rect("right")
 
   -- RIGHT --
   statusline = statusline .. "%="
-
   -- Git Branch
-  statusline = statusline
-    .. "%#BaseStatus#" .. git_branch()
-
+  statusline = statusline .. git_branch()
   -- Row / Col
-  local line = vim.fn["line"](".")
-  local col = vim.fn["col"](".")
-  statusline = statusline
-    .. "%#BaseStatus#  " .. line
-    .. "  " .. col .. " "
+  statusline = statusline .. line_col()
 
   return statusline
 end
 
 -- Statusline inactive window
-function status.inactiveLine()
-  local filename = api.nvim_call_function("expand", {"%f"})
-  return "%#RrSeparator# " .. separators.left
-    .. "%#RRectangle# " .. filename
-    .. "%#RrSeparator#" .. separators.right
+function status.inactive_line()
+  local fmt = "%s%%#RRectangle# %%f %s"
+  return fmt:format(sep_rect("left"), sep_rect("right"))
 end
 
 
@@ -192,7 +209,7 @@ end
 vim.cmd("hi TabLineSelSeparator guifg=" .. colors.blue)
 vim.cmd("hi TabLineSeparator guifg=" .. colors.dark_l)
 
-local get_tab_label = function(n)
+local function get_tab_label(n)
   local current_win = api.nvim_tabpage_get_win(n)
   local current_buf = api.nvim_win_get_buf(current_win)
   local filename = api.nvim_buf_get_name(current_buf)
@@ -217,13 +234,13 @@ function status.tabline()
   for _, val in ipairs(tab_list) do
     local filename = get_tab_label(val)
     if val == current_tab then
-      tabline = tabline .. "%#TabLineSelSeparator# " .. separators.left
+      tabline = tabline .. "%#TabLineSelSeparator# " .. sep.left
       tabline = tabline .. "%#TabLineSel# " .. filename
-      tabline = tabline .. " %#TabLineSelSeparator#" .. separators.right
+      tabline = tabline .. " %#TabLineSelSeparator#" .. sep.right
     else
-      tabline = tabline .. "%#TabLineSeparator# " .. separators.left
+      tabline = tabline .. "%#TabLineSeparator# " .. sep.left
       tabline = tabline .. "%#TabLine# " .. filename
-      tabline = tabline .. " %#TabLineSeparator#" .. separators.right
+      tabline = tabline .. " %#TabLineSeparator#" .. sep.right
     end
   end
   return tabline

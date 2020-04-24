@@ -57,6 +57,7 @@ end
 local window_options = {
   -- Show line number
   number = true,
+  relativenumber = true,
   -- Don't insert line breaks in the middle of a word
   linebreak = true,
   -- Always show signcolumns
@@ -84,9 +85,86 @@ for name, value in pairs(buffer_options) do
 end
 
 local plugin_options = {
+  -- Neovim
+  -- Change leader key to space and local leader to ,
+  mapleader = " ",
+  maplocalleader = ",",
+  -- Disable some providers and plugins
+  loaded_node_provider = 0,
+  loaded_ruby_provider = 0,
+  loaded_perl_provider = 0,
+  loaded_python_provider = 0,
+  python3_host_prog = "/usr/bin/python3",
+  loaded_gzip = 1,
+  loaded_tarPlugin = 1,
+  loaded_tar = 1,
+  loaded_zipPlugin = 1,
+  loaded_zip = 1,
+  loaded_netrw = 1,
+  loaded_netrwPlugin = 1,
+
+  -- Completion-nvim ( https://github.com/haorenW1025/completion-nvim )
+  -- non ins-complete method should be specified in 'mode'
+  completion_chain_complete_list = {
+    completion_items = { "lsp", "snippet" },
+    mode = {
+      "<c-p>",
+      "<c-n>",
+      "file",
+      "line",
+      "tags"
+    }
+  },
+
+  completion_auto_change_source = 1,
+
+  -- Conjure
+  conjure_log_direction = "horizontal",
+
+  -- Editor config ( https://github.com/editorconfig/editorconfig-vim )
+  -- To ensure that this plugin works well with Tim Pope's fugitive
+  EditorConfig_exclude_patterns = "['fugitive://.*']",
+
+  -- Fzf ( https://github.com/junegunn/fzf.vim )
+  fzf_layout = {
+    window = {
+      width = 0.8,
+      height = 0.9
+    }
+  },
+  fzf_buffers_jump = 1,
+  fzf_action = {
+    ["ctrl-t"] = "tab split",
+    ["ctrl-h"] = "split",
+    ["ctrl-v"] = "vsplit"
+  },
+
   -- Gutentags ( https://github.com/ludovicchabant/vim-gutentags )
   -- Group all tags files in a folder
   gutentags_cache_dir = "~/.cache/tags",
+
+  -- Lsp
+  LspDiagnosticsErrorSign = "",
+  LspDiagnosticsWarningSign = "",
+  LspDiagnosticsInformationSign = "",
+  LspDiagnosticsHintSign = "",
+
+
+  -- Nnn ( https://github.com/mcchrish/nnn.vim )
+  ["nnn#layout"] = {
+    window = {
+      width = 0.5,
+      height = 0.6,
+      highlight = "Debug"
+    }
+  },
+  ["nnn#set_default_mappings"] = 0,
+  ["nnn#action"] = {
+    ["<c-t>"] = "tab split",
+    ["<c-h>"] = "split",
+    ["<c-v>"] = "vsplit"
+  },
+  ["nnn#command"] = "nnn -e",
 
   -- Signify ( https://github.com/mhinz/vim-signify )
   signify_vcs_list = "[ 'git', 'yadm' ]",
@@ -97,16 +175,11 @@ local plugin_options = {
   signify_sign_changedelete = "~",
   signify_sign_show_count = 1,
 
-  -- Hexokinase ( https://github.com/RRethy/vim-hexokinase )
-  Hexokinase_v2 = 0,
+  -- Vim-Sneak ( https://github.com/justinmk/vim-sneak )
+  ["sneak#label"] = 1,
 
-  -- Editor config ( https://github.com/editorconfig/editorconfig-vim )
-  -- To ensure that this plugin works well with Tim Pope's fugitive
-  EditorConfig_exclude_patterns = "['fugitive://.*']",
-
-  -- Fzf ( https://github.com/junegunn/fzf.vim )
-  -- [Buffers] Jump to the existing window if possible
-  -- fzf_buffers_jump = 1,
+  -- VimWiki ( https://github.com/vimwiki/vimwiki )
+  vimwiki_list = { { path = "~/doc/notes/vimwiki/" } }
 
 }
 
@@ -114,4 +187,3 @@ for name, value in pairs(plugin_options) do
   vim.g[name] = value
 end
 
--- TODO Nnn and Fzf

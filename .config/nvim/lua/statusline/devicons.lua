@@ -13,6 +13,7 @@ local extensionTable = {
   ["dosbatch"]        = "",
   ["dosini"]          = "",
   ["erlang"]          = "",
+  ["fennel"]          = "",
   ["forth"]           = "",
   ["go"]              = "",
   ["haskell"]         = "",

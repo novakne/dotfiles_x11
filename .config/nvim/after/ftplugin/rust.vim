@@ -4,5 +4,5 @@ let g:rust_conceal = 1
 let g:rust_conceal_pub = 1
 let g:rustfmt_autosave = 1
 
-nnoremap <Leader>rr :RustRun<CR>
-nnoremap <Leader>rf :RustFmt<CR>
+nnoremap <buffer> <Leader>rr :RustRun<CR>
+nnoremap <buffer> <Leader>rf :RustFmt<CR>

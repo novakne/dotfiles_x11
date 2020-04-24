@@ -38,22 +38,28 @@ local lightMagenta = "13"
 local lightCyan    = "14"
 local lightWhite   = "15"
 
-vim.g.terminal_color_0 = aize01
-vim.g.terminal_color_1 = aize08
-vim.g.terminal_color_2 = aize12
-vim.g.terminal_color_3 = aize11
-vim.g.terminal_color_4 = aize13
-vim.g.terminal_color_5 = aize14
-vim.g.terminal_color_6 = aize15
-vim.g.terminal_color_7 = aize06
-vim.g.terminal_color_8 = aize02
-vim.g.terminal_color_9 = aize08
-vim.g.terminal_color_10 = aize12
-vim.g.terminal_color_11 = aize11
-vim.g.terminal_color_12 = aize13
-vim.g.terminal_color_13 = aize14
-vim.g.terminal_color_14 = aize15
-vim.g.terminal_color_15 = aize07
+local term_colors = {
+  terminal_color_0 = aize01,
+  terminal_color_1 = aize08,
+  terminal_color_2 = aize12,
+  terminal_color_3 = aize11,
+  terminal_color_4 = aize13,
+  terminal_color_5 = aize14,
+  terminal_color_6 = aize15,
+  terminal_color_7 = aize06,
+  terminal_color_8 = aize02,
+  terminal_color_9 = aize08,
+  terminal_color_10 = aize12,
+  terminal_color_11 = aize11,
+  terminal_color_12 = aize13,
+  terminal_color_13 = aize14,
+  terminal_color_14 = aize15,
+  terminal_color_15 = aize07
+}
+
+for color, value in pairs(term_colors) do
+  vim.g[color] = value
+end
 
 -- Source: https://github.com/norcalli/nvim_utils
 local function highlight(group, guifg, guibg, ctermfg, ctermbg, attr, guisp)

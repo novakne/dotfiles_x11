@@ -1,8 +1,14 @@
 " ~/.config/nvim/init.vim
 
-lua require "config"
-colorscheme aize-lua
-runtime! config/*.vim
+" Add fzf to runtime
+set rtp+=~/.config/fzf
 
-lua require "lsp_config"
-set tabline=%!statusline#TabLine()
+" Need to do this for lua plugins
+packadd! nvim-colorizer.lua
+packadd! completion-nvim
+packadd! nvim-lsp
+
+" Load config
+lua require("init")
+colorscheme aize-lua
+

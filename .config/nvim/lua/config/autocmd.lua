@@ -1,6 +1,5 @@
 local util = require("util")
 
-
 local autocmd = {
   -- Auto close popup menu when finish completion
   CompletAuto = {
@@ -18,7 +17,11 @@ local autocmd = {
   -- Change statusline in active and inactive window
   StatusLine = {
     { "WinEnter,BufEnter", "*", "setlocal statusline=%!statusline#ActiveLine()" },
-    { "WinLeave,BufLeave", "*", "setlocal statusline=%!statusline#InactiveLine()" }
+    { "WinLeave,BufLeave", "*", "setlocal statusline=%!statusline#InactiveLine()" },
+    { "TabNew", "*", "setlocal tabline=%!statusline#TabLine()" }
+  },
+  Terminal = {
+    { "TermOpen", "*", "lua require'plugins.toggle_term'.autocmd()" }
   }
 }
 
