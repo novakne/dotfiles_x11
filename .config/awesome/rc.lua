@@ -16,7 +16,7 @@ require("configuration.notifications")
 require("configuration.rules")
 require("configuration.signals")
 require("configuration.tags")
-require("configuration.titlebar")
+require("configuration.titlebar").init()
 
 -- Themes
 local themes = {

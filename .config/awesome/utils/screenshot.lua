@@ -19,7 +19,7 @@ function screenshot.full()
       message = "Screenshot taken!",
       icon = icon
     })
-  awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, ____)
+  awful.spawn.easy_async_with_shell(cmd, function(_, _, _, _)
   end)
 end
 
@@ -30,7 +30,7 @@ function screenshot.selection()
       message = "Select area to capture.",
       icon = icon
     })
-  awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, exit_code)
+  awful.spawn.easy_async_with_shell(cmd, function(_, _, _, exit_code)
     if exit_code == 0 then
       naughty.notify({
 	  title = "Screenshot",
@@ -48,7 +48,7 @@ function screenshot.click()
       message = "Click on a window to select it",
       icon = icon
     })
-  awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, exit_code)
+  awful.spawn.easy_async_with_shell(cmd, function(_, _, _, exit_code)
     if exit_code == 0 then
       naughty.notify({
 	  title = "Screenshot",

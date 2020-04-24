@@ -14,21 +14,21 @@ ruled.client.connect_signal("request::rules", function()
     id = "global",
     rule = { },
     properties = {
-      focus     = awful.client.focus.filter,
-      raise     = true,
-      keys      = keys.clientkeys,
-      buttons   = keys.clientbuttons,
-      screen    = awful.screen.preferred,
+      focus = awful.client.focus.filter,
+      raise = true,
+      keys = keys.clientkeys,
+      buttons = keys.clientbuttons,
+      screen = awful.screen.preferred,
       placement = awful.placement.no_overlap+awful.placement.no_offscreen
     }
   }
 
   -- Floating clients.
   addrule {
-    id       = "floating",
+    id = "floating",
     rule_any = {
       instance = { "copyq", "pinentry" },
-      class    = {
+      class = {
         "Arandr",
         "Blueman-manager",
         "Gpick",
@@ -41,10 +41,10 @@ ruled.client.connect_signal("request::rules", function()
       },
       -- Note that the name property shown in xprop might be set slightly after creation of the client
       -- and the name shown there might not match defined rules here.
-      name    = {
+      name = {
         "Event Tester",  -- xev.
       },
-      role    = {
+      role = {
         "AlarmWindow",    -- Thunderbird's calendar.
         "ConfigManager",  -- Thunderbird's about:config.
         "pop-up",         -- e.g. Google Chrome's (detached) Developer Tools.
@@ -84,9 +84,9 @@ ruled.client.connect_signal("request::rules", function()
 
   -- No titlebars for normal clients and dialogs
   addrule {
-    id         = "titlebars",
-    rule_any   = { type = { "normal", "dialog" } },
-    properties = { titlebars_enabled = false      }
+    id = "titlebars",
+    rule_any = { type = { "normal", "dialog" } },
+    properties = { titlebars_enabled = false }
   }
 
   -- File chooser dialog
@@ -94,8 +94,8 @@ ruled.client.connect_signal("request::rules", function()
     rule_any = { role = { "GtkFileChooserDialog" } },
     properties = {
       floating = true,
-      width    = screen_width * 0.55,
-      height   = screen_height * 0.65
+      width = screen_width * 0.55,
+      height = screen_height * 0.65
     }
   }
 
@@ -103,8 +103,8 @@ ruled.client.connect_signal("request::rules", function()
   addrule {
     rule_any = { name = { "rofi" } },
     properties = {
-      maximized         = true,
-      ontop             = true,
+      maximized = true,
+      ontop = true,
       titlebars_enabled = false
     }
   }
@@ -113,9 +113,9 @@ ruled.client.connect_signal("request::rules", function()
   addrule {
     rule = { class = "mpv" },
     properties = {
-      floating     = true,
-      maximized    = true,
-      ontop        = true,
+      floating = true,
+      maximized = true,
+      ontop = true,
       border_width = 0,
     },
     callback = function (c)
@@ -133,9 +133,9 @@ ruled.client.connect_signal("request::rules", function()
     },
     properties = {
       floating = true,
-      width    = screen_width * 0.7,
-      height   = screen_height * 0.75,
-      ontop    = true,
+      width = screen_width * 0.7,
+      height = screen_height * 0.75,
+      ontop = true,
     },
     callback = function (c)
       awful.placement.centered(c,{honor_padding = true, honor_workarea=true})

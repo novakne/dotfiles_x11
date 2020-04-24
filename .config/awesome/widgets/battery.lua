@@ -79,14 +79,14 @@ watch(
     end
     charge = charge / capacity
 
-    if (charge >= 0 and charge < 20) then
-      if status ~= "Charging" and os.difftime(os.time(), last_battery_check) > 300 then
-        -- if 5 minutes have elapsed since the last warning
-        last_battery_check = _G.time()
+    -- if (charge >= 0 and charge < 20) then
+    --   if status ~= "Charging" and os.difftime(os.time(), last_battery_check) > 300 then
+    --     -- if 5 minutes have elapsed since the last warning
+    --     last_battery_check = _G.time()
 
-        show_battery_warning()
-      end
-    end
+    --     show_battery_warning()
+    --   end
+    -- end
 
     if status == "Charging" or status == "Full" then
       batteryIconName = batteryIconName .. "-charging"

@@ -1,6 +1,7 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local apps = require("configuration.apps")
+-- TODO This is file is not sourced for now
 
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
