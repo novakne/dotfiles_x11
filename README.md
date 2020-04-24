@@ -86,6 +86,7 @@ dependence:
     * `up` Go up N dir `(e.g. up 2)`
     * `zn` Jump to a directory with `z.lua` and open it in `neovim`
 * **options/** - Zsh settings
+* **prompt/** - Prompt settings
 
 ### Plugins
 
