@@ -98,7 +98,7 @@ if (( $+commands[nnn] )); then
     export NNN_RESTRICT_0B=1
     export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
     export NNN_COPIER="$XDG_CONFIG_HOME/nnn/copier"
-    export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/src;d:~/doc/notes;l:~/.local/share'
+    export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/dev;d:~/doc;l:~/.local/share'
     export NNN_PLUG='f:browse_img_full;i:browse_img;o:open;s:fuzzy;c:_chmod 774 $nnn*;e:exec'
 fi
 
@@ -126,53 +126,53 @@ if [[ -d "$fzf_dir" ]]; then
     export PATH=$fzf_dir/bin:$PATH
     source "$fzf_dir"/shell/completion.zsh 2> /dev/null
     source "$fzf_dir"/shell/key-bindings.zsh
+
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+    # Uses tree command to show the entries of the directory
+    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+    _gen_fzf_default_opts() {
+
+        local aize00='#29223a'
+        local aize01='#3e3350'
+        local aize02='#534666'
+        local aize03='#6b5c7c'
+        local aize04='#837593'
+        local aize05='#9d8fa9'
+        local aize06='#b7acbf'
+        local aize07='#d2ccd6'
+        local aize08='#f63d81'
+        local aize09='#fc65b0'
+        local aize10='#f5939c'
+        local aize11='#e8ec77'
+        local aize12='#2dcbb0'
+        local aize13='#57bbf4'
+        local aize14='#a89bee'
+        local aize15='#4db9c8'
+
+        export FZF_DEFAULT_OPTS="
+        --color=bg+:$aize00,bg:$aize00,spinner:$aize09,hl:$aize12
+        --color=fg:$aize05,header:$aize09,info:$aize09,pointer:$aize11
+        --color=marker:$aize13,fg+:$aize07,prompt:$aize09,hl+:$aize11
+        --height 50% --reverse --margin 2% --cycle --multi
+        "
+
+    }
+
+    _gen_fzf_default_opts
+
+    # Use fd (https://github.com/sharkdp/fd) instead of the default find
+    # command for listing path candidates.
+    # - The first argument to the function ($1) is the base path to start traversal
+    # - See the source code (completion.{bash,zsh}) for the details.
+    _fzf_compgen_path() {
+        fd --hidden --follow --exclude ".git" . "$1"
+    }
+
+    # Use fd to generate the list for directory completion
+    _fzf_compgen_dir() {
+        fd --type d --hidden --follow --exclude ".git" . "$1"
+    }
 fi
 unset fzf_dir
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-
-_gen_fzf_default_opts() {
-
-    local aize00='#29223a'
-    local aize01='#3e3350'
-    local aize02='#534666'
-    local aize03='#6b5c7c'
-    local aize04='#837593'
-    local aize05='#9d8fa9'
-    local aize06='#b7acbf'
-    local aize07='#d2ccd6'
-    local aize08='#f63d81'
-    local aize09='#fc65b0'
-    local aize10='#f5939c'
-    local aize11='#e8ec77'
-    local aize12='#2dcbb0'
-    local aize13='#57bbf4'
-    local aize14='#a89bee'
-    local aize15='#4db9c8'
-
-    export FZF_DEFAULT_OPTS="
-    --color=bg+:$aize00,bg:$aize00,spinner:$aize09,hl:$aize12
-    --color=fg:$aize05,header:$aize09,info:$aize09,pointer:$aize11
-    --color=marker:$aize13,fg+:$aize07,prompt:$aize09,hl+:$aize11
-    --height 50% --reverse --margin 2% --cycle --multi
-    "
-
-}
-
-_gen_fzf_default_opts
-
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
-}
-
-# Uses tree command to show the entries of the directory
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
