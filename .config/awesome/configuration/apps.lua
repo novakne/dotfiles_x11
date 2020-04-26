@@ -7,7 +7,7 @@ local apps = {
   terminal = "alacritty",
   editor   = "nvim",
   -- launcher = "rofi -normal-window -modi drun -show drun -theme "..rofi_dir.."app_drawer.rasi",
-  launcher = "rofi -no-lazy-grab -show drun -theme "..rofi_dir.."app_drawer_dock.rasi",
+  launcher = "rofi -no-lazy-grab -show drun -theme "..rofi_dir.."app_drawer_vert.rasi",
   browser  = "vivaldi-stable",
   power_menu = rofi_dir.."power_menu/power_menu"
 }
