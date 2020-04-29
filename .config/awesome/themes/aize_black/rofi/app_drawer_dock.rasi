@@ -1,3 +1,12 @@
+/*
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Mail : adi1090x@gmail.com
+ * Github : @adi1090x
+ * Reddit : @adi1090x
+ *
+ */
+
 configuration {
     font:                "Inter 10";
     show-icons:          true;
@@ -14,11 +23,11 @@ configuration {
 
 
 * {
-    background:     #29223a;
-    background-alt: #534666;
-    background-ib:  #3e3350;
+    background:     #232227;
+    background-alt: #4e4e52;
+    background-ib:  #38383c;
     foreground:     #b7acbf;
-    border:         #3e3350;
+    border:         #38383c;
     border-sel:     #e8ec77;
     selected:       #e8ec77;
     urgent:         #fc65b0;
@@ -31,11 +40,11 @@ window {
     border:               0px;
     border-radius:        0px;
     border-color:         @border;
-    height:               100%;
-    width:                20%;
-    location:             west;
-    anchor:               west;
-    x-offset:             46px;
+    height:               25%;
+    width:                100%;
+    location:             south;
+    anchor:               south;
+    x-offset:             0;
     y-offset:             0;
 }
 
@@ -55,7 +64,7 @@ inputbar {
     border:               0px 0px 2px 0px;
     border-radius:        10px;
     border-color:         @border;
-    margin:               10px 2% 0px 2%;
+    margin:               10px 73% 0px 5px;
     padding:              6px 6px 6px 6px;
     position:             center;
 }
@@ -80,7 +89,7 @@ case-indicator {
 
 listview {
     background-color:     @background;
-    columns:              2;
+    columns:              10;
     spacing:              4px;
     cycle:                false;
     dynamic:              true;
@@ -99,7 +108,7 @@ element {
     text-color:           @foreground;
     orientation:          vertical;
     border-radius:        0px;
-    margin:               45px 2% 0px 2%;
+    margin:               35px 5px 0px 5px;
     padding:              10px 0px 10px 0px;
 }
 

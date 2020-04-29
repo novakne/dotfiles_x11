@@ -1,0 +1,86 @@
+configuration {
+    show-icons:                     true;
+    icon-theme:                     "papirus";
+    font:                           "SF Pro Display 14";
+}
+
+* {
+    background-color:               transparent;
+    background:                     #232227;
+    background-alt:                 #4e4e52;
+    text-color:                     #b7acbf;
+    selected-text-color:            #d2ccd6;
+    primary:                        #e8ec77;
+    urgent:                         #fc65b0;
+}
+
+window {
+    transparency:                   "real";
+    background-color:               @background;
+}
+
+prompt {
+    enabled:                        false;
+}
+
+entry  {
+    margin:                         5% 30%;
+    border-radius:                  12;
+    padding:                        1.3%;
+    background-color:               #534666;
+    border-color:                   @text-color;
+    font:                           "SF Display 15";
+    placeholder:                    "Search Applications";
+    placeholder-color:              @background;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    padding: 5%;
+}
+
+listview {
+    columns: 5;
+    layout: vertical;
+    spacing: 100;
+    margin: 5% 7%;
+}
+
+element {
+    orientation: vertical;
+    padding: 2% 0;
+    border-radius: 4;
+}
+
+element normal.urgent, element alternate.urgent {
+    background-color:               @urgent;
+}
+
+element normal.active, element alternate.active {
+    background-color:               @background-alt;
+    color:                          @selected-text-color;
+}
+
+element selected {
+    background-color:               @background-alt;
+    color:                          @selected-text-color;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+}
+
+element selected.active {
+    background-color:               @background-alt;
+    color:                          @selected-text-color;
+}
+
+element-icon {
+    size: 6%;
+}
+
+element-text {
+    padding: 10 0 0 0;
+    text-color: inherit;
+    horizontal-align: 0.5;
+}

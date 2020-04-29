@@ -3,7 +3,7 @@
 
 confirm() {
     echo -e "Yes\nNo" | rofi -dmenu -i -format d -lines 2 -selected-row 0 -p "${1:-Confirm: }"
-    -theme ~/.config/awesome/layouts/rofi/power_menu/power_menu.rasi
+    -theme ~/.config/awesome/layouts/power_menu/power_menu.rasi
 }
 
 quit=" Quit awesome"
@@ -12,7 +12,7 @@ reboot=" Reboot"
 suspend=" Suspend"
 hibernate=" Hibernate"
 
-LAUNCHER="rofi -dmenu -i -lines 5 -p Exit:  -theme ~/.config/awesome/layouts/rofi/power_menu/power_menu.rasi"
+LAUNCHER="rofi -dmenu -i -lines 5 -p Exit:  -theme ~/.config/awesome/layouts/power_menu/power_menu.rasi"
 OPTIONS="$quit\n$shutdown\n$reboot\n$suspend\n$hibernate"
 
 selection=$(echo -e $OPTIONS | $LAUNCHER)

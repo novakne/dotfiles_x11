@@ -15,7 +15,7 @@ local wifi = require("widgets.wifi")
 local left_panel = {}
 
 local function container(w, hmarge, vmarge)
-  hmarge = hmarge or dpi(14)
+  hmarge = hmarge or dpi(12)
   vmarge = vmarge or dpi(1)
   return wibox.container.margin(w, dpi(hmarge), dpi(hmarge), dpi(vmarge), dpi(vmarge))
 end
@@ -48,7 +48,7 @@ function left_panel:init(s)
   local leftpanel = awful.wibar({
       position = "left",
       screen = s,
-      width = dpi(46),
+      width = dpi(38),
       height = s.geometry.height,
       -- shape = function(cr, width, height)
       --   gears.shape.partially_rounded_rect(cr, width, height, false, true, true, false, 14)

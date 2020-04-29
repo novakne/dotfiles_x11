@@ -3,28 +3,22 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-local gears = require("gears")
+-- local gears = require("gears")
 -- local awful = require("awful")
 require("awful.autofocus")
 
--- Theme handling library
-local beautiful = require("beautiful")
 
 -- Configurations
-require("configuration.keys")
+require("configuration.startup")
 require("configuration.notifications")
+require("configuration.keys")
 require("configuration.rules")
 require("configuration.signals")
 require("configuration.tags")
 require("configuration.titlebar").init()
 
--- Themes
-local themes = {
-  "aize" -- 1
-}
-local chosen_theme = themes[1]
-
-beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. chosen_theme .. "/theme.lua")
+-- Theme
+require("configuration.env")
 require("configuration.wallpaper")
 
 -- Panels

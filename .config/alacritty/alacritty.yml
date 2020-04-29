@@ -37,14 +37,44 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors:
+# Aize blue
+# colors:
+#   primary:
+#     background: '0x29223a'
+#     foreground: '0xd2ccd6'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x3e3350'
+#     red:     '0xfc65b0'
+#     green:   '0x2dcbb0'
+#     yellow:  '0xe8ec77'
+#     blue:    '0x57bbf4'
+#     magenta: '0xa89bee'
+#     cyan:    '0x4db9c8'
+#     white:   '0xb7acbf'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x534666'
+#     red:     '0xfc65b0'
+#     green:   '0x2dcbb0'
+#     yellow:  '0xe8ec77'
+#     blue:    '0x57bbf4'
+#     magenta: '0xa89bee'
+#     cyan:    '0x4db9c8'
+#     white:   '0xd2ccd6'
+
+
+# Aize black
 colors:
   primary:
-    background: '0x29223a'
+    background: '0x232227'
     foreground: '0xd2ccd6'
 
   # Normal colors
   normal:
-    black:   '0x3e3350'
+    black:   '0x38383c'
     red:     '0xfc65b0'
     green:   '0x2dcbb0'
     yellow:  '0xe8ec77'
@@ -55,7 +85,7 @@ colors:
 
   # Bright colors
   bright:
-    black:   '0x534666'
+    black:   '0x4e4e52'
     red:     '0xfc65b0'
     green:   '0x2dcbb0'
     yellow:  '0xe8ec77'

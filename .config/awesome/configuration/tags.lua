@@ -1,43 +1,44 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-local icons_dir = os.getenv("HOME") .. "/.config/awesome/icons/tags/"
+local env = require("configuration.env")
+local icons_dir = os.getenv("HOME") .. "/.config/awesome/icons/tags/" .. env.icons_color
 
 -- Configure each tags
 local tags = {
   {
-    icon = icons_dir .. "browser.svg",
+    icon = icons_dir .. "/browser.svg",
     layout = awful.layout.suit.tile.left,
   },
   {
-    icon = icons_dir .. "editor.svg",
+    icon = icons_dir .. "/editor.svg",
     layout = awful.layout.suit.tile.left,
   },
   {
-    icon = icons_dir .. "terminal.svg",
+    icon = icons_dir .. "/terminal.svg",
     layout = awful.layout.suit.tile.left,
   },
   {
-    icon = icons_dir .. "folder.svg",
+    icon = icons_dir .. "/folder.svg",
     layout = awful.layout.suit.tile.left,
   },
   {
-    icon = icons_dir .. "music.svg",
+    icon = icons_dir .. "/music.svg",
     layout = awful.layout.suit.floating,
   },
   {
-    icon = icons_dir .. "media.svg",
+    icon = icons_dir .. "/media.svg",
     layout = awful.layout.suit.tile.left,
   },
   {
-    icon = icons_dir .. "star.svg",
+    icon = icons_dir .. "/star.svg",
     layout = awful.layout.suit.tile.left,
   },
   {
-    icon = icons_dir .. "heart.svg",
+    icon = icons_dir .. "/heart.svg",
     layout = awful.layout.suit.tile.left,
   },
   {
-    icon = icons_dir .. "download.svg",
+    icon = icons_dir .. "/download.svg",
     layout = awful.layout.suit.max,
   }
 }

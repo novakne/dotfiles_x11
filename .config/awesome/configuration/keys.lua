@@ -7,8 +7,8 @@ local naughty = require("naughty")
 -- require("awful.hotkeys_popup.keys")
 
 -- Default Applications
-local apps = require("configuration.apps");
-local screenshot = require("utils.screenshot")
+local env = require("configuration.env")
+local screenshot = require("util.screenshot")
 
 -- Define mod key
 local modkey = "Mod4"
@@ -46,27 +46,27 @@ keys.globalkeys = gears.table.join(
   -- Spawn terminal
   awful.key({ modkey }, "Return",
     function()
-      awful.spawn(apps.terminal)
+      awful.spawn(env.terminal)
     end,
     {description = "open a terminal", group = "launcher"}),
 
   awful.key({"Control", "Shift"}, "Return",
     function()
-      awful.spawn(apps.terminal)
+      awful.spawn(env.terminal)
     end,
     {description = "open a terminal", group = "launcher"}),
 
   -- Launch rofi
   awful.key({ modkey }, "d",
     function()
-      awful.spawn(apps.launcher)
+      awful.spawn(env.launcher)
     end,
     {description = "application launcher", group = "launcher"}),
 
   -- Launch browser
   awful.key({ modkey }, "v",
     function()
-      awful.spawn(apps.browser)
+      awful.spawn(env.browser)
     end,
     {description = "launch browser", group = "launcher"}),
 
@@ -171,13 +171,13 @@ keys.globalkeys = gears.table.join(
   -- Quit Awesome
   awful.key({ modkey }, "Escape",
     function()
-      awful.spawn.with_shell(apps.power_menu)
+      awful.spawn.with_shell(env.power_menu)
     end,
     {description = "power menu", group = "awesome"}),
 
   awful.key({}, 'XF86PowerOff',
     function()
-      awful.spawn.with_shell(apps.power_menu)
+      awful.spawn.with_shell(env.power_menu)
     end,
     {description = 'power menu', group = 'awesome'}),
 

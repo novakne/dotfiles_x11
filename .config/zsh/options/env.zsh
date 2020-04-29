@@ -132,10 +132,15 @@ if [[ -d "$fzf_dir" ]]; then
     export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
     _gen_fzf_default_opts() {
+        # blue
+        # local aize00='#29223a'
+        # local aize01='#3e3350'
+        # local aize02='#534666'
+        # black
+        local aize00='#232227'
+        local aize01='#38383c'
+        local aize02='#4e4e52'
 
-        local aize00='#29223a'
-        local aize01='#3e3350'
-        local aize02='#534666'
         local aize03='#6b5c7c'
         local aize04='#837593'
         local aize05='#9d8fa9'

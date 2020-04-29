@@ -1,19 +1,19 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-local apps = require("configuration.apps")
+local env = require("configuration.env")
 -- TODO This is file is not sourced for now
 
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  { "manual", apps.terminal .. " -e man awesome" },
-  { "edit config", apps.editor .. " " .. awesome.conffile },
+  { "manual", env.terminal .. " -e man awesome" },
+  { "edit config", env.editor .. " " .. awesome.conffile },
   { "restart", awesome.restart },
   { "quit", function() awesome.quit() end },
 }
 
 local mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-      { "open terminal", apps.terminal }
+      { "open terminal", env.terminal }
     }
   })
 
@@ -21,7 +21,7 @@ local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
   menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = apps.terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = env.terminal -- Set the terminal for applications that require it
 
 -- {{{ Mouse bindings
 -- awful.mouse.append_global_mousebindings({
