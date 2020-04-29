@@ -1,1 +1,1 @@
-setlocal filetype=cfg
+autocmd BufRead,BufNewFile *.conf setlocal filetype=cfg

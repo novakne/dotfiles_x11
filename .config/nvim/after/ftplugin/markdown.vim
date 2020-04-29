@@ -1,4 +1,6 @@
 setlocal textwidth=80
+setlocal foldmethod=syntax
+
 let g:markdown_fenced_languages=[
             \ 'c',
             \ 'cpp',
@@ -13,7 +15,6 @@ let g:markdown_fenced_languages=[
 " Plugins ( https://github.com/plasticboy/vim-markdown )
 " Disable folding
 " let g:vim_markdown_folding_disabled = 1
-setlocal foldmethod=syntax
 let g:markdown_folding = 1
 " Disable conceal
 let g:vim_markdown_conceal = 0

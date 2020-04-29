@@ -1,1 +1,1 @@
-setlocal filetype=javascript.jsx
+autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript.jsx

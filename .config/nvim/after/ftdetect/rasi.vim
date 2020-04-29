@@ -1,1 +1,1 @@
-setlocal filetype=css
+autocmd BufRead,BufNewFile *.rasi setlocal filetype=css
