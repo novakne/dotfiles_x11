@@ -47,8 +47,8 @@
 ![clean](img/previews/clean.png?raw=true "clean")
 *clean desktop with rofi*
 
-![dirty](img/previews/dirty.png?raw=true "dirty")
-*neovim & nnn & fetch*
+![blue_dirty](img/previews/blue_dirty.png?raw=true "blue_dirty")
+![black_dirty](img/previews/black_dirty.png?raw=true "black_dirty")
 
 ## AwesomeWM
 
@@ -93,7 +93,6 @@ dependence:
 Lazy loaded with [Zinit](https://github.com/zdharma/zinit)
 
 * [fast-syntax-highlighting](https://github.com/zdharma/fast-syntax-highlighting)
-* [forgit](https://github.com/wfxr/forgit)
 * [zsh-async](https://github.com/mafredri/zsh-async)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
