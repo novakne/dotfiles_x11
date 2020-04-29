@@ -1,74 +1,76 @@
 local api = vim.api
 local icons = require("statusline.devicons")
 
-local status = {}
+local statusline = {}
 
 -- Colors
 local colors = {
-  dark    = "#29223a",
-  dark_l  = "#3e3350",
-  dark_l2 = "#534666",
-  aize03  = "#6b5c7c",
-  aize04  = "#837593",
-  aize05  = "#9d8fa9",
-  white_d = "#b7acbf",
-  white   = "#d2ccd6",
-  red     = "#f63d81",
-  pink    = "#fc65b0",
-  orange  = "#f5939c",
-  yellow  = "#e8ec77",
-  green   = "#2dcbb0",
-  blue    = "#57bbf4",
-  magenta = "#a89bee",
-  cyan    = "#4db9c8"
+  bg      = "#38383c",
+  mode_fg = "#232227",
+  -- bg      = "#3e3350",
+  fg      = "#d2ccd6",
+  -- mode_fg = "#29223a",
+  normal  = "#2dcbb0",
+  insert  = "#e8ec77",
+  visual  = "#fc65b0",
+  command = "#57bbf4",
+  term    = "#f5939c",
+  tab_sel = "#57bbf4",
+  -- tab     = "#3e3350"
+  tab     = "#38383c",
 }
 
 -- Separators
 local sep = {
-  left = "",
-  -- left = " ",
-  -- left = " ",
-  -- left = "▒▓",
-  -- right = "",
-  right = " ",
-  -- right = " ",
-  -- right = "▓▒",
-  blank = " "
+  round = {
+    left  = "",
+    right = "",
+  },
+  pixel = {
+    left  = " ",
+    right = " ",
+    -- left  = " ",
+    -- right = " ",
+  },
+  fade = {
+    left  = "▒▓",
+    right = "▓▒",
+  }
 }
 
 local glyph = {
-  modified = "  ",
-  readonly = "  ",
-  line = "",
-  -- line = "",
-  col = "",
-  -- col = " ",
-  branch = ""
+  modified = "",
+  readonly = "",
+  line     = "",
+  -- line     = "",
+  col      = "",
+  -- col      = " ",
+  branch   = ""
 }
 
 -- Mode
 local current_mode = setmetatable({
-      ["n"]  = "N",
-      ["no"] = "N·Operator Pending",
-      ["v"]  = "V",
-      ["V"]  = "V·Line",
-      ["^V"] = "V·Block",
-      ["s"]  = "S",
-      ["S"]  = "S·Line",
-      ["^S"] = "S·Block",
-      ["i"]  = "I",
-      ["ic"] = "I",
-      ["ix"] = "I",
-      ["R"]  = "R",
-      ["Rv"] = "V·Replace",
-      ["c"]  = "CMD",
-      ["cv"] = "Vim Ex",
-      ["ce"] = "Ex",
-      ["r"]  = "Prompt",
-      ["rm"] = "More",
-      ["r?"] = "Confirm",
-      ["!"]  = "Shell",
-      ["t"]  = "TERM"
+      ["n"]  = " N ",
+      ["no"] = "N·Operator Pending ",
+      ["v"]  = " V ",
+      ["V"]  = " V·Line ",
+      ["^V"] = " V·Block ",
+      ["s"]  = " S ",
+      ["S"]  = " S·Line ",
+      ["^S"] = " S·Block ",
+      ["i"]  = " I ",
+      ["ic"] = " I ",
+      ["ix"] = " I ",
+      ["R"]  = " R ",
+      ["Rv"] = " V·Replace ",
+      ["c"]  = " CMD ",
+      ["cv"] = " Vim Ex ",
+      ["ce"] = " Ex ",
+      ["r"]  = " Prompt ",
+      ["rm"] = " More ",
+      ["r?"] = " Confirm ",
+      ["!"]  = " Shell ",
+      ["t"]  = " TERM "
     }, {
       -- fix weird issues
       __index = function(_, _)
@@ -78,74 +80,68 @@ local current_mode = setmetatable({
 )
 
 
--- Functions
--- Files
+-- Set Colors
+-- Rectangle Color
+local rect_bg = colors.bg
+local rect_fg = colors.fg
+vim.cmd("hi Rect guibg=" .. rect_bg .. " guifg=" .. rect_fg)
+vim.cmd("hi RectSeparator guifg=" .. rect_bg)
+
+
+-- Sections
+-- Constructors
+local function sep_section(form, side)
+  if side == "left" then
+    return "%#RectSeparator#" .. sep[form].left
+  elseif side == "right" then
+    return "%#RectSeparator#" .. sep[form].right
+  end
+end
+
+local function make_section(left, content, right)
+  local fmt = "%s%s%s"
+  local left_sep = sep_section(left, "left")
+  local right_sep = sep_section(right, "right")
+  return fmt:format(left_sep, content, right_sep)
+end
+
+-- File
 local function is_modified()
   local modified = vim.bo.modified
-  if modified then
-    return glyph.modified
-  else
-    return ""
-  end
+  if not modified then return "" end
+  return glyph.modified
 end
 
 local function is_readonly()
   local readonly = vim.bo.readonly
-  if readonly then
-    return glyph.readonly
-  else
-    return ""
-  end
+  if not readonly then return "" end
+  return glyph.readonly
+end
+
+local function file_type()
+  local filetype = api.nvim_buf_get_option(0, "filetype")
+  local icon = icons.deviconTable[filetype]
+  if icon then return icon end
+  return filetype
 end
 
 local function file_name()
-  local filetype = api.nvim_buf_get_option(0, "filetype")
-  local icon = icons.deviconTable[filetype]
-  local file = "  %f "  .. is_modified() .. is_readonly()
-  if icon ~= nil then
-    return icon .. file
-  end
-  return filetype .. file
+  local fmt = "%%#Rect# %s %%f %s %s"
+  local filename = fmt:format(file_type(), is_modified(), is_readonly())
+  return filename
 end
 
--- Git branch with Fugitive
-local function git_branch()
-  local branch = vim.fn["fugitive#head"]()
-  if branch ~= "" then
-    return ("%%#BaseStatus#%s %s"):format(glyph.branch, branch)
-  else
-    return ""
-  end
-end
-
+-- Lines / Columns
 local function line_col()
   local total_line = api.nvim_buf_line_count(0)
-  local line = vim.fn["line"](".")
-  local col = vim.fn["col"](".")
-  local fmt = "%%#BaseStatus# %s %d/%d %s %d "
+  local line = vim.fn.line(".")
+  local col = vim.fn.col(".")
+  -- local fmt = "%%#BaseStatus# %s %d/%d %s %d "
+  local fmt = "%%#Rect# %s %d/%d %s %d "
   return fmt:format(glyph.line, line, total_line, glyph.col, col)
 end
 
-local function sep_rect(side)
-  if side == "left" then
-    return "%#RrSeparator#" .. sep.left
-  elseif side == "right" then
-    return "%#RrSeparator#" .. sep.right
-  end
-end
-
--- Default Color Highlight
--- Round Rectangle Color
-local rr_bg = colors.dark_l
-local rr_fg = colors.white
-vim.cmd("hi RRectangle guibg=" .. rr_bg .. " guifg=" .. rr_fg)
-vim.cmd("hi RrSeparator guifg=" .. rr_bg)
-
--- Base Color
-local base_bg = "None"
-local base_fg = colors.white
-vim.cmd("hi BaseStatus guibg=" .. base_bg .. " guifg=" .. base_fg)
-
+-- Modes
 -- Redraw different colors for different mode
 local function highlight(bg, fg)
   vim.cmd("hi Mode guibg="..bg.." guifg="..fg.." gui=bold")
@@ -154,60 +150,64 @@ end
 
 local function redraw_colors(mode)
   if mode == "n" then
-    highlight(colors.green, colors.dark)
+    highlight(colors.normal, colors.mode_fg)
   elseif mode == "i" then
-    highlight(colors.yellow, colors.dark)
+    highlight(colors.insert, colors.mode_fg)
   elseif mode == "v" or mode == "V" or mode == "^V" then
-    highlight(colors.pink, colors.dark)
+    highlight(colors.visual, colors.mode_fg)
   elseif mode == "c" then
-    highlight(colors.blue, colors.dark)
+    highlight(colors.command, colors.mode_fg)
   elseif mode == "t" then
-    highlight(colors.orange, colors.dark)
+    highlight(colors.term, colors.mode_fg)
   end
+end
+
+local function mode_section()
+  local mode = api.nvim_get_mode()["mode"]
+  local c_mode = current_mode[mode]
+  local fmt = "%%#ModeSeparator#%s%%#Mode#%s%%#ModeSeparator#%s"
+  redraw_colors(mode)
+  return fmt:format(sep.round.left, c_mode, sep.round.right)
 end
 
 
 -- Statusline active window
-function status.active_line()
-  local statusline = ""
-
-  -- LEFT --
-  -- Mode
-  local mode = api.nvim_get_mode()["mode"]
-  redraw_colors(mode)
-  statusline = statusline
-    .. "%#ModeSeparator#" .. sep.left
-    .. "%#Mode# " .. current_mode[mode]
-    .. " %#ModeSeparator#" .. sep.right
-  statusline = statusline .. sep.blank
-  statusline = statusline .. "%<"
-
-  -- Filename
-  statusline = statusline
-    .. sep_rect("left")
-    .. "%#RRectangle# " .. file_name()
-    .. sep_rect("right")
-
-  -- RIGHT --
-  statusline = statusline .. "%="
-  -- Git Branch
-  statusline = statusline .. git_branch()
-  -- Row / Col
-  statusline = statusline .. line_col()
-
-  return statusline
+function statusline.active()
+  local status = {}
+  local left = {
+    mode_section(),
+    " %<",
+    make_section("pixel", file_name(), "round")
+  }
+  local right = {
+    make_section("round", line_col(), "pixel")
+  }
+  status = table.concat(left) .. "%=" .. table.concat(right)
+  return status
 end
 
 -- Statusline inactive window
-function status.inactive_line()
-  local fmt = "%s%%#RRectangle# %%f %s"
-  return fmt:format(sep_rect("left"), sep_rect("right"))
+function statusline.inactive()
+  local sl = {
+    make_section("pixel", file_name(), "round")
+  }
+  return table.concat(sl)
+end
+
+-- FIXME I can't find a way to compare active and inactive windows
+function statusline.set()
+  local current_win = vim.call("winnr")
+  if current_win then
+    api.nvim_win_set_option(0, "statusline", statusline.active())
+  else
+    api.nvim_win_set_option(0, "statusline", statusline.inactive())
+  end
 end
 
 
 -- Tabline
-vim.cmd("hi TabLineSelSeparator guifg=" .. colors.blue)
-vim.cmd("hi TabLineSeparator guifg=" .. colors.dark_l)
+vim.cmd("hi TabLineSelSeparator guifg=" .. colors.tab_sel)
+vim.cmd("hi TabLineSeparator guifg=" .. colors.tab)
 
 local function get_tab_label(n)
   local current_win = api.nvim_tabpage_get_win(n)
@@ -227,23 +227,23 @@ local function get_tab_label(n)
   return filename
 end
 
-function status.tabline()
+function statusline.tabline()
   local tabline = ""
   local tab_list = api.nvim_list_tabpages()
   local current_tab = api.nvim_get_current_tabpage()
   for _, val in ipairs(tab_list) do
     local filename = get_tab_label(val)
     if val == current_tab then
-      tabline = tabline .. "%#TabLineSelSeparator# " .. sep.left
+      tabline = tabline .. "%#TabLineSelSeparator# " .. sep.round.left
       tabline = tabline .. "%#TabLineSel# " .. filename
-      tabline = tabline .. " %#TabLineSelSeparator#" .. sep.right
+      tabline = tabline .. " %#TabLineSelSeparator#" .. sep.round.right
     else
-      tabline = tabline .. "%#TabLineSeparator# " .. sep.left
+      tabline = tabline .. "%#TabLineSeparator# " .. sep.round.left
       tabline = tabline .. "%#TabLine# " .. filename
-      tabline = tabline .. " %#TabLineSeparator#" .. sep.right
+      tabline = tabline .. " %#TabLineSeparator#" .. sep.round.right
     end
   end
   return tabline
 end
 
-return status
+return statusline

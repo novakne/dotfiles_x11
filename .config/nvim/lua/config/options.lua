@@ -106,16 +106,15 @@ local plugin_options = {
   -- Completion-nvim ( https://github.com/haorenW1025/completion-nvim )
   -- non ins-complete method should be specified in 'mode'
   completion_chain_complete_list = {
-    completion_items = { "lsp", "snippet" },
+    completion_items = { { "lsp" }, { "snippet" } },
     mode = {
-      "<c-p>",
-      "<c-n>",
-      "file",
-      "line",
-      "tags"
+      { "<c-p>" },
+      { "<c-n>" },
+      { "file" },
+      { "line" },
+      { "tags" }
     }
   },
-
   completion_auto_change_source = 1,
 
   -- Conjure
@@ -168,18 +167,15 @@ local plugin_options = {
 
   -- Signify ( https://github.com/mhinz/vim-signify )
   signify_vcs_list = "[ 'git', 'yadm' ]",
-  signify_sign_add = "✓",
+  signify_sign_add = "+",
   signify_sign_delete = "✗",
   signify_sign_delete_first_line = "-",
-  signify_sign_change = "✶",
+  signify_sign_change = "»",
   signify_sign_changedelete = "~",
   signify_sign_show_count = 1,
 
   -- Vim-Sneak ( https://github.com/justinmk/vim-sneak )
   ["sneak#label"] = 1,
-
-  -- VimWiki ( https://github.com/vimwiki/vimwiki )
-  vimwiki_list = { { path = "~/doc/notes/vimwiki/" } }
 
 }
 

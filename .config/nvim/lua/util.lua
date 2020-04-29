@@ -1,7 +1,8 @@
 local vim = vim
 local util = {}
 
--- ( https://github.com/norcalli/nvim_utils )
+-- Lot of inspiration from https://github.com/norcalli/nvim_utils
+
 -- Create augroup
 function util.create_augroups(definitions)
   for group_name, definition in pairs(definitions) do
@@ -15,6 +16,12 @@ function util.create_augroups(definitions)
   end
 end
 
+-- Bind key
+local function escape_keymap(key)
+  -- Prepend with a letter so it can be used as a dictionary key
+  return 'k'..key:gsub('.', string.byte)
+end
+
 local valid_mode = {
   c = "c",
   i = "i",
@@ -24,6 +31,8 @@ local valid_mode = {
   v = "v",
   x = "x"
 }
+
+BIND_FUNC = {}
 
 function util.bind_key(map)
   for key, value in pairs(map) do
@@ -42,20 +51,26 @@ function util.bind_key(map)
       default_opts = { noremap = true, silent = true }
     end
 
+    if type(rhs) == "function" then
+      local escaped = escape_keymap(key)
+      BIND_FUNC[escaped] = rhs
+      rhs = (":lua BIND_FUNC.%s()<CR>"):format(escaped)
+    end
+
     vim.api.nvim_set_keymap(mode, lhs, rhs, default_opts)
   end
 end
 
 
 -- Toggle between relativenumber and number
-function util.toggle_number()
-  if vim.wo["relativenumber"] then
-    vim.wo["relativenumber"] = false
-    vim.wo["number"] = true
-  else
-    vim.wo["relativenumber"] = true
-  end
-end
+-- function util.toggle_number()
+--   if vim.wo["relativenumber"] then
+--     vim.wo["relativenumber"] = false
+--     vim.wo["number"] = true
+--   else
+--     vim.wo["relativenumber"] = true
+--   end
+-- end
 
 -- Be aware of whether you are right or left vertical split
 -- so you can use arrows more naturally.
@@ -64,16 +79,12 @@ function util.vertical_resize(direction)
   local window_resize_count = 5
   local current_window = vim.call("winnr")
   local last_window = vim.call("winnr", "$")
-  local modifier = nil
-  local modifier_1 = nil
-  local modifier_2 = nil
+  local modifier, modifier_1, modifier_2 = nil
 
   if direction == "left" then
-    modifier_1 = "+"
-    modifier_2 = "-"
+    modifier_1, modifier_2 = "+", "-"
   else
-    modifier_1 = "-"
-    modifier_2 = "+"
+    modifier_1, modifier_2 = "-", "+"
   end
 
   if current_window == last_window then
@@ -87,7 +98,7 @@ function util.vertical_resize(direction)
     modifier = modifier_2
   end
 
-  local cmd = "vertical resize " .. modifier .. window_resize_count .. "<CR>"
+  local cmd = ("vertical resize %s%d<CR>"):format(modifier, window_resize_count)
 
   vim.cmd(cmd)
 end
@@ -109,15 +120,15 @@ end
 
 
 -- Get color group name of the syntax group where the cursor is
-function util.syntax_group()
-  local line = vim.fn["line"](".")
-  local col = vim.fn["col"](".")
-  local group = vim.fn["synID"](line, col, 1)
-  local id_attr = vim.fn["synIDattr"](group, "name")
-  local id_trans = vim.fn["synIDtrans"](group)
+-- function util.syntax_group()
+--   local line = vim.fn["line"](".")
+--   local col = vim.fn["col"](".")
+--   local group = vim.fn["synID"](line, col, 1)
+--   local id_attr = vim.fn["synIDattr"](group, "name")
+--   local id_trans = vim.fn["synIDtrans"](group)
 
-  print(id_attr .. " -> " .. vim.fn["synIDattr"](id_trans, "name"))
-end
+--   print(id_attr .. " -> " .. vim.fn["synIDattr"](id_trans, "name"))
+-- end
 
 -- Vim spelling suggestions with fzf
 -- ( https://coreyja.com/vim-spelling-suggestions-fzf/ )

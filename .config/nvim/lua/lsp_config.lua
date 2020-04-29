@@ -1,6 +1,6 @@
 local nvim_lsp = require("nvim_lsp")
 local util = require("util")
-local callback = require("lsp_config.callback")
+-- local callback = require("lsp_config.callback")
 
 local lsp_config = {}
 
@@ -23,11 +23,11 @@ local autocmd = {
   }
 }
 
-local on_attach = function(_, _)
-  callback.init()
-  util.create_augroups(autocmd)
-  util.bind_key(mapping)
-end
+local function on_attach(_, _)
+   -- callback.init()
+   util.create_augroups(autocmd)
+   util.bind_key(mapping)
+ end
 
 function lsp_config.init()
   local lua_dir  = os.getenv("HOME") .. "/.local/share/nvim_lsp/lua-language-server/"
@@ -35,8 +35,8 @@ function lsp_config.init()
   local lua_main = lua_dir .. "main.lua"
 
   -- SERVERS
-  -- Bash
   local configs = {
+    -- Bash
     bashls = {},
     -- Lua
     sumneko_lua = {
@@ -44,7 +44,7 @@ function lsp_config.init()
       settings = {
         Lua = {
           diagnostics = {
-            globals = { "vim", "awesome", "client", "tag" }
+            globals = { "vim", "awesome", "client", "tag", "screen" }
           }
         }
       }

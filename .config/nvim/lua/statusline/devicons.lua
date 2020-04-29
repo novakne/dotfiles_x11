@@ -29,6 +29,7 @@ local extensionTable = {
   ["lisp"]            = "",
   ["lua"]             = "",
   ["markdown"]        = "",
+  ["moon"]            = "",
   ["msql"]            = "",
   ["mysql"]           = "",
   ["ocaml"]           = "λ",

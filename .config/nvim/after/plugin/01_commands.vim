@@ -1,16 +1,11 @@
-" ~/.config/nvim/config/commands.vim
-
-command! PackInstall call pack#PackagerInit() | call packager#install()
-command! -bang PackUpdate call pack#PackagerInit() | call packager#update({ 'force_hooks': '<bang>' })
-command! PackClean call pack#PackagerInit() | call packager#clean()
-command! PackStatus call pack#PackagerInit() | call packager#status()
+" User Commands
 
 command! -nargs=* VTerm vsplit | terminal <args>
 command! -nargs=* STerm split | terminal <args>
 command! -nargs=* TTerm tabnew | terminal <args>
 
 " Make current buffer executable
-command! Chmodx :!chmod a+x %
+command! Chmodx :!chmod 774 %
 
 " Change to directory of current file
 command! Cd :cd %:p:h

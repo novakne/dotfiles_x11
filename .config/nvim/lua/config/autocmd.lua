@@ -18,6 +18,8 @@ local autocmd = {
   StatusLine = {
     { "WinEnter,BufEnter", "*", "setlocal statusline=%!statusline#ActiveLine()" },
     { "WinLeave,BufLeave", "*", "setlocal statusline=%!statusline#InactiveLine()" },
+    -- { "WinEnter,BufEnter", "*", ":lua require'statusline'.set()" },
+    -- { "WinLeave,BufLeave", "*", ":lua require'statusline'.set()" },
     { "TabNew", "*", "setlocal tabline=%!statusline#TabLine()" }
   },
   Terminal = {

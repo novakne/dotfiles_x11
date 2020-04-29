@@ -74,20 +74,34 @@ local mapping = {
   ["nMM"] = { ":<c-u>execute 'move +'. v:count1<CR>" },
 
   -- Get color group name of the syntax group where the cursor is
-  ["n<F12>"] = { ":lua require'util'.syntax_group()<CR>" },
+  -- ["n<F12>"] = { ":lua require'util'.syntax_group()<CR>" },
+  ["n<F12>"] = { function()
+    local line = vim.fn.line(".")
+    local col = vim.fn.col(".")
+    local group = vim.fn.synID(line, col, 1)
+    local id_attr = vim.fn.synIDattr(group, "name")
+    local id_trans = vim.fn.synIDtrans(group)
+
+    print(id_attr .. " -> " .. vim.fn.synIDattr(id_trans, "name"))
+  end
+},
 
   -- Toggle between number and relative number
-  ["n<Leader>à"] = { ":lua require'util'.toggle_number()<CR>" },
+  -- ["n<Leader>à"] = { ":lua require'util'.toggle_number()<CR>" },
+  ["n<Leader>à"] = { function()
+    if vim.wo["relativenumber"] then
+      vim.wo["relativenumber"] = false
+      vim.wo["number"] = true
+    else
+      vim.wo["relativenumber"] = true
+    end
+  end
+},
 
+  -- Term
   -- Toggle terminal
   ["n<Leader>s"] = { ":lua require'plugins.toggle_term'.toggle()<CR>" },
   ["t<Leader>s"] = { "<C-\\><C-n>:lua require'plugins.toggle_term'.toggle()<CR>" },
-
-  -- TODO Search helpers
-  --[[
-  nnoremap \s :let @s="\<'.expand('<cword>').'\>'<CR>:%s/<C-r>s//<Left>
-  xnoremap \s "sy:%s/<C-r>s//<Left>
--- ]]
 
   -- Copy, move or delete the first occurence of the search
   -- e.g. /word$t
@@ -126,10 +140,10 @@ local mapping = {
   -- Ripgrep
   ["n<Leader>r"] = { ":RG<CR>" },
   -- Search lines
-  ["n<Leader>l"] = { ":Blines<CR>" },
+  ["n<Leader>l"] = { ":BLines<CR>" },
   ["n<Leader>L"] = { ":Lines<CR>" },
   -- Search ctags
-  ["n<Leader>t"] = { ":Btags<CR>" },
+  ["n<Leader>t"] = { ":BTags<CR>" },
   ["n<Leader>T"] = { ":Tags<CR>" },
 
   -- Vim spelling suggestions with fzf
@@ -138,7 +152,7 @@ local mapping = {
   ["nz="] = { ":lua require'util'.fzf_spell()<CR>" },
 
   -- Search current word under cursor
-  ["n<Leader>k"] = { ":Rg! <C-R><C-W><CR>" },
+  ["n<Leader>k"] = { ":Rg <C-R><C-W><CR>" },
 
   -- Fzf quickfix
   -- Quickfix list
