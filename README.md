@@ -43,11 +43,13 @@
 
 ## Screenshots
 
+`Wallpapers_` Amazing works by [Michal Baca](https://www.artstation.com/vladimir_pl) and [Ismail Inceoglu](https://www.artstation.com/seventeenth)
 
 ![clean](img/previews/black_clean.png?raw=true "clean")
 *clean desktop*
 
 | Black | Blue |
+| ----- | ---- |
 | ![black_dirty](img/previews/black_dirty.png?raw=true "black_dirty") | ![blue_dirty](img/previews/blue_dirty.png?raw=true "blue_dirty") |
 
 ## AwesomeWM
