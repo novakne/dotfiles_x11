@@ -1,10 +1,9 @@
--- Wifi Widget
-
 local awful = require("awful")
 local dpi = require("beautiful").xresources.apply_dpi
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 
+local tooltp = require("util.tooltip")
 local icons_dir = os.getenv("HOME") .. "/.config/awesome/icons/wifi/"
 
 local interface = "wlp1s0"
@@ -20,23 +19,13 @@ local widget = wibox.widget {
   layout = wibox.layout.align.horizontal
 }
 
-awful.tooltip(
-  {
-    objects = { widget },
-    mode = "outside",
-    align = "right",
-    timer_function = function()
-      if connected then
-        return "Connected to " .. essid
-      else
-        return "Wireless network is disconnected"
-      end
-    end,
-    preferred_positions = { "right", "left", "top", "bottom" },
-    margin_leftright = dpi(8),
-    margin_topbottom = dpi(8)
-  }
-  )
+local wifi_tlp = tooltp.make(widget, dpi(8), dpi(8), function()
+  if connected then
+    return "Connected to " .. essid
+  else
+    return "Wireless network is disconnected!"
+  end
+end)
 
 local function grabText()
   if connected then

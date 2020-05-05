@@ -1,5 +1,6 @@
 local gfs = require("gears.filesystem")
 local beautiful = require("beautiful")
+local config_dir = gfs.get_configuration_dir()
 
 
 local env = {
@@ -19,27 +20,26 @@ local env = {
   terminal = "alacritty",
   editor   = "nvim",
   browser  = "vivaldi-stable",
+  taskmanager = "alacritty -e htop"
 }
 
 -- Theme
 local chosen_theme = env.themes[2]
-beautiful.init(gfs.get_configuration_dir() .."themes/"..chosen_theme.."/theme.lua")
+beautiful.init(config_dir.."themes/"..chosen_theme.."/theme.lua")
 -- Taglist icons
 env.icons_color = env.tag_icons_colors[2]
 
 -- Rofi
-local rofi_dir = gfs.get_configuration_dir().."themes/".. chosen_theme .. "/rofi/"
+local rofi_dir   = config_dir.."themes/"..chosen_theme.."/rofi/"
 local rofi_theme = env.rofi_themes[3]
+local rofi_cmd   = "rofi -no-lazy-grab -show drun -theme %sapp_drawer_%s.rasi"
 
-local fmt = ""
 if rofi_theme == env.rofi_themes[1] then
-  fmt = "rofi -normal-window -modi drun -show drun -theme %sapp_drawer_%s.rasi"
-else
-  fmt = "rofi -no-lazy-grab -show drun -theme %sapp_drawer_%s.rasi"
+  rofi_cmd = "rofi -normal-window -show drun -theme %sapp_drawer_%s.rasi"
 end
 
-env.launcher = fmt:format(rofi_dir, rofi_theme)
-env.power_menu = gfs.get_configuration_dir() .. "layouts/power_menu/power_menu"
+env.launcher = rofi_cmd:format(rofi_dir, rofi_theme)
+env.power_menu = config_dir.."layouts/power_menu/power_menu"
 
 
 return env

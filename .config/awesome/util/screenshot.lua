@@ -12,7 +12,7 @@ local icon = require("icons").screenshot
 
 
 function screenshot.full()
-  cmd = "maim "..maim_args.." "..filename
+  cmd = ("maim %s %s"):format(maim_args, filename)
   print(filename)
   naughty.notify({
       title = "Screenshot",
@@ -24,7 +24,7 @@ function screenshot.full()
 end
 
 function screenshot.selection()
-  cmd = "maim "..maim_args.." -s "..filename
+  cmd = ("maim %s -s %s"):format(maim_args, filename)
   naughty.notify({
       title = "Screenshot",
       message = "Select area to capture.",
@@ -42,7 +42,7 @@ function screenshot.selection()
 end
 
 function screenshot.click()
-  cmd = "maim -st 9999999 "..maim_args.." "..filename
+  cmd = ("maim -st 9999999 %s %s"):format(maim_args, filename)
   naughty.notify({
       title = "Screenshot",
       message = "Click on a window to select it",

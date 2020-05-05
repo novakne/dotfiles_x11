@@ -1,5 +1,7 @@
 local awful = require("awful")
 
+local startup = {}
+
 -- List of apps to start once on start-up
 local run_on_start_up = {
   "picom",
@@ -15,6 +17,10 @@ local function run_once(cmd)
   awful.spawn.with_shell(string.format('pgrep -u $USER -x %s > /dev/null || (%s)', findme, cmd), false)
 end
 
-for _, app in ipairs(run_on_start_up) do
-  run_once(app)
+function startup.init()
+  for _, app in ipairs(run_on_start_up) do
+    run_once(app)
+  end
 end
+
+return startup

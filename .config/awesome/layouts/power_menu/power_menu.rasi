@@ -1,5 +1,3 @@
-/* ~/.config/awesome/layouts/power_menu/power_menu.rasi */
-
 * {
     accent: #fc65b0;
     bg: #29223a;

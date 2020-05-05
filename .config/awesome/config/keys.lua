@@ -7,7 +7,7 @@ local naughty = require("naughty")
 -- require("awful.hotkeys_popup.keys")
 
 -- Default Applications
-local env = require("configuration.env")
+local env = require("config.env")
 local screenshot = require("util.screenshot")
 
 -- Define mod key

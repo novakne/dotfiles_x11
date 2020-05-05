@@ -1,8 +1,7 @@
-local awful = require("awful")
-local dpi = require("beautiful").xresources.apply_dpi
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 
+local tooltp = require("util.tooltip")
 local icons_dir = os.getenv("HOME") .. '/.config/awesome/icons/volume/'
 
 local widget = wibox.widget {
@@ -14,14 +13,7 @@ local widget = wibox.widget {
   layout = wibox.layout.align.horizontal
 }
 
-local tooltip = awful.tooltip({
-    objects = { widget },
-    mode = "outside",
-    align = "right",
-    preferred_positions = {"right", "left", "top", "bottom"},
-    margin_leftright = dpi(8),
-    margin_topbottom = dpi(8)
-  })
+local tooltip = tooltp.make(widget)
 
 watch(
   [[bash -c "amixer -D pulse sget Master"]],

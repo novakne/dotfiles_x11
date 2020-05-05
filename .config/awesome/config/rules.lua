@@ -1,6 +1,6 @@
 local awful = require('awful')
 local ruled = require("ruled")
-local keys = require("configuration.keys")
+local keys = require("config.keys")
 
 local screen_height = awful.screen.focused().geometry.height
 local screen_width = awful.screen.focused().geometry.width
@@ -12,7 +12,7 @@ ruled.client.connect_signal("request::rules", function()
   -- All clients will match this rule.
   addrule {
     id = "global",
-    rule = { },
+    rule = {},
     properties = {
       focus = awful.client.focus.filter,
       raise = true,

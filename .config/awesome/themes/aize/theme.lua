@@ -4,6 +4,7 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
 local themes_path = gfs.get_configuration_dir() .. "/themes/aize/"
+local wal_dir = gfs.get_configuration_dir() .. "/themes/wal/"
 
 local theme = {}
 
@@ -25,7 +26,7 @@ theme.cyan    = "#4db9c8"
 
 -- General
 theme.font        = "Inter 11"
-theme.wallpaper   = themes_path .. "wal_coffee.jpg"
+theme.wallpaper   = wal_dir .. "wal_coffee.jpg"
 theme.icon_theme  = "/usr/share/icons/Papirus"
 theme.useless_gap = dpi(6)
 theme.gap_single_client = false
@@ -43,7 +44,8 @@ theme.fg_urgent     = theme.pink
 theme.fg_minimize   = theme.white
 
 -- Border
-theme.border_width        = dpi(2)
+theme.border_width  = dpi(2)
+theme.border_radius = dpi(4)
 theme.border_color_normal = theme.bg_normal
 theme.border_color_active = theme.pink
 theme.border_marked       = theme.pink

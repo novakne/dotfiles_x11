@@ -3,23 +3,23 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
--- local gears = require("gears")
--- local awful = require("awful")
 require("awful.autofocus")
 
 
 -- Configurations
-require("configuration.startup")
-require("configuration.notifications")
-require("configuration.keys")
-require("configuration.rules")
-require("configuration.signals")
-require("configuration.tags")
-require("configuration.titlebar").init()
+local startup = require("config.startup")
+startup.init()
+require("config.notifications")
+require("config.keys")
+require("config.rules")
+require("config.signals")
+require("config.tags")
+local titlebar = require("config.titlebar")
+titlebar.init()
 
 -- Theme
-require("configuration.env")
-require("configuration.wallpaper")
+require("config.env")
+require("config.wallpaper")
 
 -- Panels
 require("layouts.panels")

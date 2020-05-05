@@ -1,7 +1,7 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-local env = require("configuration.env")
-local icons_dir = os.getenv("HOME") .. "/.config/awesome/icons/tags/" .. env.icons_color
+local env = require("config.env")
+local icons_dir = os.getenv("HOME").."/.config/awesome/icons/tags/"..env.icons_color
 
 -- Configure each tags
 local tags = {

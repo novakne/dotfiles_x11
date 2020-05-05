@@ -1,6 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-local env = require("configuration.env")
+local env = require("config.env")
 -- TODO This is file is not sourced for now
 
 -- Create a launcher widget and a main menu

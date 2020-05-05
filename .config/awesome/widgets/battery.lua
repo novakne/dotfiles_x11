@@ -13,6 +13,7 @@ local dpi = require("beautiful").xresources.apply_dpi
 local naughty = require("naughty")
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
+local tooltp = require("util.tooltip")
 
 local icons_dir = os.getenv("HOME") .. "/.config/awesome/icons/battery/"
 
@@ -25,14 +26,7 @@ local widget = wibox.widget {
   layout = wibox.layout.fixed.horizontal
 }
 
-local battery_popup = awful.tooltip({
-    objects = { widget },
-    mode = "outside",
-    align = "right",
-    preferred_positions = { "right", "left", "top", "bottom" },
-    margin_leftright = dpi(8),
-    margin_topbottom = dpi(8)
-  })
+local battery_popup = tooltp.make(widget)
 
 local function show_battery_warning()
   naughty.notify({

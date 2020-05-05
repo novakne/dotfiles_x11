@@ -1,34 +1,35 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
+local gears = require("gears")
 local gtable = require("gears.table")
 local wibox = require("wibox")
 
-local modkey = require('configuration.keys').modkey
+local modkey = require('config.keys').modkey
 
 local taglist = {}
 
-function taglist:buttons()
-  local taglist_buttons = gtable.join(
-    awful.button({ }, 1, function(t) t:view_only() end),
+local function taglist_buttons()
+  local buttons = gtable.join(
+    awful.button({}, 1, function(t) t:view_only() end),
     awful.button({ modkey }, 1, function(t)
       if client.focus then
         client.focus:move_to_tag(t)
       end
     end),
-    awful.button({ }, 3, awful.tag.viewtoggle),
+    awful.button({}, 3, awful.tag.viewtoggle),
     awful.button({ modkey }, 3, function(t)
       if client.focus then
         client.focus:toggle_tag(t)
       end
     end),
-    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+    awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
+    awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
     )
-  return taglist_buttons
+  return buttons
 end
 
-function taglist:layout()
+local function taglist_layout()
   local layout = {
     spacing = dpi(0),
     layout  = wibox.layout.fixed.vertical
@@ -36,7 +37,7 @@ function taglist:layout()
   return layout
 end
 
-function taglist:template()
+local function taglist_template()
   local template = {
     {
       {
@@ -50,6 +51,9 @@ function taglist:template()
       widget = wibox.container.margin
     },
     id = "background_role",
+    shape = function(cr, width, height)
+      gears.shape.rounded_rect(cr, width, height, dpi(4))
+    end,
     widget = wibox.container.background,
     -- Add support for hover colors and an index label
     create_callback = function(self, c3, index, _)
@@ -72,17 +76,15 @@ function taglist:template()
   return template
 end
 
-function taglist:new(s)
-  local widget = awful.widget.taglist {
+function taglist.init(s)
+  local taglist_widget = awful.widget.taglist {
     screen = s,
     filter = awful.widget.taglist.filter.all,
-    buttons = self:buttons(),
-    layout = self:layout(),
-    widget_template = self:template()
+    buttons = taglist_buttons(),
+    layout = taglist_layout(),
+    widget_template = taglist_template()
   }
-  return widget
+  return taglist_widget
 end
 
-return setmetatable(taglist, {
-    __call = taglist.new,
-  })
+return taglist
