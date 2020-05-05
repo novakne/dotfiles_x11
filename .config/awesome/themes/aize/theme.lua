@@ -26,7 +26,7 @@ theme.cyan    = "#4db9c8"
 
 -- General
 theme.font        = "Inter 11"
-theme.wallpaper   = wal_dir .. "wal_coffee.jpg"
+theme.wallpaper   = wal_dir .. "ismail_inceoglu_02.jpg"
 theme.icon_theme  = "/usr/share/icons/Papirus"
 theme.useless_gap = dpi(6)
 theme.gap_single_client = false

@@ -44,11 +44,11 @@
 ## Screenshots
 
 
-![clean](img/previews/clean.png?raw=true "clean")
-*clean desktop with rofi*
+![clean](img/previews/black_clean.png?raw=true "clean")
+*clean desktop*
 
-![blue_dirty](img/previews/blue_dirty.png?raw=true "blue_dirty")
-![black_dirty](img/previews/black_dirty.png?raw=true "black_dirty")
+| Black | Blue |
+| ![black_dirty](img/previews/black_dirty.png?raw=true "black_dirty") | ![blue_dirty](img/previews/blue_dirty.png?raw=true "blue_dirty") |
 
 ## AwesomeWM
 
@@ -149,6 +149,6 @@ Lazy loaded with [Zinit](https://github.com/zdharma/zinit)
 ## Thanks
 Inspiration from a lot of people  
 Neovim_ [norcalli](https://github.com/norcalli), [haorenW1025](https://github.com/haorenW1025)  
-AwesomeWM_ [szorfein](https://github.com/szorfein/dotfiles), [elenapan](https://github.com/elenapan/dotfiles), [manilarome](https://github.com/manilarome/the-glorious-dotfiles), [WillPower3309](https://github.com/WillPower3309/awesome-dotfiles)  
+AwesomeWM_ [szorfein](https://github.com/szorfein/dotfiles), [elenapan](https://github.com/elenapan/dotfiles), [manilarome](https://github.com/manilarome/the-glorious-dotfiles), [WillPower3309](https://github.com/WillPower3309/awesome-dotfiles), [arndtphillip](https://github.com/arndtphillip/dotfiles)  
 Rofi_ [adi1090x](https://github.com/adi1090x/rofi)  
 And a lot more...
