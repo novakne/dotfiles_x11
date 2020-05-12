@@ -23,7 +23,8 @@ local autocmd = {
     { "TabNew", "*", "setlocal tabline=%!statusline#TabLine()" }
   },
   Terminal = {
-    { "TermOpen", "*", "lua require'plugins.toggle_term'.autocmd()" }
+    { "TermOpen", "*", "lua require'plugins.toggle_term'.autocmd()" },
+    { "TermEnter", "*", "startinsert!" }
   }
 }
 

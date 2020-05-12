@@ -12,7 +12,7 @@ local mapping = {
   ["nk"] = { "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true } },
 
   -- Use <Tab> and <S-Tab> to navigate through popup menu
-  ["i<Tab>"] = { "pumvisible() ? '<C-n>' : '<Tab>'", { noremap = true, expr = true } },
+  ["i<Tab>"]   = { "pumvisible() ? '<C-n>' : '<Tab>'", { noremap = true, expr = true } },
   ["i<S-Tab>"] = { "pumvisible() ? '<C-p>' : '<S-Tab>'", { noremap = true, expr = true } },
 
   -- Easier start & end of the line
@@ -24,8 +24,6 @@ local mapping = {
   ["n<Leader>z"] = { ":q<CR>" },
   ["n<Leader>x"] = { ":xa<CR>" },
   ["n<Leader>!"] = { ":q!<CR>" },
-  -- Easier for azerty
-  -- ["n;"] = { "." },
   -- Apend ;/, at the end of the line
   ["n<Leader>;"] = { ":normal A;<CR>" },
   ["n<Leader>,"] = { ":normal A,<CR>" },
@@ -36,6 +34,8 @@ local mapping = {
   ["nyc"] = { "vawy" },
   -- Makes s act like d, except it doesn’t save the cut text to a register
   ["ns"] = { '"_d' },
+  -- Make Y act like D and C
+  ["nY"] = { "y$" },
 
   -- Windows
   -- Move to the split in the direction shown, or create a new split
@@ -47,9 +47,9 @@ local mapping = {
 
   -- Intelligent windows resizing using ctrl + arrow keys
   ["n<C-Right>"] = { ":lua require'util'.vertical_resize('right')<CR>" },
-  ["n<C-Left>"] = { ":lua require'util'.vertical_resize('left')<CR>" },
-  ["n<C-Up>"] = { ":resize -1<CR>" },
-  ["n<C-Down>"] = { ":resize +1<CR>" },
+  ["n<C-Left>"]  = { ":lua require'util'.vertical_resize('left')<CR>" },
+  ["n<C-Up>"]    = { ":resize -1<CR>" },
+  ["n<C-Down>"]  = { ":resize +1<CR>" },
 
   -- Tabs
   ["ntl"] = { ":tabnext<CR>" },
@@ -66,15 +66,18 @@ local mapping = {
   ["n<esc>"] = { ":noh<CR>" },
 
   -- Spell
-  ["n<F9>"] = { ":setlocal spell! spelllang=en<CR>" },
+  ["n<F9>"]  = { ":setlocal spell! spelllang=en<CR>" },
   ["n<F10>"] = { ":setlocal spell! spelllang=fr<CR>" },
 
-  -- Quickly move current line
-  ["nmm"] = { ":<c-u>execute 'move -1-'. v:count1<CR>" },
-  ["nMM"] = { ":<c-u>execute 'move +'. v:count1<CR>" },
+  -- Quickly move current line or visual selection
+  -- ["nmm"] = { ":<c-u>execute 'move -1-'. v:count1<CR>" },
+  -- ["nMM"] = { ":<c-u>execute 'move +'. v:count1<CR>" },
+  ["nmm"] = { ":m .+1<CR>==" },
+  ["nMM"] = { ":m .-2<CR>==" },
+  ["v<A-j>"] = { ":m '>+1<CR>gv=gv" },
+  ["v<A-k>"] = { ":m '<-2<CR>gv=gv" },
 
   -- Get color group name of the syntax group where the cursor is
-  -- ["n<F12>"] = { ":lua require'util'.syntax_group()<CR>" },
   ["n<F12>"] = { function()
     local line = vim.fn.line(".")
     local col = vim.fn.col(".")
@@ -87,7 +90,6 @@ local mapping = {
 },
 
   -- Toggle between number and relative number
-  -- ["n<Leader>à"] = { ":lua require'util'.toggle_number()<CR>" },
   ["n<Leader>à"] = { function()
     if vim.wo["relativenumber"] then
       vim.wo["relativenumber"] = false

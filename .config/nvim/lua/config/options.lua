@@ -142,13 +142,6 @@ local plugin_options = {
   -- Group all tags files in a folder
   gutentags_cache_dir = "~/.cache/tags",
 
-  -- Lsp
-  LspDiagnosticsErrorSign = "",
-  LspDiagnosticsWarningSign = "",
-  LspDiagnosticsInformationSign = "",
-  LspDiagnosticsHintSign = "",
-
-
   -- Nnn ( https://github.com/mcchrish/nnn.vim )
   ["nnn#layout"] = {
     window = {
