@@ -5,6 +5,20 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export PAGER='less'
 
+# Add a title to terminal window
+xterm_title_precmd () {
+	print -Pn -- '\e]2;%~\a'
+}
+
+xterm_title_preexec () {
+	print -Pn -- '\e]2;%~ %# ' && print -n -- "${(q)1}\a"
+}
+
+if [[ "$TERM" == (alacritty*|kitty*|konsole*|putty*|rxvt*|tmux*|xterm*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
+
 # Use neovim instead of vim for pacdiff
 export DIFFPROG='nvim -d'
 
@@ -74,7 +88,7 @@ if (( $+commands[yarn] )); then
 fi
 
 # Rust
-if [[ -d "$XDG_DATA_HOME/rustup" ]] && [[ -d "$XDG_DATA_HOME/cargo" ]]; then
+if [[ -d "$XDG_DATA_HOME/rustup" && -d "$XDG_DATA_HOME/cargo" ]]; then
     export RUSTUP_HOME=$XDG_DATA_HOME/rustup
     export CARGO_HOME=$XDG_DATA_HOME/cargo
     export PATH=$XDG_DATA_HOME/cargo/bin:$PATH

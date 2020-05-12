@@ -37,6 +37,10 @@ alias exa='exa --group-directories-first --icons'
 alias ea='exa -lah --group-directories-first --git --icons'
 alias et='exa -lah -TL2 --group-directories-first --git --icons'
 
+# Fennel
+alias fnl='fennel'
+alias fnlc="fennel --compile"
+
 # Nnn ( https://github.com/jarun/nnn )
 alias nn='nnn -en'
 alias N='sudo -E nnn -dHn'
