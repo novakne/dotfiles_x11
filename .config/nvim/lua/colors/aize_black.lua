@@ -233,6 +233,11 @@ highlight("cssTagName", aize13, nil, nil, blue, nil, nil)
 highlight("cssUnitDecorators", aize10, nil, nil, red, nil, nil)
 highlight("cssVendor", aize11, nil, yellow, nil, nil, nil)
 
+-- FENNEL ( https://github.com/bakpakin/fennel.vim )
+highlight('FennelSpecialForm', aize09, nil, red, nil, nil, nil)
+highlight('FennelSymbol', aize07, nil, lightWhite, nil, nil, nil)
+highlight('FennelParen', aize13, nil, blue, nil, nil, nil)
+
 -- GO
 highlight("goBuiltins", aize15, nil, nil, cyan, nil, nil)
 highlight("goConstants", aize11, nil, yellow, nil, nil, nil)
