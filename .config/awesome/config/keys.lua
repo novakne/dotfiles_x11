@@ -189,14 +189,14 @@ keys.globalkeys = gears.table.join(
 
   -- Gap
   -- Increment
-  awful.key({ modkey, "Shift" }, "minus",
+  awful.key({ modkey, "Shift" }, "g",
     function()
       awful.tag.incgap(5, nil)
     end,
     {description = "increment gaps size for the current tag", group = "gap"}),
 
   -- Decrement
-  awful.key({ modkey }, "minus",
+  awful.key({ modkey }, "g",
     function()
       awful.tag.incgap(-5, nil)
     end,

@@ -13,14 +13,13 @@ local icon = require("icons").screenshot
 
 function screenshot.full()
   cmd = ("maim %s %s"):format(maim_args, filename)
-  print(filename)
-  naughty.notify({
-      title = "Screenshot",
-      message = "Screenshot taken!",
-      icon = icon
-    })
-  awful.spawn.easy_async_with_shell(cmd, function(_, _, _, _)
-  end)
+  awful.spawn.easy_async_with_shell(cmd, function()
+    naughty.notify({
+	title = "Screenshot",
+	message = "Screenshot taken!",
+	icon = icon
+      })
+    end)
 end
 
 function screenshot.selection()
