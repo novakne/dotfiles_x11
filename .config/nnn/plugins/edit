@@ -6,7 +6,11 @@
 SERVICE='nvim'
  
 if pgrep -f "$SERVICE" > /dev/null; then
-    nvr "$1"
+  nvr "$1"
 else
+  if type -p nv &>/dev/null; then 
+    nv "$1"
+  else
     "${EDITOR:-nvim}" "$1"
+  fi
 fi

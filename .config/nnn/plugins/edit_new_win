@@ -3,4 +3,8 @@
 # Open file in a new window with neovim
 #   - Dependencies: neovim
 
-alacritty -e "${EDITOR:-nvim}" "$nnn"
+if type -p nv &>/dev/null; then
+  alacritty -e nv "$nnn"
+else
+  alacritty -e "${EDITOR:-nvim}" "$nnn"
+fi

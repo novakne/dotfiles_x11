@@ -43,7 +43,7 @@ alias fnlc="fennel --compile"
 
 # Nnn ( https://github.com/jarun/nnn )
 alias nn='nnn -en'
-alias N='sudo -E nnn -dHn'
+alias N='sudo -E nnn -e'
 
 # Sxiv ( https://github.com/muennich/sxiv )
 alias sx='sxiv -b'

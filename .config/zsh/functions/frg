@@ -1,12 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 # fuzzy grep via rg and open in vim with line number
 #   - Dependencies: fzf, rg, neovim
 
 frg () {
-    local file
-    local line
+  local file
+  local line
 
-    read -r file line <<<"$(rg --no-heading --line-number 2> /dev/null "$@" | fzf -0 -1 | awk -F: '{print $1, $2}')"
+  read -r file line <<<"$(rg --no-heading --line-number 2> /dev/null "$@" | fzf -0 -1 | awk -F: '{print $1, $2}')"
 
+  if (( $+commands[nv] )); then
+    [[ -n "$file" ]] && nv "$file" +"$line"
+  else
     [[ -n "$file" ]] && ${EDITOR:-nvim} "$file" +"$line"
+  fi
 }

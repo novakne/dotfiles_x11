@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
@@ -6,8 +6,12 @@
 #   - Dependencies: fzf, neovim
 
 fe () {
-    local files
-    IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  local files
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
 
+  if (( $+commands[nv] )); then
+    [[ -n "$files" ]] && nv "${files[@]}"
+  else
     [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+  fi
 }

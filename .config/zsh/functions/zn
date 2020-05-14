@@ -1,7 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 # Jump to a dir with z.lua and open it in neovim
 #   - Dependencies: z.lua, neovim
 
 zn () {
+  if (( $+commands[nv] )); then
+    _zlua "$1" && nv
+  else
     _zlua "$1" && nvim
+  fi
 }
