@@ -87,6 +87,11 @@ if (( $+commands[yarn] )); then
     export PATH=$XDG_CONFIG_HOME/yarn/global/node_modules/bin:$PATH
 fi
 
+# Lua
+if (( $+commands[luarocks] )); then
+    export PATH=$HOME/.luarocks/bin:$PATH
+fi
+
 # Rust
 if [[ -d "$XDG_DATA_HOME/rustup" && -d "$XDG_DATA_HOME/cargo" ]]; then
     export RUSTUP_HOME=$XDG_DATA_HOME/rustup
@@ -141,7 +146,8 @@ if [[ -d "$fzf_dir" ]]; then
     source "$fzf_dir"/shell/completion.zsh 2> /dev/null
     source "$fzf_dir"/shell/key-bindings.zsh
 
-    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+    # export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+    export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden -E .git --color=always'
     # Uses tree command to show the entries of the directory
     export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
@@ -173,7 +179,7 @@ if [[ -d "$fzf_dir" ]]; then
         --color=bg+:$aize00,bg:$aize00,spinner:$aize09,hl:$aize12
         --color=fg:$aize05,header:$aize09,info:$aize09,pointer:$aize11
         --color=marker:$aize13,fg+:$aize07,prompt:$aize09,hl+:$aize11
-        --height 50% --reverse --margin 2% --cycle --multi
+        --height 50% --reverse --margin 2% --cycle --multi --ansi
         "
 
     }
