@@ -2,7 +2,19 @@
 --max-columns=150
 --max-columns-preview
 
+# Using glob patterns to include/exclude files or folders
+--glob
+!git/*
+
 # Theme
-# --colors
+# --colors=line:fg:yellow
+# --colors=line:style:bold
+# --colors=path:fg:green
+# --colors=path:style:bold
+# --colors=match:fg:black
+# --colors=match:bg:yellow
+# --colors=match:style:nobold
+
+--smart-case
 
 # vim: ft=cfg
