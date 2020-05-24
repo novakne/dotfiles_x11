@@ -34,7 +34,8 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 
-# Some functions, like _apt and _dpkg, are very slow. You can use a cache in order to proxy the list of results
+# Some functions, like _apt and _dpkg, are very slow.
+# You can use a cache in order to proxy the list of results
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh
 

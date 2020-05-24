@@ -18,52 +18,63 @@ shopt -s nocaseglob
 shopt -s histappend
 # Save multi-line commands as one command
 shopt -s cmdhist
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 # Avoid duplicate entries
 HISTCONTROL="erasedups:ignoreboth"
 
 # ___ENV___
-export $HISTFILE=~/.cache/bash/bash_history
+export HISTFILE="$HOME"/.cache/bash/bash_history
 # User local scripts
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/bin/colors:$PATH
+[[ -d "$HOME"/bin ]] && path=("$HOME"/{bin,bin/colors} $path)
 systemctl --user import-environment PATH
 
-export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
-export PARALLEL_HOME=$XDG_CACHE_HOME/parallel
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export PARALLEL_HOME="$XDG_CACHE_HOME"/parallel
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 
 # Npm
-export PATH=$XDG_DATA_HOME/npm/bin:$PATH
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-# Yarn
-export PATH=$HOME/.config/yarn/global/node_modules/bin:$PATH
+if command -v npm >/dev/null 2>&1; then
+  export PATH="$XDG_DATA_HOME"/npm/bin:$PATH
+  export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+fi
+
 # Rust
-export RUSTUP_HOME=$HOME/.local/share/rustup
-export CARGO_HOME=$HOME/.local/share/cargo
-export PATH=$HOME/.local/share/cargo/bin:$PATH
+if [[ -d "$XDG_DATA_HOME"/rustup ]] && [[ -d "$XDG_DATA_HOME"/cargo ]]; then
+  export RUSTUP_HOME="$HOME"/.local/share/rustup
+  export CARGO_HOME="$HOME"/.local/share/cargo
+  export PATH="$HOME"/.local/share/cargo/bin:$PATH
+fi
 
 # BSPWM
-export PANEL_FIFO="/tmp/panel-fifo"
-path=(
-  $HOME/.config/bspwm/{scripts,panel}
-  $path
-)
+if [[ -d "$XDG_CONFIG_HOME"/bspwm ]]; then
+  export PANEL_FIFO="/tmp/panel-fifo"
+  path=("$HOME"/.config/bspwm/{scripts,panel} $path)
+fi
 
 # NNN
-export NNN_COLORS='2314'
-export NNN_TRASH=1
-export NNN_USE_EDITOR=1
-export NNN_RESTRICT_NAV_OPEN=0
-export NNN_RESTRICT_0B=1
-export NNN_COPIER="$XDG_CONFIG_HOME/nnn/copier"
-export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/src;d:~/docs/notes;l:~/.local/share'
-export NNN_PLUG='f:browse_img_full;i:browse_img;s:fuzzy;c:_chmod a+x $nnn*'
+if command -v nnn >/dev/null 2>&1; then
+  export NNN_COLORS='2314'
+  export NNN_TRASH=1
+  export NNN_USE_EDITOR=1
+  export NNN_RESTRICT_NAV_OPEN=0
+  export NNN_RESTRICT_0B=1
+  export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
+  export NNN_COPIER="$XDG_CONFIG_HOME"/nnn/copier
+  export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/dev;d:~/doc;l:~/.local/share'
+  export NNN_PLUG='f:browse_img_full;i:browse_img;o:open;s:fuzzy;c:_chmod 774 $nnn*;e:exec'
+fi
 # RIPGREP
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/rc"
+if command -v rg >/dev/null 2>&1; then
+  export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/rc
+fi
 
 # EXA
-export EXA_COLORS="lp=34:da=37:uu=33:sn=35:sb=35"
+if command -v exa >/dev/null 2>&1; then
+  export EXA_COLORS="lp=34:da=37:uu=33:sn=35:sb=35"
+fi
 
 
 # ___ALIAS___
@@ -77,7 +88,7 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nvim PKGBUILD'
 alias fixit='sudo rm -f /var/lib/pacman/db.lck'
-alias cmx='chmod a+x'
+alias cmx='chmod 774'
 
 # ___PROMPT___
 function nonzero_return() {

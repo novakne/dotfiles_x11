@@ -1,6 +1,6 @@
 # $HOME/.config/zsh/options/env.zsh
 
-export BROWSER="vivaldi-stable"
+export BROWSER='vivaldi-stable'
 export EDITOR='nvim'
 export VISUAL='nvim'
 export PAGER='less'
@@ -14,7 +14,7 @@ xterm_title_preexec () {
 	print -Pn -- '\e]2;%~ %# ' && print -n -- "${(q)1}\a"
 }
 
-if [[ "$TERM" == (alacritty*|kitty*|konsole*|putty*|rxvt*|tmux*|xterm*) ]]; then
+if [[ "$TERM" == (alacritty*|kitty*|rxvt*|tmux*|xterm*) ]]; then
 	add-zsh-hook -Uz precmd xterm_title_precmd
 	add-zsh-hook -Uz preexec xterm_title_preexec
 fi
@@ -23,12 +23,10 @@ fi
 export DIFFPROG='nvim -d'
 
 # Give a name to nvim server to start with neovim-remote
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+(( $+commands[nvr] )) && export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
 
 # Less
 # Set the default Less options.
-# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
-# Remove -X and -F (exit if the content fits on one screen) to enable it.
 if (( $+commands[less] )); then
     export LESS='-g -i -M -R -S -w -z-4'
     export LESSHISTFILE=$HOME/.cache/less
@@ -39,76 +37,59 @@ if (( $+commands[less] )); then
     export LESS_TERMCAP_so=$'\e[1;40;36m'
     export LESS_TERMCAP_ue=$'\e[0m'
     export LESS_TERMCAP_us=$'\e[1;33m'
-
-    # Set the Less input preprocessor.
-    # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
-    if (( $#commands[(i)lesspipe(|.sh)] )); then
-	export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
-    fi
 fi
 
-if [ -r "$XDG_CONFIG_HOME/dircolors" ]; then
+if [[ -r "$XDG_CONFIG_HOME"/dircolors ]]; then
     eval $(dircolors $XDG_CONFIG_HOME/dircolors)
 fi
 
 # Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+typeset -gU path PATH cdpath CDPATH fpath FPATH manpath MANPATH mailpath
 
-# Bin
-path=(
-  /usr/local/{bin,sbin}
-  $path
-)
+# System bin
+path=(/usr/local/{bin,sbin} $path)
 systemctl --user import-environment PATH
 
-# Completion
-fpath=($ZDOTDIR/completions $fpath)
+# User bin
+[[ -d "$HOME"/bin ]] && path=("$HOME"/{bin,bin/colors} $path)
 
-# User local scripts
-if [[ -d "$HOME/bin" ]]; then
-    export PATH=$HOME/bin:$PATH
-    export PATH=$HOME/bin/colors:$PATH
-fi
+# Completions
+fpath=("$ZDOTDIR"/completions $fpath)
 
 # Clean $HOME dir
-export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
-export PARALLEL_HOME=$XDG_CACHE_HOME/parallel
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export PARALLEL_HOME="$XDG_CACHE_HOME"/parallel
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 
 # Npm
 if (( $+commands[npm] )); then
-    export PATH=$XDG_DATA_HOME/npm/bin:$PATH
-    export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+    export PATH="$XDG_DATA_HOME"/npm/bin:$PATH
+    export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 fi
 
 # Yarn
 if (( $+commands[yarn] )); then
-    export PATH=$XDG_CONFIG_HOME/yarn/global/node_modules/bin:$PATH
+    export PATH="$XDG_CONFIG_HOME"/yarn/global/node_modules/bin:$PATH
 fi
 
 # Lua
-if (( $+commands[luarocks] )); then
-    export PATH=$HOME/.luarocks/bin:$PATH
-fi
+(( $+commands[luarocks] )) && export PATH="$HOME"/.luarocks/bin:$PATH
 
 # Rust
-if [[ -d "$XDG_DATA_HOME/rustup" && -d "$XDG_DATA_HOME/cargo" ]]; then
-    export RUSTUP_HOME=$XDG_DATA_HOME/rustup
-    export CARGO_HOME=$XDG_DATA_HOME/cargo
-    export PATH=$XDG_DATA_HOME/cargo/bin:$PATH
+if [[ -d "$XDG_DATA_HOME"/rustup && -d "$XDG_DATA_HOME"/cargo ]]; then
+    export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+    export CARGO_HOME="$XDG_DATA_HOME"/cargo
+    export PATH="$XDG_DATA_HOME"/cargo/bin:$PATH
 fi
 
-# BSPWM
-if [[ -d "$XDG_CONFIG_HOME/bspwm" ]]; then
-    export PANEL_FIFO="/tmp/panel-fifo"
-    path=(
-	$XDG_CONFIG_HOME/bspwm/{scripts,panel}
-	$path
-    )
+# Bspwm
+if [[ -d "$XDG_CONFIG_HOME"/bspwm ]]; then
+    export PANEL_FIFO='/tmp/panel-fifo'
+    path=("$XDG_CONFIG_HOME"/bspwm/{scripts,panel} $path)
 fi
 
-# NNN
+# Nnn
 if (( $+commands[nnn] )); then
     export NNN_COLORS='2314'
     export NNN_TRASH=1
@@ -116,33 +97,29 @@ if (( $+commands[nnn] )); then
     export NNN_RESTRICT_NAV_OPEN=0
     export NNN_RESTRICT_0B=1
     export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
-    export NNN_COPIER="$XDG_CONFIG_HOME/nnn/copier"
+    export NNN_COPIER="$XDG_CONFIG_HOME"/nnn/copier
     export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/dev;d:~/doc;l:~/.local/share'
     export NNN_PLUG='f:browse_img_full;i:browse_img;o:open;s:fuzzy;c:_chmod 774 $nnn*;e:exec'
 fi
 
-# RIPGREP
-if (( $+commands[rg] )); then
-    export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/rc"
-fi
+# Ripgrep
+(( $+commands[rg] )) && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/rc
 
-# EXA
-if (( $+commands[exa] )); then
-    export EXA_COLORS="lp=34:da=37:uu=33:sn=35:sb=35"
-fi
+# Exa
+(( $+commands[exa] )) && export EXA_COLORS="lp=34:da=37:uu=33:sn=35:sb=35"
 
-# Z.LUA
-if [[ -d "$ZDOTDIR/z.lua" ]]; then
+# Z.Lua
+if [[ -d "$ZDOTDIR"/z.lua ]]; then
     export _ZL_ADD_ONCE=1
     export _ZL_ECHO=1
-    export _ZL_DATA="$XDG_CACHE_HOME/zlua/zlua"
+    export _ZL_DATA="$XDG_CACHE_HOME"/zlua/zlua
     eval "$(lua $ZDOTDIR/z.lua/z.lua --init zsh)"
 fi
 
-# FZF
+# Fzf
 typeset -U fzf_dir="$XDG_CONFIG_HOME"/fzf
 if [[ -d "$fzf_dir" ]]; then
-    export PATH=$fzf_dir/bin:$PATH
+    export PATH="$fzf_dir"/bin:$PATH
     source "$fzf_dir"/shell/completion.zsh 2> /dev/null
     source "$fzf_dir"/shell/key-bindings.zsh
 
