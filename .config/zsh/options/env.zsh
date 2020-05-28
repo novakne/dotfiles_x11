@@ -99,7 +99,7 @@ if (( $+commands[nnn] )); then
     export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
     export NNN_COPIER="$XDG_CONFIG_HOME"/nnn/copier
     export NNN_BMS='c:~/.config;n:~/.config/nvim;z:~/.config/zsh;a:~/.config/awesome;i:~/img;s:~/dev;d:~/doc;l:~/.local/share'
-    export NNN_PLUG='f:browse_img_full;i:browse_img;o:open;s:fuzzy;c:_chmod 774 $nnn*;e:exec'
+    export NNN_PLUG='f:fuzzy;i:imgview;o:open;c:_chmod 774 $nnn*;e:exec'
 fi
 
 # Ripgrep
