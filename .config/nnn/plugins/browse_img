@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Description: Open images in current directory in sxiv
-#
-# Shell: generic
-# Author: Arun Prakash Jana
-
-sxiv -qb ./* >/dev/null 2>&1 &

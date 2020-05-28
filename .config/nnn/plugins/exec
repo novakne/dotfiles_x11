@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+
 # Exec a sxript
-if [ -x "$1" ]; then
-    ./"$1"
-fi
+[ -x "$1" ] && ./"$1"
+

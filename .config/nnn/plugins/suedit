@@ -8,7 +8,7 @@
 EDITOR="${EDITOR:-nvim}"
 
 is_cmd_exists () {
-    which "$1" > /dev/null 2>&1
+    command -v "$1" > /dev/null 2>&1
     echo $?
 }
 

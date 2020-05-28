@@ -1,9 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Open file in a new window with neovim
 #   - Dependencies: neovim
+# Shell: POSIX compliant
 
-if type -p nv &>/dev/null; then
+if command -v nv >/dev/null 2>&1; then
   alacritty -e nv "$nnn"
 else
   alacritty -e "${EDITOR:-nvim}" "$nnn"

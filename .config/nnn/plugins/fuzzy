@@ -1,15 +1,16 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Fuzzy find a file in directory subtree with fzf and edit in neovim
 # Open in a running instance with neovim-remote if possible
 #   - Dependencies: fzf, neovim, neovim-remote, fd
+# Shell: POSIX compliant
 
 SERVICE='nvim'
  
-if pgrep -f "$SERVICE" > /dev/null; then
+if pgrep -f "$SERVICE" > dev/null; then
   nvr "$(fd -t f | fzf)"
 else
-  if type -p nv &>/dev/null; then
+  if command -v nv >/dev/null 2>&1; then
     nv "$(fd -t f | fzf)"
   else
     "${EDITOR:-nvim}" "$(fd -t f | fzf)"

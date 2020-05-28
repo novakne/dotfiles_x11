@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+# Shell: POSIX compliant
 
 # Replace 'space' and '-' in file/dir name with '_' and convert to lowercase
 mv "$1" "$(echo "$1" | tr -s ' ' | tr ' A-Z' '-a-z' | tr -s '-' | tr -c '[:alnum:][:cntrl:].' '_')"
