@@ -34,8 +34,8 @@ path=(
 )
 
 # User local scripts
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/bin/colors:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin/colors:$PATH
 
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 export PARALLEL_HOME=$XDG_CACHE_HOME/parallel

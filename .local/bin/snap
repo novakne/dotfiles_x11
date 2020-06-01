@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Take screenshot with maim
+# a -> Fullscreen
+# w -> Active window
+# s -> Select an area of the screen
+# c -> Click to select a window
+
+SCREEN_DIR=~/img/screenshot
+SCREEN_DATE=$(date +"%Y_%m_%d-%H_%M_%S")
+SCREEN_FILE=$SCREEN_DIR/$SCREEN_DATE.png
+ICON_PATH=~/.icons/oomox-aize/16x16/categories/accessories-screenshot.svg
+
+snap_usage () {
+cat <<-END
+Usage: snap [argument]
+    a, all
+        Fullscreen
+    w, window
+        Active window
+    s, select
+        Select an area
+    c, click
+        Click to select a window
+END
+}
+
+case $1 in
+    a | all )
+        maim -d 5 -u -m 3 "$SCREEN_FILE"
+        notify-send 'Screenshot taken !' -i "$ICON_PATH";;
+    w | window )
+        maim -d 5 -u -m 3 -i $(xdotool getactivewindow) "$SCREEN_FILE"
+        notify-send 'Screenshot taken !' -i "$ICON_PATH";;
+    s | select )
+        notify-send 'Select an area...' -i "$ICON_PATH" -t 2000
+        maim -s -u -m 3 "$SCREEN_FILE"
+        notify-send 'Screenshot taken !' -i "$ICON_PATH";;
+    c | click )
+        notify-send 'Click on a window to select it...' -i "$ICON_PATH" -t 2000
+        maim -st 9999999 -u -m 3 "$SCREEN_FILE"
+        notify-send 'Screenshot taken !' -i "$ICON_PATH";;
+    * )
+        snap_usage
+        exit 1
+esac

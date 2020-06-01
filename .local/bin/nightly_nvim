@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Download latest Neovim nightly build
+curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+
+# Move file to $HOME/bin and rename it 'nv'
+mv nvim.appimage ~/bin/nv
+
+# Make it executable
+chmod 774 ~/bin/nv

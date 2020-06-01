@@ -27,7 +27,7 @@ HISTCONTROL="erasedups:ignoreboth"
 # ___ENV___
 export HISTFILE="$HOME"/.cache/bash/bash_history
 # User local scripts
-[[ -d "$HOME"/bin ]] && path=("$HOME"/{bin,bin/colors} $path)
+[[ -d "$HOME"/.local/bin ]] && path=("$HOME"/.local/{bin,bin/colors} $path)
 systemctl --user import-environment PATH
 
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc

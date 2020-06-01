@@ -51,7 +51,7 @@ path=(/usr/local/{bin,sbin} $path)
 systemctl --user import-environment PATH
 
 # User bin
-[[ -d "$HOME"/bin ]] && path=("$HOME"/{bin,bin/colors} $path)
+[[ -d "$HOME"/.local/bin ]] && path=("$HOME"/.local/{bin,bin/colors} $path)
 
 # Completions
 fpath=("$ZDOTDIR"/completions $fpath)

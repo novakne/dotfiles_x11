@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Author: Novacane337
+
+# Backup packages to pkg.list
+# Backup packages from AUR to pkg.list
+# To restore pkg.list: xargs -a /path/to/chosen/directory/pkg.list pacman -S --needed
+
+pacman -Qqe | grep -vx "$(pacman -Qqm)" > "$HOME"/docs/pkg.list
+pacman -Qqme > "$HOME"/docs/pkg_aur.list
+echo "Done"
