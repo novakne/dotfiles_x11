@@ -9,7 +9,7 @@
 * [Screenshots](#screenshots)
 * [AwesomeWM](#awesomewm)
   + [File structure](#file-structure)
-* [Shell ( Zsh )](#shell---zsh--)
+* [Shell](#shell)
   + [File structure](#file-structure-1)
   + [Plugins](#plugins)
   + [Cli Tools](#cli-tools)
@@ -69,7 +69,7 @@
 dependence:
   * `acpi` battery widget
 
-## Shell ( Zsh )
+## Shell
 
 ![prompt](img/previews/prompt.png?raw=true "prompt")
 
@@ -132,21 +132,24 @@ Lazy loaded with [Zinit](https://github.com/zdharma/zinit)
 
 ### User scripts 
 
-**$HOME/bin/**
+**$HOME/.local/bin/**
 
 * **colors/** - Scripts to show colors in the terminal
 * `arch_maint` Multiple command to help maintain arch **(WIP)**
 * `brightness_notif` Send a notification when changing screen brightness
+* `extract` Extract archive
 * `fetch` Show basic system infos
 * `mdpdf` Convert markdown to pdf with [Pandoc](https://github.com/jgm/pandoc)
 * `neof` Clear terminal and launch neofetch
+* `nightly_nvim` Download nvim nightly appimage and put it in $PATH
+* `nuke` Script for `nnn`
 * `nwrap` Launch `nnn`
 * `pkg_list` Backup a list of installed package
 * `power_menu` Open a exit menu in `rofi`
 * `rm_shit.py` Remove some trash in $HOME
 * `snap` Take screenshot with [maim](https://github.com/naelstrof/maim)
 * `sxhkd_key` Show `sxkhd` mappings in `fzf`
-* `update_mirror` Get a list of fastest  French mirror
+* `update_mirror` Get a list of fastest French mirror
 
 ## Thanks
 Inspiration from a lot of people  
