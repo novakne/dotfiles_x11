@@ -12,6 +12,9 @@ window:
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
 
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+
 # Font configuration
 font:
   normal:
@@ -93,9 +96,6 @@ colors:
     magenta: '0xa89bee'
     cyan:    '0x4db9c8'
     white:   '0xd2ccd6'
-
-# Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
 
 mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
