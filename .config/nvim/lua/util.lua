@@ -27,6 +27,7 @@ local valid_mode = {
   i = "i",
   n = "n",
   o = "o",
+  s = "s",
   t = "t",
   v = "v",
   x = "x"

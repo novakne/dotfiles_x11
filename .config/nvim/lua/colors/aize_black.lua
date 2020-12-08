@@ -162,10 +162,10 @@ highlight("diffRemoved", aize08, aize00, red, "NONE", "inverse", nil)
 highlight("qfLineNr", aize06, nil, "NONE", nil, nil, nil)
 
 -- NEOVIM LSP
-highlight("LspDiagnosticsError" , aize08, nil, nil, red, nil, nil)
-highlight("LspDiagnosticsWarning" , aize11, nil, nil, yellow, nil, nil)
-highlight("LspDiagnosticInformation" , aize13, nil, nil, blue, nil, nil)
-highlight("LspDiagnosticHint" , aize12, nil, nil, green, nil, nil)
+highlight("LspDiagnosticsDefaultError" , aize08, nil, nil, red, nil, nil)
+highlight("LspDiagnosticsDefaultWarning" , aize11, nil, nil, yellow, nil, nil)
+highlight("LspDiagnosticsDefaultInformation" , aize13, nil, nil, blue, nil, nil)
+highlight("LspDiagnosticsDefaultHint" , aize12, nil, nil, green, nil, nil)
 
 -- ___LANGUAGE BASE GROUPS___
 -- ( :help w18 )

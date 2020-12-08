@@ -18,13 +18,10 @@ local autocmd = {
   StatusLine = {
     { "WinEnter,BufEnter", "*", "setlocal statusline=%!statusline#ActiveLine()" },
     { "WinLeave,BufLeave", "*", "setlocal statusline=%!statusline#InactiveLine()" },
-    -- { "WinEnter,BufEnter", "*", ":lua require'statusline'.set()" },
-    -- { "WinLeave,BufLeave", "*", ":lua require'statusline'.set()" },
     { "TabNew", "*", "setlocal tabline=%!statusline#TabLine()" }
   },
-  Terminal = {
-    { "TermOpen", "*", "lua require'plugins.toggle_term'.autocmd()" },
-    { "TermEnter", "*", "startinsert!" }
+  HighlightYank = {
+    { "TextYankPost", "*", "silent! lua require'vim.highlight'.on_yank {higroup='Comment', timeout=500}" }
   }
 }
 

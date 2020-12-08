@@ -1,9 +1,9 @@
 local config = require("config")
+local ok, _ = pcall(require, "lspconfig")
+if not ok then return end
 local lsp_config = require("lsp_config").init()
-local colorizer = require("colorizer")
 
 return {
   config = config,
   lsp_config = lsp_config,
-  -- colorizer = colorizer
 }

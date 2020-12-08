@@ -106,7 +106,7 @@ local plugin_options = {
   -- Completion-nvim ( https://github.com/haorenW1025/completion-nvim )
   -- non ins-complete method should be specified in 'mode'
   completion_chain_complete_list = {
-    completion_items = { { "lsp" }, { "snippet" } },
+    completion_items = { { "lsp" }, { "snippet" }, { "buffers" }, { "path" } },
     mode = {
       { "<c-p>" },
       { "<c-n>" },
@@ -116,6 +116,8 @@ local plugin_options = {
     }
   },
   completion_auto_change_source = 1,
+  completion_enable_auto_paren = 1,
+  completion_enable_snippet = "vim-vsnip",
 
   -- Conjure
   conjure_log_direction = "horizontal",
@@ -123,6 +125,9 @@ local plugin_options = {
   -- Editor config ( https://github.com/editorconfig/editorconfig-vim )
   -- To ensure that this plugin works well with Tim Pope's fugitive
   EditorConfig_exclude_patterns = "['fugitive://.*']",
+
+  -- FloaTerm ( https://github.com/voldikss/vim-floaterm )
+  floaterm_width = 0.8,
 
   -- Fzf ( https://github.com/junegunn/fzf.vim )
   fzf_layout = {

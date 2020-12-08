@@ -62,6 +62,10 @@ local mapping = {
   ["n+"] = { ":bn<CR>" },
   ["n_"] = { ":bp<CR>" },
 
+	-- Diagnostics
+	["n<LocalLeader>dn"] = { ":lua vim.lsp.diagnostic.goto_next()<CR>" },
+	["n<LocalLeader>dp"] = { ":lua vim.lsp.diagnostic.goto_prev()<CR>" },
+
   -- Clear serach results
   ["n<esc>"] = { ":noh<CR>" },
 
@@ -101,10 +105,6 @@ local mapping = {
 },
 
   -- Term
-  -- Toggle terminal
-  ["n<Leader>s"] = { ":lua require'plugins.toggle_term'.toggle()<CR>" },
-  ["t<Leader>s"] = { "<C-\\><C-n>:lua require'plugins.toggle_term'.toggle()<CR>" },
-
   -- Copy, move or delete the first occurence of the search
   -- e.g. /word$t
   ["c$t"] = { "<CR>:t''<CR>" },
@@ -117,7 +117,7 @@ local mapping = {
   -- PLUGINS --
   -- Nnn
   -- Start in the current file's directory
-  ["n<F6>"] = { ":NnnPicker '%:p:h'<CR>" },
+  ["n<F6>"] = { ":NnnPicker %:p:h<CR>" },
 
   -- Nvim Colorizer
   ["n<Leader>h"] = { ":ColorizerToggle<CR>" },
@@ -164,7 +164,13 @@ local mapping = {
 
   -- Vim-Sneak
   ["nf"] = { "<Plug>Sneak_s", { silent = true } },
-  ["nF"] = { "<Plug>Sneak_S", { silent = true } }
+  ["nF"] = { "<Plug>Sneak_S", { silent = true } },
+
+  -- Vim-Snip
+  ["i<C-l>"] = { "vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : '<C-l>'", { expr = true } },
+  ["s<C-l>"] = { "vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : '<C-l>'", { expr = true } },
+  ["i<C-j>"] = { "vsnip#available(1) ? '<Plug>(vsnip-jump-prev)' : '<C-l>'", { expr = true } },
+  ["s<C-j>"] = { "vsnip#available(1) ? '<Plug>(vsnip-jump-prev)' : '<C-l>'", { expr = true } },
 }
 
 util.bind_key(mapping)
