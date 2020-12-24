@@ -62,9 +62,9 @@ local mapping = {
   ["n+"] = { ":bn<CR>" },
   ["n_"] = { ":bp<CR>" },
 
-	-- Diagnostics
-	["n<LocalLeader>dn"] = { ":lua vim.lsp.diagnostic.goto_next()<CR>" },
-	["n<LocalLeader>dp"] = { ":lua vim.lsp.diagnostic.goto_prev()<CR>" },
+  -- Diagnostics
+  ["n<LocalLeader>dn"] = { ":lua vim.lsp.diagnostic.goto_next()<CR>" },
+  ["n<LocalLeader>dp"] = { ":lua vim.lsp.diagnostic.goto_prev()<CR>" },
 
   -- Clear serach results
   ["n<esc>"] = { ":noh<CR>" },
@@ -113,64 +113,5 @@ local mapping = {
   ["c$M"] = { "<CR>:M''<CR>" },
   ["c$d"] = { "<CR>:d<CR>``" },
 
-
-  -- PLUGINS --
-  -- Nnn
-  -- Start in the current file's directory
-  ["n<F6>"] = { ":NnnPicker %:p:h<CR>" },
-
-  -- Nvim Colorizer
-  ["n<Leader>h"] = { ":ColorizerToggle<CR>" },
-
-  -- Goyo
-  ["n<Leader>g"] = { ":Goyo<CR>" },
-
-  -- Vim-Bbye
-  ["n<Leader>q"] = { ":Bdelete<CR>" },
-
-  -- Easy Align
-  -- Start interactive EasyAlign in visual mode (e.g. vipga)
-  ["xga"] = { "<Plug>(EasyAlign)", { silent = true } },
-  -- Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  ["nga"] = { "<Plug>(EasyAlign)", { silent = true } },
-
-  -- Fzf
-  -- Search files recursively
-  ["n<Leader>o"] = { ":Files<CR>" },
-  -- Search between open files
-  ["n<Leader>b"] = { ":Buffers<CR>" },
-  -- Ripgrep
-  ["n<Leader>r"] = { ":RG<CR>" },
-  -- Search lines
-  ["n<Leader>l"] = { ":BLines<CR>" },
-  ["n<Leader>L"] = { ":Lines<CR>" },
-  -- Search ctags
-  ["n<Leader>t"] = { ":BTags<CR>" },
-  ["n<Leader>T"] = { ":Tags<CR>" },
-
-  -- Vim spelling suggestions with fzf
-  -- ( https://coreyja.com/blog/2018/11/10/vim-spelling-suggestions-fzf.html )
-  -- ["n"] = "z=", ":call fuzzy#FzfSpell()<CR>")
-  ["nz="] = { ":lua require'util'.fzf_spell()<CR>" },
-
-  -- Search current word under cursor
-  ["n<Leader>k"] = { ":Rg <C-R><C-W><CR>" },
-
-  -- Fzf quickfix
-  -- Quickfix list
-  ["n<Leader>F"] = { ":Quickfix<CR>" },
-  -- Location list
-  ["n<Leader>f"] = { ":Quickfix!<CR>" },
-
-  -- Vim-Sneak
-  ["nf"] = { "<Plug>Sneak_s", { silent = true } },
-  ["nF"] = { "<Plug>Sneak_S", { silent = true } },
-
-  -- Vim-Snip
-  ["i<C-l>"] = { "vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : '<C-l>'", { expr = true } },
-  ["s<C-l>"] = { "vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : '<C-l>'", { expr = true } },
-  ["i<C-j>"] = { "vsnip#available(1) ? '<Plug>(vsnip-jump-prev)' : '<C-l>'", { expr = true } },
-  ["s<C-j>"] = { "vsnip#available(1) ? '<Plug>(vsnip-jump-prev)' : '<C-l>'", { expr = true } },
 }
-
 util.bind_key(mapping)

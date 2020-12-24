@@ -11,6 +11,7 @@ local function handler_init()
 			underline = false,
 			-- Disable virtual text
 			virtual_text = false,
+			update_in_insert = false,
 			-- Use a function to dynamically turn signs off
 			-- and on, using buffer local variables
 			signs = function(bufnr, client_id)
@@ -73,7 +74,13 @@ function lsp_config.init()
           diagnostics = {
             globals = { "vim", "awesome", "client", "tag", "screen" }
           }
-        }
+        },
+				workspace = {
+					library = {
+						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+						[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+					},
+				},
       }
     },
     -- Rust

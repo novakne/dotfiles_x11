@@ -5,15 +5,6 @@ local autocmd = {
   CompletAuto = {
     { "CompleteDone", "*", "if pumvisible() == 0 | pclose | endif" }
   },
-  -- Use completion-nvim in every buffer
-  Complete = {
-    { "BufEnter", "*", "lua require'completion'.on_attach()" }
-  },
-  -- Launch Limelight with Goyo
-  GoyoMode = {
-    { "User", "GoyoEnter", "Limelight" },
-    { "User", "GoyoLeave", "Limelight!" }
-  },
   -- Change statusline in active and inactive window
   StatusLine = {
     { "WinEnter,BufEnter", "*", "setlocal statusline=%!statusline#ActiveLine()" },
