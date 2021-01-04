@@ -1,5 +1,3 @@
-local vim = vim
-
 local global_options = {
 
   -- GENERAL ( :help nvim-defaults )
@@ -14,17 +12,17 @@ local global_options = {
   -- Puts new vsplit windows to the right of the current
   splitright = true,
   -- Use the clipboard for all operations
-  clipboard = "unnamedplus",
+  clipboard = 'unnamedplus',
   -- Show preview of substitute command
-  inccommand = "nosplit",
+  inccommand = 'nosplit',
   -- Enable mouse
-  mouse = "a",
+  mouse = 'a',
   -- Don't give |ins-completion-menu| messages.
-  shortmess = "filnxtToOFc",
+  shortmess = 'filnxtToOFc',
   -- Use python 3
   pyxversion = 3,
   -- Dont select newline in visual mode ( v$ )
-  selection = "exclusive",
+  selection = 'exclusive',
   -- Do not redraw screen in the middle of a macro
   lazyredraw = true,
 
@@ -32,7 +30,7 @@ local global_options = {
   -- Ignore case when completing file and directory
   wildignorecase = true,
   -- Set completeopt to have a better completion experience
-  completeopt = "menuone,noinsert,noselect",
+  completeopt = 'menuone,noinsert,noselect',
 
   -- SEARCH
   -- Case insensitive searching
@@ -47,12 +45,8 @@ local global_options = {
   -- Better display for messages
   cmdheight = 2,
   -- Smaller updatetime for CursorHold & CursorHoldI
-  updatetime = 100
+  updatetime = 100,
 }
-
-for name, value in pairs(global_options) do
-  vim.o[name] = value
-end
 
 local window_options = {
   -- Show line number
@@ -61,12 +55,8 @@ local window_options = {
   -- Don't insert line breaks in the middle of a word
   linebreak = true,
   -- Always show signcolumns
-  signcolumn = "yes:2"
+  signcolumn = 'yes:2',
 }
-
-for name, value in pairs(window_options) do
-  vim.wo[name] = value
-end
 
 local buffer_options = {
   -- No swap file
@@ -75,26 +65,23 @@ local buffer_options = {
   textwidth = 100,
   -- Use 4 spaces instead of tab
   -- Copy indent from current line when starting a new line
-  softtabstop = 4,
-  shiftwidth  = 4,
-  expandtab   = true
+  -- softtabstop = 4,
+  softtabstop = -1,
+  shiftwidth = 4,
+  expandtab = true,
 }
-
-for name, value in pairs(buffer_options) do
-  vim.bo[name] = value
-end
 
 local plugin_options = {
   -- Neovim
   -- Change leader key to space and local leader to ,
-  mapleader = " ",
-  maplocalleader = ",",
+  mapleader = ' ',
+  maplocalleader = ',',
   -- Disable some providers and plugins
   loaded_node_provider = 0,
   loaded_ruby_provider = 0,
   loaded_perl_provider = 0,
   loaded_python_provider = 0,
-  python3_host_prog = "/usr/bin/python3",
+  python3_host_prog = '/usr/bin/python3',
   loaded_gzip = 1,
   loaded_tarPlugin = 1,
   loaded_tar = 1,
@@ -105,7 +92,11 @@ local plugin_options = {
 
 }
 
-for name, value in pairs(plugin_options) do
-  vim.g[name] = value
-end
+for name, value in pairs(global_options) do vim.o[name] = value end
+
+for name, value in pairs(window_options) do vim.wo[name] = value end
+
+for name, value in pairs(buffer_options) do vim.bo[name] = value end
+
+for name, value in pairs(plugin_options) do vim.g[name] = value end
 

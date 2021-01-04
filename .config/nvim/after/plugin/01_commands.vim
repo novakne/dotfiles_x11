@@ -13,5 +13,5 @@ command! Cdw :lcd %:p:h
 command! Cdt :tcd %:p:h
 
 " Fzf
-command! -nargs=* -bang RG lua require'util'.ripgrep_fzf(<q-args>, <bang>0)
+command! -nargs=* -bang RG lua require'my.utils'.ripgrep_fzf(<q-args>, <bang>0)
 

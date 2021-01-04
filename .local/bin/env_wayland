@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Session
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=sway
+export XDG_CURRENT_DESKTOP=sway
+
+# Defaults apps
+export BROWSER='vivaldi-stable'
+export EDITOR='nvim'
+export VISUAL='nvim'
+export PAGER='less'
+export LC_COLLATE=C
+# Use neovim instead of vim for pacdiff
+export DIFFPROG='nvim -d'
+
+# Enable Firefox wayland support
+export MOZ_ENABLE_WAYLAND=1
+
+# Bemenu
+export BEMENU_BACKEND=wayland
+
+# Wayland
+# Force GTK to use wayland
+# export GDK_BACKEND=wayland
+export CLUTTER_BACKEND=wayland
+# Enable Wayland support in Qt 5
+export QT_QPA_PLATFORM=wayland-egl
+export QT_WAYLAND_FORCE_DPI=physical
+export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+# export ECORE_EVAS_ENGINE=wayland-egl
+# export ELM_ENGINE=wayland_egl
+# export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+# export NO_AT_BRIDGE=1

@@ -1,11 +1,11 @@
 function! statusline#InactiveLine()
-    return luaeval("require'statusline'.inactive()")
+    return luaeval("require'my.statusline'.inactive()")
 endfunction
 
 function! statusline#ActiveLine()
-    return luaeval("require'statusline'.active()")
+    return luaeval("require'my.statusline'.active()")
 endfunction
 
 function! statusline#TabLine()
-    return luaeval("require'statusline'.tabline()")
+    return luaeval("require'my.statusline'.tabline()")
 endfunction

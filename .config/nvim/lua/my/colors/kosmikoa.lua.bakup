@@ -1,0 +1,509 @@
+-- Theme: Kosmikoa
+-- Author: Novakane
+
+-- Colors
+local kosmikoa = {
+  base00  = '#232227',
+  base01  = '#38383c',
+  base02  = '#4e4e52',
+  base03  = '#6b5c7c',
+  base04  = '#837593',
+  base05  = '#9d8fa9',
+  base06  = '#b7acbf',
+  base07  = '#d2ccd6',
+  red     = '#f63d81',
+  pink    = '#fc65b0',
+  orange  = '#f5939c',
+  yellow  = '#e8ec77',
+  green   = '#2dcbb0',
+  blue    = '#57bbf4',
+  magenta = '#a89bee',
+  cyan    = '#4db9c8',
+  -- Ui
+  bg = '#232227',
+  bg_alt = '#38383c',
+  fg = '#d2ccd6',
+  fg_alt = '#b7acbf',
+  shadow = '#27262c',
+  none = 'NONE',
+}
+
+-- Terminal
+local term_colors = {
+  terminal_color_0  = kosmikoa.bg_alt,
+  terminal_color_1  = kosmikoa.red,
+  terminal_color_2  = kosmikoa.green,
+  terminal_color_3  = kosmikoa.yellow,
+  terminal_color_4  = kosmikoa.blue,
+  terminal_color_5  = kosmikoa.magenta,
+  terminal_color_6  = kosmikoa.cyan,
+  terminal_color_7  = kosmikoa.fg_alt,
+  terminal_color_8  = kosmikoa.base02,
+  terminal_color_9  = kosmikoa.red,
+  terminal_color_10 = kosmikoa.green,
+  terminal_color_11 = kosmikoa.yellow,
+  terminal_color_12 = kosmikoa.blue,
+  terminal_color_13 = kosmikoa.magenta,
+  terminal_color_14 = kosmikoa.cyan,
+  terminal_color_15 = kosmikoa.fg
+}
+
+
+function kosmikoa.highlight(group, color)
+  local fg = color.fg and 'guifg=' .. color.fg or 'guifg=NONE'
+  local bg = color.bg and 'guibg=' .. color.bg or 'guibg=NONE'
+  local attr = color.attr and 'gui=' .. color.attr or 'gui=NONE'
+  local sp = color.sp and 'guisp=' .. color.sp or ''
+  local cmd = ('highlight %s %s %s %s %s'):format(group, fg, bg, attr, sp)
+
+  vim.cmd(cmd)
+end
+
+function kosmikoa.set_syntax()
+  local syntax = {
+    -- ___UI COMPONENTS___
+    -- ( :so $VIMRUNTIME/syntax/hitest.vim )
+
+    -- ATTRIBUTES
+    Bold = { attr = 'bold' },
+    Italic = { attr = 'italic' },
+    Underline = { attr = 'underline' },
+
+    -- EDITOR
+    ColorColumn = { fg = kosmikoa.bg_alt },
+    Cursor = { fg = kosmikoa.bg, bg = kosmikoa.fg_alt },
+    CursorLine = { fg = kosmikoa.bg_alt },
+    Error = { fg = kosmikoa.red, bg = kosmikoa.bg },
+    iCursor = { fg = kosmikoa.bg, bg = kosmikoa.base05 },
+    LineNr = { fg = kosmikoa.base02, bg = kosmikoa.bg },
+    MatchParen = { fg = kosmikoa.green, bg = kosmikoa.base02 },
+    NonText = { fg = kosmikoa.base02 },
+    Normal = { fg = kosmikoa.fg, bg = kosmikoa.bg },
+    PMenu = { fg = kosmikoa.base05, bg = kosmikoa.bg_alt },
+    PmenuSbar = { fg = kosmikoa.base05, bg = kosmikoa.base02 },
+    PMenuSel = { fg = kosmikoa.bg_alt, bg = kosmikoa.green },
+    PmenuThumb = { fg = kosmikoa.green, bg = kosmikoa.base02 },
+    SpecialKey = { fg = kosmikoa.base04 },
+    SpellBad = { fg = kosmikoa.red, bg = kosmikoa.bg, attr = 'undercurl', sp = kosmikoa.red },
+    SpellCap = { fg = kosmikoa.pink, bg = kosmikoa.bg, attr = 'undercurl', sp = kosmikoa.pink },
+    SpellLocal = { fg = kosmikoa.orange, bg = kosmikoa.bg, attr = 'undercurl', sp = kosmikoa.orange },
+    SpellRare = { fg = kosmikoa.yellow, bg = kosmikoa.bg, attr = 'undercurl', sp = kosmikoa.yellow },
+    Visual = { fg = kosmikoa.bg_alt },
+    VisualNOS = { fg = kosmikoa.base03 },
+
+    -- NEOVIM SUPPORT
+    healthError = { fg = kosmikoa.red, bg = kosmikoa.bg },
+    healthSuccess = { fg = kosmikoa.green, bg = kosmikoa.bg },
+    healthWarning = { fg = kosmikoa.yellow, bg = kosmikoa.bg },
+    TermCursorNC = { fg = kosmikoa.bg_alt },
+
+    -- GUTTER
+    CursorColumn = { fg = kosmikoa.bg_alt },
+    CursorLineNr = { fg = kosmikoa.base05, bg = kosmikoa.bg },
+    Folded = { fg = kosmikoa.base04, bg = kosmikoa.bg_alt, attr = 'bold' },
+    FoldColumn = { fg = kosmikoa.base03, bg = kosmikoa.bg },
+    SignColumn = { fg = kosmikoa.bg_alt, bg = kosmikoa.bg },
+
+    -- NAVIGATION
+    Directory = { fg = kosmikoa.green },
+
+    -- PROMPT / STATUS
+    EndOfBuffer = { fg = kosmikoa.bg_alt },
+    ErrorMsg = { fg = kosmikoa.bg, bg = kosmikoa.red },
+    ModeMsg = { fg = kosmikoa.base04 },
+    MoreMsg = { fg = kosmikoa.base04 },
+    Question = { fg = kosmikoa.base04 },
+    StatusLine = { fg = kosmikoa.base05, bg = kosmikoa.bg_alt },
+    StatusLineNC = { fg = kosmikoa.base03, bg = kosmikoa.bg_alt },
+    StatusLineTerm = { fg = kosmikoa.base05, bg = kosmikoa.bg_alt },
+    StatusLineTermNC = { fg = kosmikoa.base03, bg = kosmikoa.bg_alt },
+    WarningMsg = { fg = kosmikoa.bg, bg = kosmikoa.yellow },
+    WildMenu = { fg = kosmikoa.yellow, bg = kosmikoa.bg_alt },
+
+    -- SEARCH
+    IncSearch = { fg = kosmikoa.bg_alt, bg = kosmikoa.yellow, attr = 'underline' },
+    Search = { fg = kosmikoa.bg_alt, bg = kosmikoa.blue },
+
+    -- TABS
+    TabLine = { fg = kosmikoa.base04, bg = kosmikoa.bg_alt },
+    TabLineFill = { fg = kosmikoa.base04, bg = kosmikoa.bg_alt },
+    TabLineSel = { fg = kosmikoa.bg, bg = kosmikoa.blue },
+
+    -- WINDOW
+    Title = { fg = kosmikoa.base04 },
+    VertSplit = { fg = kosmikoa.bg_alt, bg = kosmikoa.bg },
+
+    -- DIFF
+    DiffAdd = { fg = kosmikoa.green, bg = kosmikoa.bg, attr = 'inverse' },
+    DiffChange = { fg = kosmikoa.yellow, bg = kosmikoa.bg, attr = 'inverse' },
+    DiffDelete = { fg = kosmikoa.red, bg = kosmikoa.bg, attr = 'inverse' },
+    DiffText = { fg = kosmikoa.blue, bg = kosmikoa.bg, attr = 'inverse' },
+    -- Legacy groups for official git.vim and diff.vim syntax
+    diffAdded = { fg = kosmikoa.green, bg = kosmikoa.bg, attr = 'inverse' },
+    diffChanged = { fg = kosmikoa.yellow, bg = kosmikoa.bg, attr = 'inverse' },
+    diffRemoved = { fg = kosmikoa.red, bg = kosmikoa.bg, attr = 'inverse' },
+
+    -- QUICKFIX / LOCATION LIST
+    qfLineNr = { fg = kosmikoa.fg_alt },
+
+    -- NEOVIM LSP
+    LspDiagnosticsDefaultError = { fg = kosmikoa.red },
+    LspDiagnosticsDefaultWarning = { fg = kosmikoa.yellow },
+    LspDiagnosticsDefaultInformation = { fg = kosmikoa.blue, },
+    LspDiagnosticsDefaultHint = { fg = kosmikoa.green },
+
+    -- ___LANGUAGE kosmikoa.base GROUPS___
+    -- ( :help w18 )
+
+    Comment = { fg = kosmikoa.base03, attr = 'italic' },
+
+    Constant = { fg = kosmikoa.pink },
+    String = { fg = kosmikoa.magenta, attr = 'italic', },
+    Character = { fg = kosmikoa.pink },
+    Number = { fg = kosmikoa.red },
+    Boolean = { fg = kosmikoa.green },
+    Float = { fg = kosmikoa.orange },
+
+    Identifier = { fg = kosmikoa.blue },
+    Function = { fg = kosmikoa.green },
+
+    Statement = { fg = kosmikoa.magenta },
+    Conditional = { fg = kosmikoa.blue },
+    Repeat = { fg = kosmikoa.magenta },
+    Label = { fg = kosmikoa.red },
+    Operator = { fg = kosmikoa.blue },
+    Keyword = { fg = kosmikoa.yellow },
+    Exception = { fg = kosmikoa.red },
+
+    PreProc = { fg = kosmikoa.magenta },
+    Include = { fg = kosmikoa.cyan },
+    Define = { fg = kosmikoa.blue },
+    Macro = { fg = kosmikoa.yellow },
+    PreCondit = { fg = kosmikoa.yellow },
+
+    Type = { fg = kosmikoa.pink },
+    StorageClass = { fg = kosmikoa.pink },
+    Structure = { fg = kosmikoa.pink },
+    Typedef = { fg = kosmikoa.blue },
+
+    Special = { fg = kosmikoa.base05 },
+    SpecialChar = { fg = kosmikoa.blue },
+    Tag = { fg = kosmikoa.base05 },
+    Delimiter = { fg = kosmikoa.fg_alt },
+    SpecialComment = { fg = kosmikoa.base05, attr = 'italic' },
+    Todo = { fg = kosmikoa.blue },
+
+    -- ___LANGUAGES SPECIFIC___
+
+    -- CFG
+    CfgValues = { fg = kosmikoa.blue },
+    CfgSection = { fg = kosmikoa.green },
+
+    -- CSS
+    cssAttr = { fg = kosmikoa.yellow },
+    cssAttributeSelector = { fg = kosmikoa.blue },
+    cssBraces = { fg = kosmikoa.fg_alt },
+    cssClassName = { fg = kosmikoa.cyan, },
+    cssClassNameDot = { fg = kosmikoa.red },
+    cssColor = { fg = kosmikoa.fg_alt },
+    cssDefinition = { fg = kosmikoa.fg },
+    cssFontAttr = { fg = kosmikoa.magenta },
+    cssImportant = { fg = kosmikoa.red },
+    cssMediaType = { fg = kosmikoa.green },
+    cssProp = { fg = kosmikoa.fg },
+    cssPseudoClass = { fg = kosmikoa.fg },
+    cssPseudoClassId = { fg = kosmikoa.blue },
+    cssSelectorOp = { fg = kosmikoa.yellow },
+    cssTagName = { fg = kosmikoa.blue },
+    cssUnitDecorators = { fg = kosmikoa.orange },
+    cssVendor = { fg = kosmikoa.yellow },
+
+    -- FENNEL ( https://github.com/bakpakin/fennel.vim )
+    FennelSpecialForm = { fg = kosmikoa.pink },
+    FennelSymbol = { fg = kosmikoa.fg },
+    FennelParen = { fg = kosmikoa.blue },
+
+    -- GO
+    goBuiltins = { fg = kosmikoa.cyan, },
+    goConstants = { fg = kosmikoa.yellow },
+
+    -- HTML
+    htmlLink = { fg = kosmikoa.blue },
+    htmlArg = { fg = kosmikoa.fg },
+    htmlBold = { attr = 'bold' },
+    htmlEndTag = { fg = kosmikoa.blue },
+    htmlH1 = { fg = kosmikoa.pink },
+    htmlH2 = { fg = kosmikoa.pink },
+    htmlH3 = { fg = kosmikoa.pink },
+    htmlH4 = { fg = kosmikoa.pink },
+    htmlH5 = { fg = kosmikoa.pink },
+    htmlH6 = { fg = kosmikoa.pink },
+    htmlItalic = { attr = 'italic' },
+    htmlSpecialChar = { fg = kosmikoa.blue },
+    htmlSpecialTagName = { fg = kosmikoa.pink },
+    htmlTag = { fg = kosmikoa.blue },
+    htmlTagN = { fg = kosmikoa.blue },
+    htmlTagName = { fg = kosmikoa.blue },
+    htmlTitle = { fg = kosmikoa.orange },
+
+    -- JAVA
+    javaCommentTitle = { fg = kosmikoa.base03, attr = 'italic' },
+    javaDocTags = { fg = kosmikoa.fg },
+
+    -- JAVASCRIPT
+    -- ( http//github.com/pangloss/vim-javascript )
+    jsGlobalNodeObjects = { fg = kosmikoa.red, attr = 'italic' },
+    jsVariableDef = { fg = kosmikoa.fg_alt, attr = 'italic' },
+    jsFuncArgs = { fg = kosmikoa.fg_alt, attr = 'italic' },
+    jsArrowFunction = { fg = kosmikoa.yellow },
+    jsBrackets = { fg = kosmikoa.fg_alt },
+    jsClassDefinition = { fg = kosmikoa.green },
+    jsFuncCall = { fg = kosmikoa.green },
+    jsFuncParens = { fg = kosmikoa.fg_alt },
+    jsGlobalObjects = { fg = kosmikoa.red },
+    jsNoise = { fg = kosmikoa.fg_alt },
+    jsObjectProp = { fg = kosmikoa.cyan },
+    jsPrototype = { fg = kosmikoa.yellow },
+    jsRegexpString = { fg = kosmikoa.blue },
+    jsReturn = { fg = kosmikoa.yellow },
+    jsTemplateString = { fg = kosmikoa.yellow },
+    jsThis = { fg = kosmikoa.yellow },
+
+    -- JSX
+    --  ( http//github.com/mxw/vim-jsx )
+    xmlTag = { fg = kosmikoa.blue },
+    xmlTagName = { fg = kosmikoa.blue },
+    xmlEndTag = { fg = kosmikoa.blue },
+
+    -- JSON
+    jsonBraces = { fg = kosmikoa.blue },
+    jsonKeyword = { fg = kosmikoa.fg },
+    jsonKeywordMatch = { fg = kosmikoa.yellow },
+    jsonNoise = { fg = kosmikoa.pink },
+
+    -- LATEX
+    -- (  http//github.com/lervag/vimtex )
+    texStatement = { fg = kosmikoa.green },
+    texUrl = { fg = kosmikoa.blue },
+
+    -- LESS
+    --  ( http//github.com/groenewege/vim-less )
+    lessAmpersand = { fg = kosmikoa.yellow },
+    lessClass = { fg = kosmikoa.fg },
+    lessCssAttribute = { fg = kosmikoa.fg_alt },
+    lessFunction = { fg = kosmikoa.green },
+    lessVariable = { fg = kosmikoa.pink, },
+
+    -- LUA
+    luaFuncCall = { fg = kosmikoa.yellow },
+    luaLocal = { fg = kosmikoa.cyan },
+    luaFuncKeyword = { fg = kosmikoa.magenta },
+    luaSpecialValue = { fg = kosmikoa.orange },
+    luaStatement = { fg = kosmikoa.green },
+    luaRepeat = { fg = kosmikoa.pink },
+    luaConstant = { fg = kosmikoa.red },
+
+    -- MARKDOWN
+    markdownUrl = { fg = kosmikoa.base04 },
+    markdownBlockquote = { fg = kosmikoa.fg },
+    markdownBold = { attr = 'bold' },
+    markdownBoldDelimiter = { fg = kosmikoa.yellow },
+    markdownCode = { fg = kosmikoa.fg },
+    markdownCodeDelimiter = { fg = kosmikoa.fg },
+    markdownFootnote = { fg = kosmikoa.fg },
+    markdownFootnoteDefinition = { fg = kosmikoa.fg },
+    markdownH1 = { fg = kosmikoa.pink },
+    markdownH2 = { fg = kosmikoa.pink },
+    markdownH3 = { fg = kosmikoa.pink },
+    markdownH4 = { fg = kosmikoa.pink },
+    markdownH5 = { fg = kosmikoa.pink },
+    markdownH6 = { fg = kosmikoa.pink },
+    markdownHeadingDelimiter = { fg = kosmikoa.yellow },
+    markdownId = { fg = kosmikoa.fg },
+    markdownIdDeclaration = { fg = kosmikoa.fg },
+    markdownIdDelimiter = { fg = kosmikoa.yellow },
+    markdownItalic = { attr = 'italic' },
+    markdownItalicDelimiter = { fg = kosmikoa.yellow },
+    markdownLinkDelimiter = { fg = kosmikoa.yellow, },
+    markdownLinkText = { fg = kosmikoa.red },
+    markdownLinkTextDelimiter = { fg = kosmikoa.yellow },
+    markdownListMarker = { fg = kosmikoa.yellow },
+    markdownRule = { fg = kosmikoa.yellow },
+
+    -- ( http//github.com/plasticboy/vim-markdown )
+    mkdListItem = { fg = kosmikoa.yellow },
+    mkdCode = { fg = kosmikoa.green },
+    mkdHeading = { fg = kosmikoa.pink },
+    mkdURL = { fg = kosmikoa.blue },
+
+    -- PHP
+    phpClasses = { fg = kosmikoa.fg },
+    phpDocCustomTags = { fg = kosmikoa.fg },
+    phpDocTags = { fg = kosmikoa.fg },
+    phpMemberSelector = { fg = kosmikoa.yellow },
+
+    -- PYTHON
+    pythonBuiltin = { fg = kosmikoa.pink },
+    pythonEscape = { fg = kosmikoa.blue },
+
+    -- RUST
+    -- ( http//github.com/rust-lang/rust.vim )
+    rustArrowCharacter = { fg = kosmikoa.green },
+
+    -- SCSS
+    -- ( http//github.com/cakebaker/scss-syntax.vim )
+    scssVariable = { fg = kosmikoa.pink },
+
+    -- SHELL
+    shCmdParenRegion = { fg = kosmikoa.fg_alt },
+    shCmdSubRegion = { fg = kosmikoa.fg_alt },
+    shDerefSimple = { fg = kosmikoa.blue },
+    shDerefVar = { fg = kosmikoa.blue },
+
+    -- VIM
+    vimAugroup = { fg = kosmikoa.fg },
+    vimCommand = { fg = kosmikoa.blue },
+    vimFunc = { fg = kosmikoa.green },
+    vimFunction = { fg = kosmikoa.green },
+    vimMap = { fg = kosmikoa.red },
+    vimMapRhs = { fg = kosmikoa.fg },
+    vimNotation = { fg = kosmikoa.fg },
+    vimOption = { fg = kosmikoa.cyan },
+    vimUserFunc = { fg = kosmikoa.green },
+    vimVar = { fg = kosmikoa.yellow },
+
+    -- XML
+    xmlCdataStart = { fg = kosmikoa.base03, attr = 'bold' },
+    xmlAttrib = { fg = kosmikoa.fg },
+    xmlAttribPunct = { fg = kosmikoa.fg_alt },
+    xmlCdata = { fg = kosmikoa.base03, attr = 'italic' },
+    xmlCdataCdata = { fg = kosmikoa.base03, attr = 'bold' },
+    xmlCdataEnd = { fg = kosmikoa.base03, attr = 'bold' },
+    xmlNamespace = { fg = kosmikoa.fg },
+    xmlProcessingDelim = { fg = kosmikoa.yellow },
+
+    -- YAML
+    yamlBlockMappingKey = { fg = kosmikoa.fg },
+    yamlBool = { fg = kosmikoa.yellow },
+    yamlDocumentStart = { fg = kosmikoa.yellow },
+
+    -- ZSH
+    zshFunction = { fg = kosmikoa.green },
+    zshDeref = { fg = kosmikoa.cyan },
+    zshVariableDef = { fg = kosmikoa.orange },
+
+
+    -- ___PLUGIN SUPPORT___
+
+    -- ALE
+    -- ( http//github.com/w0rp/ale )
+    ALEErrorSign = { fg = kosmikoa.red },
+    ALEWarningSign = { fg = kosmikoa.yellow },
+
+    -- COC.NVIM
+    -- ( http//github.com/neoclide/coc.nvim )
+    CocErrorSign = { fg = kosmikoa.red },
+    CocWarningSign = { fg = kosmikoa.yellow },
+    CocInfoSign = { fg = kosmikoa.blue },
+    CocHintSign = { fg = kosmikoa.blue },
+    CocCodeLens = { fg = kosmikoa.base05 },
+
+    -- FUGITIVE
+    -- ( http//github.com/tpope/vim-fugitive )
+    gitcommitDiscardedFile = { fg = kosmikoa.red },
+    gitcommitUntrackedFile = { fg = kosmikoa.red },
+    gitcommitSelectedFile = { fg = kosmikoa.green },
+
+    -- GITGUTTER
+    -- ( http//github.com/airblade/vim-gitgutter )
+    GitGutterAdd = { fg = kosmikoa.green },
+    GitGutterChange = { fg = kosmikoa.yellow },
+    GitGutterChangeDelete = { fg = kosmikoa.pink },
+    GitGutterDelete = { fg = kosmikoa.red },
+
+    -- NERDTREE
+    -- ( http//github.com/scrooloose/nerdtree )
+    NERDTreeExecFile = { fg = kosmikoa.cyan },
+    NERDTreeDirSlash = { fg = kosmikoa.cyan },
+    NERDTreeHelp = { fg = kosmikoa.base03, attr = 'italic' },
+
+    -- SIGNIFY
+    -- ( http//github.com/mhinz/vim-signify )
+    SignifyLineAdd = { fg = kosmikoa.green },
+    SignifySignAdd = { fg = kosmikoa.green },
+    SignifyLineChange = { fg = kosmikoa.yellow },
+    SignifyLineChangeDelete = { fg = kosmikoa.yellow },
+    SignifySignChange = { fg = kosmikoa.yellow },
+    SignifySignChangeDelete = { fg = kosmikoa.yellow },
+    SignifyLineDelete = { fg = kosmikoa.red },
+    SignifyLineDeleteFirstLine = { fg = kosmikoa.red },
+    SignifySignDelete = { fg = kosmikoa.red },
+    SignifyDeleteFirstLine = { fg = kosmikoa.red },
+
+    -- TAGBAR
+    -- ( http//github.com/majutsushi/tagbar )
+    TagbarComment = { fg = kosmikoa.base03, attr = 'italic' },
+    TagbarKind = { fg = kosmikoa.green },
+
+    -- TREESITTER
+    -- ( https://github.com/nvim-treesitter/nvim-treesitter )
+    TSFunction = { fg = kosmikoa.blue, attr = 'bold' },
+    TSMethod = { fg = kosmikoa.green },
+    TSKeywordFunction = { fg = kosmikoa.green },
+    TSProperty = { fg = kosmikoa.green },
+    TSType = { fg = kosmikoa.pink },
+    TSPunctBracket = { fg = kosmikoa.magenta },
+    TSParameter = { fg = kosmikoa.magenta },
+    TSParameterReference = { fg = kosmikoa.magenta },
+    -- Nvim-ts-rainbow ( https://github.com/p00f/nvim-ts-rainbow )
+    rainbowcol1 = { fg = kosmikoa.magentta },
+    rainbowcol2 = { fg = kosmikoa.blue },
+    rainbowcol3 = { fg = kosmikoa.green },
+    rainbowcol4 = { fg = kosmikoa.yellow },
+    rainbowcol5 = { fg = kosmikoa.orange },
+    rainbowcol6 = { fg = kosmikoa.pink },
+    rainbowcol7 = { fg = kosmikoa.red },
+    -- Nvim-treesitter-refactor ( https://github.com/nvim-treesitter/nvim-treesitter-refactor )
+    TSDefiniton = { bg = kosmikoa.base07, attr = 'bold' },
+    -- TSDefinitonUsage = { bg = kosmikoa.red },
+    TSCurrentScope = { bg = kosmikoa.shadow },
+
+    -- VIM-PLUG
+    -- ( http//github.com/junegunn/vim-plug )
+    plugDeleted = { fg = kosmikoa.pink },
+
+    -- VIM-SNEAK
+    -- ( http//github.com/justinmk/vim-sneak )
+    Sneak = { fg = kosmikoa.bg, kosmikoa.green },
+  }
+
+  return syntax
+end
+
+function kosmikoa.set_color()
+  return kosmikoa
+end
+
+function kosmikoa.colorscheme()
+  vim.cmd('hi clear')
+  if vim.fn.exists('syntax on') then
+    vim.cmd('syntax reset')
+  end
+  vim.o.background = 'dark'
+  vim.o.termguicolors = true
+
+  for color, value in pairs(term_colors) do
+    vim.g[color] = value
+  end
+
+  local syntax = kosmikoa.set_syntax()
+
+  for group, colors in pairs(syntax) do
+    kosmikoa.highlight(group, colors)
+  end
+
+end
+
+kosmikoa.colorscheme()
+
+return kosmikoa

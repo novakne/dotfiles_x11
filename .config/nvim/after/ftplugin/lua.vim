@@ -1,3 +1,4 @@
 " Use 2 space
-setlocal softtabstop=2
+" Negative number so treesitter indent works
+setlocal softtabstop=-1
 setlocal shiftwidth=2

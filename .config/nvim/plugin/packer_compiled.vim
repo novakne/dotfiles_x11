@@ -31,7 +31,7 @@ local plugins = {
   },
   ["nnn.vim"] = {
     commands = { "Np", "NnnPicker" },
-    config = { "\27LJ\2\n†\2\0\0\b\0\n\0\0175\0\3\0005\1\1\0005\2\0\0=\2\2\1=\1\4\0005\1\5\0=\1\6\0006\1\a\0\18\3\0\0B\1\2\4H\4\3€6\6\b\0009\6\t\6<\5\4\6F\4\3\3R\4ûK\0\1\0\6g\bvim\npairs\15nnn#action\1\0\3\n<c-v>\vvsplit\n<c-h>\nsplit\n<c-t>\14tab split\15nnn#layout\1\0\2\29nnn#set_default_mappings\3\0\16nnn#command\vnnn -e\vwindow\1\0\0\1\0\3\nwidth\4\0€€€ÿ\3\14highlight\nDebug\vheight\4³æÌ™\3³æŒÿ\3\0" },
+    config = { "\27LJ\2\n†\2\0\0\b\0\n\0\0175\0\3\0005\1\1\0005\2\0\0=\2\2\1=\1\4\0005\1\5\0=\1\6\0006\1\a\0\18\3\0\0B\1\2\4H\4\3€6\6\b\0009\6\t\6<\5\4\6F\4\3\3R\4ûK\0\1\0\6g\bvim\npairs\15nnn#action\1\0\3\n<c-h>\nsplit\n<c-t>\14tab split\n<c-v>\vvsplit\15nnn#layout\1\0\2\16nnn#command\vnnn -e\29nnn#set_default_mappings\3\0\vwindow\1\0\0\1\0\3\vheight\4³æÌ™\3³æŒÿ\3\nwidth\4\0€€€ÿ\3\14highlight\nDebug\0" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -44,17 +44,44 @@ local plugins = {
     only_setup = false,
     path = "/home/novakane/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
+  ["nvim-treesitter"] = {
+    after = { "nvim-ts-rainbow", "playground", "nvim-treesitter-context", "nvim-treesitter-refactor" },
+    only_config = true,
+    only_sequence = true
+  },
+  ["nvim-treesitter-context"] = {
+    load_after = {},
+    loaded = false,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/novakane/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-context"
+  },
+  ["nvim-treesitter-refactor"] = {
+    load_after = {},
+    loaded = false,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/novakane/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-refactor"
+  },
+  ["nvim-ts-rainbow"] = {
+    load_after = {},
+    loaded = false,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/novakane/.local/share/nvim/site/pack/packer/opt/nvim-ts-rainbow"
+  },
   ["packer.nvim"] = {
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/novakane/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
-  ["rainbow_parentheses.vim"] = {
+  playground = {
+    load_after = {},
     loaded = false,
-    only_sequence = false,
+    only_sequence = true,
     only_setup = false,
-    path = "/home/novakane/.local/share/nvim/site/pack/packer/opt/rainbow_parentheses.vim"
+    path = "/home/novakane/.local/share/nvim/site/pack/packer/opt/playground"
   },
   ["vim-bbye"] = {
     commands = { "Bdelete" },
@@ -65,7 +92,6 @@ local plugins = {
   },
   ["vim-easy-align"] = {
     commands = { "EasyAlign" },
-    keys = { { "", "<Plug>(EasyAlign)" } },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -178,7 +204,7 @@ _packer_load = function(names, cause)
     end
 
     if cause.prefix then
-      local prefix = vim.v.count and vim.v.count or ''
+      local prefix = vim.v.count ~= 0 and vim.v.count or ''
       prefix = prefix .. '"' .. vim.v.register .. cause.prefix
       if vim.fn.mode('full') == 'no' then
         if vim.v.operator == 'c' then
@@ -206,22 +232,28 @@ end
 
 -- Pre-load configuration
 -- Post-load configuration
--- Config for: completion-nvim
-loadstring("\27LJ\2\n¾\4\0\0\b\0\22\00036\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\1\0'\2\3\0B\0\2\0016\0\0\0009\0\1\0'\2\4\0B\0\2\0016\0\0\0009\0\1\0'\2\5\0B\0\2\0015\0\18\0005\1\n\0004\2\5\0005\3\6\0>\3\1\0025\3\a\0>\3\2\0025\3\b\0>\3\3\0025\3\t\0>\3\4\2=\2\v\0014\2\6\0005\3\f\0>\3\1\0025\3\r\0>\3\2\0025\3\14\0>\3\3\0025\3\15\0>\3\4\0025\3\16\0>\3\5\2=\2\17\1=\1\19\0006\1\20\0\18\3\0\0B\1\2\4H\4\3€6\6\0\0009\6\21\6<\5\4\6F\4\3\3R\4ûK\0\1\0\6g\npairs#completion_chain_complete_list\1\0\3\30completion_enable_snippet\14vim-vsnip!completion_enable_auto_paren\3\1\"completion_auto_change_source\3\1\tmode\1\2\0\0\ttags\1\2\0\0\tline\1\2\0\0\tfile\1\2\0\0\n<c-n>\1\2\0\0\n<c-p>\21completion_items\1\0\0\1\2\0\0\tpath\1\2\0\0\fbuffers\1\2\0\0\fsnippet\1\2\0\0\blsp\18 augroup END = autocmd BufEnter * lua require'completion'.on_attach() \15 autocmd! \23 augroup Complete \bcmd\bvim\0")()
--- Config for: vim-gutentags
-loadstring("\27LJ\2\nC\0\0\2\0\4\0\0056\0\0\0009\0\1\0'\1\3\0=\1\2\0K\0\1\0\18~/.cache/tags\24gutentags_cache_dir\6g\bvim\0")()
--- Config for: editorconfig-vim
-loadstring("\27LJ\2\nQ\0\0\2\0\4\0\0056\0\0\0009\0\1\0'\1\3\0=\1\2\0K\0\1\0\22['fugitive://.*']\"EditorConfig_exclude_patterns\6g\bvim\0")()
 -- Config for: vim-floaterm
 loadstring("\27LJ\2\n:\0\0\2\0\3\1\0056\0\0\0009\0\1\0*\1\0\0=\1\2\0K\0\1\0\19floaterm_width\6g\bvimµæÌ™\19™³¦ÿ\3\0")()
--- Config for: vim-signify
-loadstring("\27LJ\2\nþ\1\0\0\b\0\4\0\v5\0\0\0006\1\1\0\18\3\0\0B\1\2\4H\4\3€6\6\2\0009\6\3\6<\5\4\6F\4\3\3R\4ûK\0\1\0\6g\bvim\npairs\1\0\a\30signify_sign_changedelete\6~\21signify_vcs_list\22[ 'git', 'yadm' ]\28signify_sign_show_count\3\1\24signify_sign_change\aÂ»#signify_sign_delete_first_line\6-\24signify_sign_delete\bâœ—\21signify_sign_add\6+\0")()
+-- Config for: completion-nvim
+loadstring("\27LJ\2\n¾\4\0\0\b\0\22\00036\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\1\0'\2\3\0B\0\2\0016\0\0\0009\0\1\0'\2\4\0B\0\2\0016\0\0\0009\0\1\0'\2\5\0B\0\2\0015\0\18\0005\1\n\0004\2\5\0005\3\6\0>\3\1\0025\3\a\0>\3\2\0025\3\b\0>\3\3\0025\3\t\0>\3\4\2=\2\v\0014\2\6\0005\3\f\0>\3\1\0025\3\r\0>\3\2\0025\3\14\0>\3\3\0025\3\15\0>\3\4\0025\3\16\0>\3\5\2=\2\17\1=\1\19\0006\1\20\0\18\3\0\0B\1\2\4H\4\3€6\6\0\0009\6\21\6<\5\4\6F\4\3\3R\4ûK\0\1\0\6g\npairs#completion_chain_complete_list\1\0\3\"completion_auto_change_source\3\1\30completion_enable_snippet\14vim-vsnip!completion_enable_auto_paren\3\1\tmode\1\2\0\0\ttags\1\2\0\0\tline\1\2\0\0\tfile\1\2\0\0\n<c-n>\1\2\0\0\n<c-p>\21completion_items\1\0\0\1\2\0\0\tpath\1\2\0\0\fbuffers\1\2\0\0\fsnippet\1\2\0\0\blsp\18 augroup END = autocmd BufEnter * lua require'completion'.on_attach() \15 autocmd! \23 augroup Complete \bcmd\bvim\0")()
 -- Config for: vim-sneak
 loadstring("\27LJ\2\n-\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\1\0=\1\2\0K\0\1\0\16sneak#label\6g\bvim\0")()
 -- Config for: fzf.vim
-loadstring("\27LJ\2\nâ\1\0\0\b\0\n\0\0175\0\3\0005\1\1\0005\2\0\0=\2\2\1=\1\4\0005\1\5\0=\1\6\0006\1\a\0\18\3\0\0B\1\2\4H\4\3€6\6\b\0009\6\t\6<\5\4\6F\4\3\3R\4ûK\0\1\0\6g\bvim\npairs\15fzf_action\1\0\3\vctrl-v\vvsplit\vctrl-h\nsplit\vctrl-t\14tab split\15fzf_layout\1\0\1\21fzf_buffers_jump\3\1\vwindow\1\0\0\1\0\2\nwidth\4š³æÌ\t™³¦ÿ\3\vheight\4Í™³æ\fÌ™³ÿ\3\0")()
+loadstring("\27LJ\2\nâ\1\0\0\b\0\n\0\0175\0\3\0005\1\1\0005\2\0\0=\2\2\1=\1\4\0005\1\5\0=\1\6\0006\1\a\0\18\3\0\0B\1\2\4H\4\3€6\6\b\0009\6\t\6<\5\4\6F\4\3\3R\4ûK\0\1\0\6g\bvim\npairs\15fzf_action\1\0\3\vctrl-h\nsplit\vctrl-t\14tab split\vctrl-v\vvsplit\15fzf_layout\1\0\1\21fzf_buffers_jump\3\1\vwindow\1\0\0\1\0\2\vheight\4Í™³æ\fÌ™³ÿ\3\nwidth\4š³æÌ\t™³¦ÿ\3\0")()
+-- Config for: vim-signify
+loadstring('\27LJ\2\nþ\1\0\0\b\0\4\0\v5\0\0\0006\1\1\0\18\3\0\0B\1\2\4H\4\3€6\6\2\0009\6\3\6<\5\4\6F\4\3\3R\4ûK\0\1\0\6g\bvim\npairs\1\0\a\21signify_vcs_list\22[ "git", "yadm" ]\30signify_sign_changedelete\6~\24signify_sign_change\aÂ»#signify_sign_delete_first_line\6-\28signify_sign_show_count\3\1\24signify_sign_delete\bâœ—\21signify_sign_add\6+\0')()
+-- Config for: vim-gutentags
+loadstring("\27LJ\2\nC\0\0\2\0\4\0\0056\0\0\0009\0\1\0'\1\3\0=\1\2\0K\0\1\0\18~/.cache/tags\24gutentags_cache_dir\6g\bvim\0")()
+-- Config for: nvim-treesitter
+loadstring("\27LJ\2\n‡\4\0\0\5\0\25\0 6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0005\4\t\0=\4\n\3=\3\v\0025\3\f\0=\3\r\0025\3\14\0005\4\15\0=\4\16\3=\3\17\0025\3\19\0005\4\18\0=\4\20\0035\4\21\0=\4\22\3=\3\23\2B\0\2\0016\0\0\0'\2\24\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\23my.colors.kosmikoa\rrefactor\28highlight_current_scope\1\0\1\venable\2\26highlight_definitions\1\0\0\1\0\1\venable\2\frainbow\fdisable\1\2\0\0\tbash\1\0\1\venable\2\vindent\1\0\1\venable\2\26incremental_selection\fkeymaps\1\0\4\21node_incremental\bgrn\22scope_incremental\bgrc\19init_selection\bgnn\21node_decremental\bgrm\1\0\1\venable\2\14highlight\1\0\1\venable\2\21ensure_installed\1\0\0\1\5\0\0\tbash\blua\vfennel\trust\nsetup\28nvim-treesitter.configs\frequire\0")()
+-- Config for: editorconfig-vim
+loadstring("\27LJ\2\nQ\0\0\2\0\4\0\0056\0\0\0009\0\1\0'\1\3\0=\1\2\0K\0\1\0\22[\"fugitive://.*\"]\"EditorConfig_exclude_patterns\6g\bvim\0")()
 -- Conditional loads
 -- Load plugins in order defined by `after`
+vim.cmd [[ packadd playground ]]
+vim.cmd [[ packadd nvim-treesitter-refactor ]]
+vim.cmd [[ packadd nvim-treesitter-context ]]
+vim.cmd [[ packadd nvim-ts-rainbow ]]
 END
 
 function! s:load(names, cause) abort
@@ -230,22 +262,19 @@ endfunction
 
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file ColorizerToggle call s:load(['nvim-colorizer.lua'], { "cmd": "ColorizerToggle", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Goyo call s:load(['goyo.vim'], { "cmd": "Goyo", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file NnnPicker call s:load(['nnn.vim'], { "cmd": "NnnPicker", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file EasyAlign call s:load(['vim-easy-align'], { "cmd": "EasyAlign", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Bdelete call s:load(['vim-bbye'], { "cmd": "Bdelete", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Np call s:load(['nnn.vim'], { "cmd": "Np", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Goyo call s:load(['goyo.vim'], { "cmd": "Goyo", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Bdelete call s:load(['vim-bbye'], { "cmd": "Bdelete", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file ColorizerToggle call s:load(['nvim-colorizer.lua'], { "cmd": "ColorizerToggle", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
-noremap <silent> <Plug>(EasyAlign) <cmd>call <SID>load(['vim-easy-align'], { "keys": "<Plug>(EasyAlign)", "prefix": "" })<cr>
 
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType clojure ++once call s:load(['rainbow_parentheses.vim'], { "ft": "clojure" })
-  au FileType fennel ++once call s:load(['rainbow_parentheses.vim'], { "ft": "fennel" })
   au FileType markdown ++once call s:load(['markdown-preview.nvim'], { "ft": "markdown" })
   " Event lazy-loads
-  au InsertEnter * ++once call s:load(['completion-buffers', 'vim-vsnip', 'vim-vsnip-integ'], { "event": "InsertEnter *" })
+  au InsertEnter * ++once call s:load(['vim-vsnip', 'completion-buffers', 'vim-vsnip-integ'], { "event": "InsertEnter *" })
 augroup END

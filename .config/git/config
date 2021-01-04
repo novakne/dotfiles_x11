@@ -22,3 +22,5 @@
     path = config.user
 [credential]
     helper = store
+[pull]
+	rebase = preserve

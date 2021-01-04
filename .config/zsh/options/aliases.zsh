@@ -18,6 +18,8 @@ alias archnews='yay -Pww'
 ### FILES MANAGEMENT
 # Directories
 alias note='cd $HOME/doc/notes'
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # Files
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
