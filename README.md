@@ -18,6 +18,7 @@
 
 ## Infos
 
+> Except for Awesome the most up to date config are in my other [dotfiles](https://github.com/novakne/dotfiles)
 
 * `OS_` Arch Linux
 * `WM_` [AwesomeWM](https://github.com/awesomeWM/awesome) ( *git master branch* )
